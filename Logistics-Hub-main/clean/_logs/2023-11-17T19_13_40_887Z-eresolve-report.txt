@@ -1,0 +1,783 @@
+'Log files:
+/Users/prajaktakumbhar/Downloads/Logistics-Hub-main/Logistics-Hub-main/clean/_logs/2023-11-17T19_13_40_887Z-debug-0.log
+
+# npm resolution error report
+
+While resolving: @mui/styles@5.14.14
+Found: react@18.2.0
+node_modules/react
+  peer react@">=16.8.0" from @emotion/react@11.11.1
+  node_modules/@emotion/react
+    peer @emotion/react@"^11.0.0-rc.0" from @emotion/styled@11.11.0
+    node_modules/@emotion/styled
+      peerOptional @emotion/styled@"^11.3.0" from @mui/lab@5.0.0-alpha.153
+      node_modules/@mui/lab
+        @mui/lab@"^5.0.0-alpha.153" from the root project
+      peerOptional @emotion/styled@"^11.3.0" from @mui/material@5.14.14
+      node_modules/@mui/material
+        peer @mui/material@"^5.0.0" from @mui/icons-material@5.14.14
+        node_modules/@mui/icons-material
+          @mui/icons-material@"^5.14.13" from the root project
+        peer @mui/material@">=5.10.11" from @mui/lab@5.0.0-alpha.153
+        node_modules/@mui/lab
+          @mui/lab@"^5.0.0-alpha.153" from the root project
+        peer @mui/material@"^5.8.6" from @mui/x-date-pickers@6.18.1
+        node_modules/@mui/x-date-pickers
+          @mui/x-date-pickers@"^6.18.1" from the root project
+        @mui/material@"^5.14.13" from the root project
+      peerOptional @emotion/styled@"^11.3.0" from @mui/styled-engine@5.14.18
+      node_modules/@mui/styled-engine
+        @mui/styled-engine@"^5.14.18" from @mui/system@5.14.18
+        node_modules/@mui/system
+          @mui/system@"^5.14.18" from @mui/lab@5.0.0-alpha.153
+          node_modules/@mui/lab
+            @mui/lab@"^5.0.0-alpha.153" from the root project
+          @mui/system@"^5.14.14" from @mui/material@5.14.14
+          node_modules/@mui/material
+            peer @mui/material@"^5.0.0" from @mui/icons-material@5.14.14
+            node_modules/@mui/icons-material
+              @mui/icons-material@"^5.14.13" from the root project
+            peer @mui/material@">=5.10.11" from @mui/lab@5.0.0-alpha.153
+            node_modules/@mui/lab
+              @mui/lab@"^5.0.0-alpha.153" from the root project
+            peer @mui/material@"^5.8.6" from @mui/x-date-pickers@6.18.1
+            node_modules/@mui/x-date-pickers
+              @mui/x-date-pickers@"^6.18.1" from the root project
+            @mui/material@"^5.14.13" from the root project
+          peer @mui/system@"^5.8.0" from @mui/x-date-pickers@6.18.1
+          node_modules/@mui/x-date-pickers
+            @mui/x-date-pickers@"^6.18.1" from the root project
+      peerOptional @emotion/styled@"^11.3.0" from @mui/system@5.14.18
+      node_modules/@mui/system
+        @mui/system@"^5.14.18" from @mui/lab@5.0.0-alpha.153
+        node_modules/@mui/lab
+          @mui/lab@"^5.0.0-alpha.153" from the root project
+        @mui/system@"^5.14.14" from @mui/material@5.14.14
+        node_modules/@mui/material
+          peer @mui/material@"^5.0.0" from @mui/icons-material@5.14.14
+          node_modules/@mui/icons-material
+            @mui/icons-material@"^5.14.13" from the root project
+          peer @mui/material@">=5.10.11" from @mui/lab@5.0.0-alpha.153
+          node_modules/@mui/lab
+            @mui/lab@"^5.0.0-alpha.153" from the root project
+          peer @mui/material@"^5.8.6" from @mui/x-date-pickers@6.18.1
+          node_modules/@mui/x-date-pickers
+            @mui/x-date-pickers@"^6.18.1" from the root project
+          @mui/material@"^5.14.13" from the root project
+        peer @mui/system@"^5.8.0" from @mui/x-date-pickers@6.18.1
+        node_modules/@mui/x-date-pickers
+          @mui/x-date-pickers@"^6.18.1" from the root project
+      peerOptional @emotion/styled@"^11.8.1" from @mui/x-date-pickers@6.18.1
+      node_modules/@mui/x-date-pickers
+        @mui/x-date-pickers@"^6.18.1" from the root project
+      @emotion/styled@"^11.11.0" from the root project
+    peerOptional @emotion/react@"^11.5.0" from @mui/lab@5.0.0-alpha.153
+    node_modules/@mui/lab
+      @mui/lab@"^5.0.0-alpha.153" from the root project
+    peerOptional @emotion/react@"^11.5.0" from @mui/material@5.14.14
+    node_modules/@mui/material
+      peer @mui/material@"^5.0.0" from @mui/icons-material@5.14.14
+      node_modules/@mui/icons-material
+        @mui/icons-material@"^5.14.13" from the root project
+      peer @mui/material@">=5.10.11" from @mui/lab@5.0.0-alpha.153
+      node_modules/@mui/lab
+        @mui/lab@"^5.0.0-alpha.153" from the root project
+      peer @mui/material@"^5.8.6" from @mui/x-date-pickers@6.18.1
+      node_modules/@mui/x-date-pickers
+        @mui/x-date-pickers@"^6.18.1" from the root project
+      @mui/material@"^5.14.13" from the root project
+    peerOptional @emotion/react@"^11.4.1" from @mui/styled-engine@5.14.18
+    node_modules/@mui/styled-engine
+      @mui/styled-engine@"^5.14.18" from @mui/system@5.14.18
+      node_modules/@mui/system
+        @mui/system@"^5.14.18" from @mui/lab@5.0.0-alpha.153
+        node_modules/@mui/lab
+          @mui/lab@"^5.0.0-alpha.153" from the root project
+        @mui/system@"^5.14.14" from @mui/material@5.14.14
+        node_modules/@mui/material
+          peer @mui/material@"^5.0.0" from @mui/icons-material@5.14.14
+          node_modules/@mui/icons-material
+            @mui/icons-material@"^5.14.13" from the root project
+          peer @mui/material@">=5.10.11" from @mui/lab@5.0.0-alpha.153
+          node_modules/@mui/lab
+            @mui/lab@"^5.0.0-alpha.153" from the root project
+          peer @mui/material@"^5.8.6" from @mui/x-date-pickers@6.18.1
+          node_modules/@mui/x-date-pickers
+            @mui/x-date-pickers@"^6.18.1" from the root project
+          @mui/material@"^5.14.13" from the root project
+        peer @mui/system@"^5.8.0" from @mui/x-date-pickers@6.18.1
+        node_modules/@mui/x-date-pickers
+          @mui/x-date-pickers@"^6.18.1" from the root project
+    peerOptional @emotion/react@"^11.5.0" from @mui/system@5.14.18
+    node_modules/@mui/system
+      @mui/system@"^5.14.18" from @mui/lab@5.0.0-alpha.153
+      node_modules/@mui/lab
+        @mui/lab@"^5.0.0-alpha.153" from the root project
+      @mui/system@"^5.14.14" from @mui/material@5.14.14
+      node_modules/@mui/material
+        peer @mui/material@"^5.0.0" from @mui/icons-material@5.14.14
+        node_modules/@mui/icons-material
+          @mui/icons-material@"^5.14.13" from the root project
+        peer @mui/material@">=5.10.11" from @mui/lab@5.0.0-alpha.153
+        node_modules/@mui/lab
+          @mui/lab@"^5.0.0-alpha.153" from the root project
+        peer @mui/material@"^5.8.6" from @mui/x-date-pickers@6.18.1
+        node_modules/@mui/x-date-pickers
+          @mui/x-date-pickers@"^6.18.1" from the root project
+        @mui/material@"^5.14.13" from the root project
+      peer @mui/system@"^5.8.0" from @mui/x-date-pickers@6.18.1
+      node_modules/@mui/x-date-pickers
+        @mui/x-date-pickers@"^6.18.1" from the root project
+    peerOptional @emotion/react@"^11.9.0" from @mui/x-date-pickers@6.18.1
+    node_modules/@mui/x-date-pickers
+      @mui/x-date-pickers@"^6.18.1" from the root project
+    @emotion/react@"^11.11.1" from the root project
+  peer react@">=16.8.0" from @emotion/styled@11.11.0
+  node_modules/@emotion/styled
+    peerOptional @emotion/styled@"^11.3.0" from @mui/lab@5.0.0-alpha.153
+    node_modules/@mui/lab
+      @mui/lab@"^5.0.0-alpha.153" from the root project
+    peerOptional @emotion/styled@"^11.3.0" from @mui/material@5.14.14
+    node_modules/@mui/material
+      peer @mui/material@"^5.0.0" from @mui/icons-material@5.14.14
+      node_modules/@mui/icons-material
+        @mui/icons-material@"^5.14.13" from the root project
+      peer @mui/material@">=5.10.11" from @mui/lab@5.0.0-alpha.153
+      node_modules/@mui/lab
+        @mui/lab@"^5.0.0-alpha.153" from the root project
+      peer @mui/material@"^5.8.6" from @mui/x-date-pickers@6.18.1
+      node_modules/@mui/x-date-pickers
+        @mui/x-date-pickers@"^6.18.1" from the root project
+      @mui/material@"^5.14.13" from the root project
+    peerOptional @emotion/styled@"^11.3.0" from @mui/styled-engine@5.14.18
+    node_modules/@mui/styled-engine
+      @mui/styled-engine@"^5.14.18" from @mui/system@5.14.18
+      node_modules/@mui/system
+        @mui/system@"^5.14.18" from @mui/lab@5.0.0-alpha.153
+        node_modules/@mui/lab
+          @mui/lab@"^5.0.0-alpha.153" from the root project
+        @mui/system@"^5.14.14" from @mui/material@5.14.14
+        node_modules/@mui/material
+          peer @mui/material@"^5.0.0" from @mui/icons-material@5.14.14
+          node_modules/@mui/icons-material
+            @mui/icons-material@"^5.14.13" from the root project
+          peer @mui/material@">=5.10.11" from @mui/lab@5.0.0-alpha.153
+          node_modules/@mui/lab
+            @mui/lab@"^5.0.0-alpha.153" from the root project
+          peer @mui/material@"^5.8.6" from @mui/x-date-pickers@6.18.1
+          node_modules/@mui/x-date-pickers
+            @mui/x-date-pickers@"^6.18.1" from the root project
+          @mui/material@"^5.14.13" from the root project
+        peer @mui/system@"^5.8.0" from @mui/x-date-pickers@6.18.1
+        node_modules/@mui/x-date-pickers
+          @mui/x-date-pickers@"^6.18.1" from the root project
+    peerOptional @emotion/styled@"^11.3.0" from @mui/system@5.14.18
+    node_modules/@mui/system
+      @mui/system@"^5.14.18" from @mui/lab@5.0.0-alpha.153
+      node_modules/@mui/lab
+        @mui/lab@"^5.0.0-alpha.153" from the root project
+      @mui/system@"^5.14.14" from @mui/material@5.14.14
+      node_modules/@mui/material
+        peer @mui/material@"^5.0.0" from @mui/icons-material@5.14.14
+        node_modules/@mui/icons-material
+          @mui/icons-material@"^5.14.13" from the root project
+        peer @mui/material@">=5.10.11" from @mui/lab@5.0.0-alpha.153
+        node_modules/@mui/lab
+          @mui/lab@"^5.0.0-alpha.153" from the root project
+        peer @mui/material@"^5.8.6" from @mui/x-date-pickers@6.18.1
+        node_modules/@mui/x-date-pickers
+          @mui/x-date-pickers@"^6.18.1" from the root project
+        @mui/material@"^5.14.13" from the root project
+      peer @mui/system@"^5.8.0" from @mui/x-date-pickers@6.18.1
+      node_modules/@mui/x-date-pickers
+        @mui/x-date-pickers@"^6.18.1" from the root project
+    peerOptional @emotion/styled@"^11.8.1" from @mui/x-date-pickers@6.18.1
+    node_modules/@mui/x-date-pickers
+      @mui/x-date-pickers@"^6.18.1" from the root project
+    @emotion/styled@"^11.11.0" from the root project
+  peer react@">=16.8.0" from @emotion/use-insertion-effect-with-fallbacks@1.0.1
+  node_modules/@emotion/use-insertion-effect-with-fallbacks
+    @emotion/use-insertion-effect-with-fallbacks@"^1.0.1" from @emotion/react@11.11.1
+    node_modules/@emotion/react
+      peer @emotion/react@"^11.0.0-rc.0" from @emotion/styled@11.11.0
+      node_modules/@emotion/styled
+        peerOptional @emotion/styled@"^11.3.0" from @mui/lab@5.0.0-alpha.153
+        node_modules/@mui/lab
+          @mui/lab@"^5.0.0-alpha.153" from the root project
+        peerOptional @emotion/styled@"^11.3.0" from @mui/material@5.14.14
+        node_modules/@mui/material
+          peer @mui/material@"^5.0.0" from @mui/icons-material@5.14.14
+          node_modules/@mui/icons-material
+            @mui/icons-material@"^5.14.13" from the root project
+          peer @mui/material@">=5.10.11" from @mui/lab@5.0.0-alpha.153
+          node_modules/@mui/lab
+            @mui/lab@"^5.0.0-alpha.153" from the root project
+          peer @mui/material@"^5.8.6" from @mui/x-date-pickers@6.18.1
+          node_modules/@mui/x-date-pickers
+            @mui/x-date-pickers@"^6.18.1" from the root project
+          @mui/material@"^5.14.13" from the root project
+        peerOptional @emotion/styled@"^11.3.0" from @mui/styled-engine@5.14.18
+        node_modules/@mui/styled-engine
+          @mui/styled-engine@"^5.14.18" from @mui/system@5.14.18
+          node_modules/@mui/system
+            @mui/system@"^5.14.18" from @mui/lab@5.0.0-alpha.153
+            node_modules/@mui/lab
+              @mui/lab@"^5.0.0-alpha.153" from the root project
+            @mui/system@"^5.14.14" from @mui/material@5.14.14
+            node_modules/@mui/material
+              peer @mui/material@"^5.0.0" from @mui/icons-material@5.14.14
+              node_modules/@mui/icons-material
+                @mui/icons-material@"^5.14.13" from the root project
+              peer @mui/material@">=5.10.11" from @mui/lab@5.0.0-alpha.153
+              node_modules/@mui/lab
+                @mui/lab@"^5.0.0-alpha.153" from the root project
+              peer @mui/material@"^5.8.6" from @mui/x-date-pickers@6.18.1
+              node_modules/@mui/x-date-pickers
+                @mui/x-date-pickers@"^6.18.1" from the root project
+              @mui/material@"^5.14.13" from the root project
+            peer @mui/system@"^5.8.0" from @mui/x-date-pickers@6.18.1
+            node_modules/@mui/x-date-pickers
+              @mui/x-date-pickers@"^6.18.1" from the root project
+        peerOptional @emotion/styled@"^11.3.0" from @mui/system@5.14.18
+        node_modules/@mui/system
+          @mui/system@"^5.14.18" from @mui/lab@5.0.0-alpha.153
+          node_modules/@mui/lab
+            @mui/lab@"^5.0.0-alpha.153" from the root project
+          @mui/system@"^5.14.14" from @mui/material@5.14.14
+          node_modules/@mui/material
+            peer @mui/material@"^5.0.0" from @mui/icons-material@5.14.14
+            node_modules/@mui/icons-material
+              @mui/icons-material@"^5.14.13" from the root project
+            peer @mui/material@">=5.10.11" from @mui/lab@5.0.0-alpha.153
+            node_modules/@mui/lab
+              @mui/lab@"^5.0.0-alpha.153" from the root project
+            peer @mui/material@"^5.8.6" from @mui/x-date-pickers@6.18.1
+            node_modules/@mui/x-date-pickers
+              @mui/x-date-pickers@"^6.18.1" from the root project
+            @mui/material@"^5.14.13" from the root project
+          peer @mui/system@"^5.8.0" from @mui/x-date-pickers@6.18.1
+          node_modules/@mui/x-date-pickers
+            @mui/x-date-pickers@"^6.18.1" from the root project
+        peerOptional @emotion/styled@"^11.8.1" from @mui/x-date-pickers@6.18.1
+        node_modules/@mui/x-date-pickers
+          @mui/x-date-pickers@"^6.18.1" from the root project
+        @emotion/styled@"^11.11.0" from the root project
+      peerOptional @emotion/react@"^11.5.0" from @mui/lab@5.0.0-alpha.153
+      node_modules/@mui/lab
+        @mui/lab@"^5.0.0-alpha.153" from the root project
+      peerOptional @emotion/react@"^11.5.0" from @mui/material@5.14.14
+      node_modules/@mui/material
+        peer @mui/material@"^5.0.0" from @mui/icons-material@5.14.14
+        node_modules/@mui/icons-material
+          @mui/icons-material@"^5.14.13" from the root project
+        peer @mui/material@">=5.10.11" from @mui/lab@5.0.0-alpha.153
+        node_modules/@mui/lab
+          @mui/lab@"^5.0.0-alpha.153" from the root project
+        peer @mui/material@"^5.8.6" from @mui/x-date-pickers@6.18.1
+        node_modules/@mui/x-date-pickers
+          @mui/x-date-pickers@"^6.18.1" from the root project
+        @mui/material@"^5.14.13" from the root project
+      peerOptional @emotion/react@"^11.4.1" from @mui/styled-engine@5.14.18
+      node_modules/@mui/styled-engine
+        @mui/styled-engine@"^5.14.18" from @mui/system@5.14.18
+        node_modules/@mui/system
+          @mui/system@"^5.14.18" from @mui/lab@5.0.0-alpha.153
+          node_modules/@mui/lab
+            @mui/lab@"^5.0.0-alpha.153" from the root project
+          @mui/system@"^5.14.14" from @mui/material@5.14.14
+          node_modules/@mui/material
+            peer @mui/material@"^5.0.0" from @mui/icons-material@5.14.14
+            node_modules/@mui/icons-material
+              @mui/icons-material@"^5.14.13" from the root project
+            peer @mui/material@">=5.10.11" from @mui/lab@5.0.0-alpha.153
+            node_modules/@mui/lab
+              @mui/lab@"^5.0.0-alpha.153" from the root project
+            peer @mui/material@"^5.8.6" from @mui/x-date-pickers@6.18.1
+            node_modules/@mui/x-date-pickers
+              @mui/x-date-pickers@"^6.18.1" from the root project
+            @mui/material@"^5.14.13" from the root project
+          peer @mui/system@"^5.8.0" from @mui/x-date-pickers@6.18.1
+          node_modules/@mui/x-date-pickers
+            @mui/x-date-pickers@"^6.18.1" from the root project
+      peerOptional @emotion/react@"^11.5.0" from @mui/system@5.14.18
+      node_modules/@mui/system
+        @mui/system@"^5.14.18" from @mui/lab@5.0.0-alpha.153
+        node_modules/@mui/lab
+          @mui/lab@"^5.0.0-alpha.153" from the root project
+        @mui/system@"^5.14.14" from @mui/material@5.14.14
+        node_modules/@mui/material
+          peer @mui/material@"^5.0.0" from @mui/icons-material@5.14.14
+          node_modules/@mui/icons-material
+            @mui/icons-material@"^5.14.13" from the root project
+          peer @mui/material@">=5.10.11" from @mui/lab@5.0.0-alpha.153
+          node_modules/@mui/lab
+            @mui/lab@"^5.0.0-alpha.153" from the root project
+          peer @mui/material@"^5.8.6" from @mui/x-date-pickers@6.18.1
+          node_modules/@mui/x-date-pickers
+            @mui/x-date-pickers@"^6.18.1" from the root project
+          @mui/material@"^5.14.13" from the root project
+        peer @mui/system@"^5.8.0" from @mui/x-date-pickers@6.18.1
+        node_modules/@mui/x-date-pickers
+          @mui/x-date-pickers@"^6.18.1" from the root project
+      peerOptional @emotion/react@"^11.9.0" from @mui/x-date-pickers@6.18.1
+      node_modules/@mui/x-date-pickers
+        @mui/x-date-pickers@"^6.18.1" from the root project
+      @emotion/react@"^11.11.1" from the root project
+    @emotion/use-insertion-effect-with-fallbacks@"^1.0.1" from @emotion/styled@11.11.0
+    node_modules/@emotion/styled
+      peerOptional @emotion/styled@"^11.3.0" from @mui/lab@5.0.0-alpha.153
+      node_modules/@mui/lab
+        @mui/lab@"^5.0.0-alpha.153" from the root project
+      peerOptional @emotion/styled@"^11.3.0" from @mui/material@5.14.14
+      node_modules/@mui/material
+        peer @mui/material@"^5.0.0" from @mui/icons-material@5.14.14
+        node_modules/@mui/icons-material
+          @mui/icons-material@"^5.14.13" from the root project
+        peer @mui/material@">=5.10.11" from @mui/lab@5.0.0-alpha.153
+        node_modules/@mui/lab
+          @mui/lab@"^5.0.0-alpha.153" from the root project
+        peer @mui/material@"^5.8.6" from @mui/x-date-pickers@6.18.1
+        node_modules/@mui/x-date-pickers
+          @mui/x-date-pickers@"^6.18.1" from the root project
+        @mui/material@"^5.14.13" from the root project
+      peerOptional @emotion/styled@"^11.3.0" from @mui/styled-engine@5.14.18
+      node_modules/@mui/styled-engine
+        @mui/styled-engine@"^5.14.18" from @mui/system@5.14.18
+        node_modules/@mui/system
+          @mui/system@"^5.14.18" from @mui/lab@5.0.0-alpha.153
+          node_modules/@mui/lab
+            @mui/lab@"^5.0.0-alpha.153" from the root project
+          @mui/system@"^5.14.14" from @mui/material@5.14.14
+          node_modules/@mui/material
+            peer @mui/material@"^5.0.0" from @mui/icons-material@5.14.14
+            node_modules/@mui/icons-material
+              @mui/icons-material@"^5.14.13" from the root project
+            peer @mui/material@">=5.10.11" from @mui/lab@5.0.0-alpha.153
+            node_modules/@mui/lab
+              @mui/lab@"^5.0.0-alpha.153" from the root project
+            peer @mui/material@"^5.8.6" from @mui/x-date-pickers@6.18.1
+            node_modules/@mui/x-date-pickers
+              @mui/x-date-pickers@"^6.18.1" from the root project
+            @mui/material@"^5.14.13" from the root project
+          peer @mui/system@"^5.8.0" from @mui/x-date-pickers@6.18.1
+          node_modules/@mui/x-date-pickers
+            @mui/x-date-pickers@"^6.18.1" from the root project
+      peerOptional @emotion/styled@"^11.3.0" from @mui/system@5.14.18
+      node_modules/@mui/system
+        @mui/system@"^5.14.18" from @mui/lab@5.0.0-alpha.153
+        node_modules/@mui/lab
+          @mui/lab@"^5.0.0-alpha.153" from the root project
+        @mui/system@"^5.14.14" from @mui/material@5.14.14
+        node_modules/@mui/material
+          peer @mui/material@"^5.0.0" from @mui/icons-material@5.14.14
+          node_modules/@mui/icons-material
+            @mui/icons-material@"^5.14.13" from the root project
+          peer @mui/material@">=5.10.11" from @mui/lab@5.0.0-alpha.153
+          node_modules/@mui/lab
+            @mui/lab@"^5.0.0-alpha.153" from the root project
+          peer @mui/material@"^5.8.6" from @mui/x-date-pickers@6.18.1
+          node_modules/@mui/x-date-pickers
+            @mui/x-date-pickers@"^6.18.1" from the root project
+          @mui/material@"^5.14.13" from the root project
+        peer @mui/system@"^5.8.0" from @mui/x-date-pickers@6.18.1
+        node_modules/@mui/x-date-pickers
+          @mui/x-date-pickers@"^6.18.1" from the root project
+      peerOptional @emotion/styled@"^11.8.1" from @mui/x-date-pickers@6.18.1
+      node_modules/@mui/x-date-pickers
+        @mui/x-date-pickers@"^6.18.1" from the root project
+      @emotion/styled@"^11.11.0" from the root project
+  peer react@">=16.8.0" from @floating-ui/react-dom@2.0.4
+  node_modules/@floating-ui/react-dom
+    @floating-ui/react-dom@"^2.0.2" from @mui/base@5.0.0-beta.20
+    node_modules/@mui/base
+      @mui/base@"5.0.0-beta.20" from @mui/material@5.14.14
+      node_modules/@mui/material
+        peer @mui/material@"^5.0.0" from @mui/icons-material@5.14.14
+        node_modules/@mui/icons-material
+          @mui/icons-material@"^5.14.13" from the root project
+        peer @mui/material@">=5.10.11" from @mui/lab@5.0.0-alpha.153
+        node_modules/@mui/lab
+          @mui/lab@"^5.0.0-alpha.153" from the root project
+        peer @mui/material@"^5.8.6" from @mui/x-date-pickers@6.18.1
+        node_modules/@mui/x-date-pickers
+          @mui/x-date-pickers@"^6.18.1" from the root project
+        @mui/material@"^5.14.13" from the root project
+    @floating-ui/react-dom@"^2.0.4" from @mui/base@5.0.0-beta.24
+    node_modules/@mui/lab/node_modules/@mui/base
+      @mui/base@"5.0.0-beta.24" from @mui/lab@5.0.0-alpha.153
+      node_modules/@mui/lab
+        @mui/lab@"^5.0.0-alpha.153" from the root project
+    @floating-ui/react-dom@"^2.0.4" from @mui/base@5.0.0-beta.24
+    node_modules/@mui/x-date-pickers/node_modules/@mui/base
+      @mui/base@"^5.0.0-beta.22" from @mui/x-date-pickers@6.18.1
+      node_modules/@mui/x-date-pickers
+        @mui/x-date-pickers@"^6.18.1" from the root project
+  peer react@"^17.0.0 || ^18.0.0" from @mui/base@5.0.0-beta.20
+  node_modules/@mui/base
+    @mui/base@"5.0.0-beta.20" from @mui/material@5.14.14
+    node_modules/@mui/material
+      peer @mui/material@"^5.0.0" from @mui/icons-material@5.14.14
+      node_modules/@mui/icons-material
+        @mui/icons-material@"^5.14.13" from the root project
+      peer @mui/material@">=5.10.11" from @mui/lab@5.0.0-alpha.153
+      node_modules/@mui/lab
+        @mui/lab@"^5.0.0-alpha.153" from the root project
+      peer @mui/material@"^5.8.6" from @mui/x-date-pickers@6.18.1
+      node_modules/@mui/x-date-pickers
+        @mui/x-date-pickers@"^6.18.1" from the root project
+      @mui/material@"^5.14.13" from the root project
+  peer react@"^17.0.0 || ^18.0.0" from @mui/icons-material@5.14.14
+  node_modules/@mui/icons-material
+    @mui/icons-material@"^5.14.13" from the root project
+  peer react@"^17.0.0 || ^18.0.0" from @mui/lab@5.0.0-alpha.153
+  node_modules/@mui/lab
+    @mui/lab@"^5.0.0-alpha.153" from the root project
+  peer react@"^17.0.0 || ^18.0.0" from @mui/base@5.0.0-beta.24
+  node_modules/@mui/lab/node_modules/@mui/base
+    @mui/base@"5.0.0-beta.24" from @mui/lab@5.0.0-alpha.153
+    node_modules/@mui/lab
+      @mui/lab@"^5.0.0-alpha.153" from the root project
+  peer react@"^17.0.0 || ^18.0.0" from @mui/material@5.14.14
+  node_modules/@mui/material
+    peer @mui/material@"^5.0.0" from @mui/icons-material@5.14.14
+    node_modules/@mui/icons-material
+      @mui/icons-material@"^5.14.13" from the root project
+    peer @mui/material@">=5.10.11" from @mui/lab@5.0.0-alpha.153
+    node_modules/@mui/lab
+      @mui/lab@"^5.0.0-alpha.153" from the root project
+    peer @mui/material@"^5.8.6" from @mui/x-date-pickers@6.18.1
+    node_modules/@mui/x-date-pickers
+      @mui/x-date-pickers@"^6.18.1" from the root project
+    @mui/material@"^5.14.13" from the root project
+  peer react@"^17.0.0 || ^18.0.0" from @mui/private-theming@5.14.18
+  node_modules/@mui/private-theming
+    @mui/private-theming@"^5.14.14" from @mui/styles@5.14.14
+    node_modules/@mui/styles
+      @mui/styles@"^5.14.13" from the root project
+    @mui/private-theming@"^5.14.18" from @mui/system@5.14.18
+    node_modules/@mui/system
+      @mui/system@"^5.14.18" from @mui/lab@5.0.0-alpha.153
+      node_modules/@mui/lab
+        @mui/lab@"^5.0.0-alpha.153" from the root project
+      @mui/system@"^5.14.14" from @mui/material@5.14.14
+      node_modules/@mui/material
+        peer @mui/material@"^5.0.0" from @mui/icons-material@5.14.14
+        node_modules/@mui/icons-material
+          @mui/icons-material@"^5.14.13" from the root project
+        peer @mui/material@">=5.10.11" from @mui/lab@5.0.0-alpha.153
+        node_modules/@mui/lab
+          @mui/lab@"^5.0.0-alpha.153" from the root project
+        peer @mui/material@"^5.8.6" from @mui/x-date-pickers@6.18.1
+        node_modules/@mui/x-date-pickers
+          @mui/x-date-pickers@"^6.18.1" from the root project
+        @mui/material@"^5.14.13" from the root project
+      peer @mui/system@"^5.8.0" from @mui/x-date-pickers@6.18.1
+      node_modules/@mui/x-date-pickers
+        @mui/x-date-pickers@"^6.18.1" from the root project
+  peer react@"^17.0.0 || ^18.0.0" from @mui/styled-engine@5.14.18
+  node_modules/@mui/styled-engine
+    @mui/styled-engine@"^5.14.18" from @mui/system@5.14.18
+    node_modules/@mui/system
+      @mui/system@"^5.14.18" from @mui/lab@5.0.0-alpha.153
+      node_modules/@mui/lab
+        @mui/lab@"^5.0.0-alpha.153" from the root project
+      @mui/system@"^5.14.14" from @mui/material@5.14.14
+      node_modules/@mui/material
+        peer @mui/material@"^5.0.0" from @mui/icons-material@5.14.14
+        node_modules/@mui/icons-material
+          @mui/icons-material@"^5.14.13" from the root project
+        peer @mui/material@">=5.10.11" from @mui/lab@5.0.0-alpha.153
+        node_modules/@mui/lab
+          @mui/lab@"^5.0.0-alpha.153" from the root project
+        peer @mui/material@"^5.8.6" from @mui/x-date-pickers@6.18.1
+        node_modules/@mui/x-date-pickers
+          @mui/x-date-pickers@"^6.18.1" from the root project
+        @mui/material@"^5.14.13" from the root project
+      peer @mui/system@"^5.8.0" from @mui/x-date-pickers@6.18.1
+      node_modules/@mui/x-date-pickers
+        @mui/x-date-pickers@"^6.18.1" from the root project
+  peer react@"^17.0.0 || ^18.0.0" from @mui/system@5.14.18
+  node_modules/@mui/system
+    @mui/system@"^5.14.18" from @mui/lab@5.0.0-alpha.153
+    node_modules/@mui/lab
+      @mui/lab@"^5.0.0-alpha.153" from the root project
+    @mui/system@"^5.14.14" from @mui/material@5.14.14
+    node_modules/@mui/material
+      peer @mui/material@"^5.0.0" from @mui/icons-material@5.14.14
+      node_modules/@mui/icons-material
+        @mui/icons-material@"^5.14.13" from the root project
+      peer @mui/material@">=5.10.11" from @mui/lab@5.0.0-alpha.153
+      node_modules/@mui/lab
+        @mui/lab@"^5.0.0-alpha.153" from the root project
+      peer @mui/material@"^5.8.6" from @mui/x-date-pickers@6.18.1
+      node_modules/@mui/x-date-pickers
+        @mui/x-date-pickers@"^6.18.1" from the root project
+      @mui/material@"^5.14.13" from the root project
+    peer @mui/system@"^5.8.0" from @mui/x-date-pickers@6.18.1
+    node_modules/@mui/x-date-pickers
+      @mui/x-date-pickers@"^6.18.1" from the root project
+  peer react@"^17.0.0 || ^18.0.0" from @mui/utils@5.14.18
+  node_modules/@mui/utils
+    @mui/utils@"^5.14.13" from @mui/base@5.0.0-beta.20
+    node_modules/@mui/base
+      @mui/base@"5.0.0-beta.20" from @mui/material@5.14.14
+      node_modules/@mui/material
+        peer @mui/material@"^5.0.0" from @mui/icons-material@5.14.14
+        node_modules/@mui/icons-material
+          @mui/icons-material@"^5.14.13" from the root project
+        peer @mui/material@">=5.10.11" from @mui/lab@5.0.0-alpha.153
+        node_modules/@mui/lab
+          @mui/lab@"^5.0.0-alpha.153" from the root project
+        peer @mui/material@"^5.8.6" from @mui/x-date-pickers@6.18.1
+        node_modules/@mui/x-date-pickers
+          @mui/x-date-pickers@"^6.18.1" from the root project
+        @mui/material@"^5.14.13" from the root project
+    @mui/utils@"^5.14.18" from @mui/lab@5.0.0-alpha.153
+    node_modules/@mui/lab
+      @mui/lab@"^5.0.0-alpha.153" from the root project
+    @mui/utils@"^5.14.18" from @mui/base@5.0.0-beta.24
+    node_modules/@mui/lab/node_modules/@mui/base
+      @mui/base@"5.0.0-beta.24" from @mui/lab@5.0.0-alpha.153
+      node_modules/@mui/lab
+        @mui/lab@"^5.0.0-alpha.153" from the root project
+    @mui/utils@"^5.14.13" from @mui/material@5.14.14
+    node_modules/@mui/material
+      peer @mui/material@"^5.0.0" from @mui/icons-material@5.14.14
+      node_modules/@mui/icons-material
+        @mui/icons-material@"^5.14.13" from the root project
+      peer @mui/material@">=5.10.11" from @mui/lab@5.0.0-alpha.153
+      node_modules/@mui/lab
+        @mui/lab@"^5.0.0-alpha.153" from the root project
+      peer @mui/material@"^5.8.6" from @mui/x-date-pickers@6.18.1
+      node_modules/@mui/x-date-pickers
+        @mui/x-date-pickers@"^6.18.1" from the root project
+      @mui/material@"^5.14.13" from the root project
+    @mui/utils@"^5.14.18" from @mui/private-theming@5.14.18
+    node_modules/@mui/private-theming
+      @mui/private-theming@"^5.14.14" from @mui/styles@5.14.14
+      node_modules/@mui/styles
+        @mui/styles@"^5.14.13" from the root project
+      @mui/private-theming@"^5.14.18" from @mui/system@5.14.18
+      node_modules/@mui/system
+        @mui/system@"^5.14.18" from @mui/lab@5.0.0-alpha.153
+        node_modules/@mui/lab
+          @mui/lab@"^5.0.0-alpha.153" from the root project
+        @mui/system@"^5.14.14" from @mui/material@5.14.14
+        node_modules/@mui/material
+          peer @mui/material@"^5.0.0" from @mui/icons-material@5.14.14
+          node_modules/@mui/icons-material
+            @mui/icons-material@"^5.14.13" from the root project
+          peer @mui/material@">=5.10.11" from @mui/lab@5.0.0-alpha.153
+          node_modules/@mui/lab
+            @mui/lab@"^5.0.0-alpha.153" from the root project
+          peer @mui/material@"^5.8.6" from @mui/x-date-pickers@6.18.1
+          node_modules/@mui/x-date-pickers
+            @mui/x-date-pickers@"^6.18.1" from the root project
+          @mui/material@"^5.14.13" from the root project
+        peer @mui/system@"^5.8.0" from @mui/x-date-pickers@6.18.1
+        node_modules/@mui/x-date-pickers
+          @mui/x-date-pickers@"^6.18.1" from the root project
+    @mui/utils@"^5.14.13" from @mui/styles@5.14.14
+    node_modules/@mui/styles
+      @mui/styles@"^5.14.13" from the root project
+    @mui/utils@"^5.14.18" from @mui/system@5.14.18
+    node_modules/@mui/system
+      @mui/system@"^5.14.18" from @mui/lab@5.0.0-alpha.153
+      node_modules/@mui/lab
+        @mui/lab@"^5.0.0-alpha.153" from the root project
+      @mui/system@"^5.14.14" from @mui/material@5.14.14
+      node_modules/@mui/material
+        peer @mui/material@"^5.0.0" from @mui/icons-material@5.14.14
+        node_modules/@mui/icons-material
+          @mui/icons-material@"^5.14.13" from the root project
+        peer @mui/material@">=5.10.11" from @mui/lab@5.0.0-alpha.153
+        node_modules/@mui/lab
+          @mui/lab@"^5.0.0-alpha.153" from the root project
+        peer @mui/material@"^5.8.6" from @mui/x-date-pickers@6.18.1
+        node_modules/@mui/x-date-pickers
+          @mui/x-date-pickers@"^6.18.1" from the root project
+        @mui/material@"^5.14.13" from the root project
+      peer @mui/system@"^5.8.0" from @mui/x-date-pickers@6.18.1
+      node_modules/@mui/x-date-pickers
+        @mui/x-date-pickers@"^6.18.1" from the root project
+    @mui/utils@"^5.14.16" from @mui/x-date-pickers@6.18.1
+    node_modules/@mui/x-date-pickers
+      @mui/x-date-pickers@"^6.18.1" from the root project
+    @mui/utils@"^5.14.18" from @mui/base@5.0.0-beta.24
+    node_modules/@mui/x-date-pickers/node_modules/@mui/base
+      @mui/base@"^5.0.0-beta.22" from @mui/x-date-pickers@6.18.1
+      node_modules/@mui/x-date-pickers
+        @mui/x-date-pickers@"^6.18.1" from the root project
+  peer react@"^17.0.0 || ^18.0.0" from @mui/x-date-pickers@6.18.1
+  node_modules/@mui/x-date-pickers
+    @mui/x-date-pickers@"^6.18.1" from the root project
+  peer react@"^17.0.0 || ^18.0.0" from @mui/base@5.0.0-beta.24
+  node_modules/@mui/x-date-pickers/node_modules/@mui/base
+    @mui/base@"^5.0.0-beta.22" from @mui/x-date-pickers@6.18.1
+    node_modules/@mui/x-date-pickers
+      @mui/x-date-pickers@"^6.18.1" from the root project
+  peer react@"^18.0.0" from @testing-library/react@13.4.0
+  node_modules/@testing-library/react
+    @testing-library/react@"^13.4.0" from the root project
+  peer react@"^18.2.0" from react-dom@18.2.0
+  node_modules/react-dom
+    peer react-dom@">=16.8.0" from @floating-ui/react-dom@2.0.4
+    node_modules/@floating-ui/react-dom
+      @floating-ui/react-dom@"^2.0.2" from @mui/base@5.0.0-beta.20
+      node_modules/@mui/base
+        @mui/base@"5.0.0-beta.20" from @mui/material@5.14.14
+        node_modules/@mui/material
+          peer @mui/material@"^5.0.0" from @mui/icons-material@5.14.14
+          node_modules/@mui/icons-material
+            @mui/icons-material@"^5.14.13" from the root project
+          peer @mui/material@">=5.10.11" from @mui/lab@5.0.0-alpha.153
+          node_modules/@mui/lab
+            @mui/lab@"^5.0.0-alpha.153" from the root project
+          peer @mui/material@"^5.8.6" from @mui/x-date-pickers@6.18.1
+          node_modules/@mui/x-date-pickers
+            @mui/x-date-pickers@"^6.18.1" from the root project
+          @mui/material@"^5.14.13" from the root project
+      @floating-ui/react-dom@"^2.0.4" from @mui/base@5.0.0-beta.24
+      node_modules/@mui/lab/node_modules/@mui/base
+        @mui/base@"5.0.0-beta.24" from @mui/lab@5.0.0-alpha.153
+        node_modules/@mui/lab
+          @mui/lab@"^5.0.0-alpha.153" from the root project
+      @floating-ui/react-dom@"^2.0.4" from @mui/base@5.0.0-beta.24
+      node_modules/@mui/x-date-pickers/node_modules/@mui/base
+        @mui/base@"^5.0.0-beta.22" from @mui/x-date-pickers@6.18.1
+        node_modules/@mui/x-date-pickers
+          @mui/x-date-pickers@"^6.18.1" from the root project
+    peer react-dom@"^17.0.0 || ^18.0.0" from @mui/base@5.0.0-beta.20
+    node_modules/@mui/base
+      @mui/base@"5.0.0-beta.20" from @mui/material@5.14.14
+      node_modules/@mui/material
+        peer @mui/material@"^5.0.0" from @mui/icons-material@5.14.14
+        node_modules/@mui/icons-material
+          @mui/icons-material@"^5.14.13" from the root project
+        peer @mui/material@">=5.10.11" from @mui/lab@5.0.0-alpha.153
+        node_modules/@mui/lab
+          @mui/lab@"^5.0.0-alpha.153" from the root project
+        peer @mui/material@"^5.8.6" from @mui/x-date-pickers@6.18.1
+        node_modules/@mui/x-date-pickers
+          @mui/x-date-pickers@"^6.18.1" from the root project
+        @mui/material@"^5.14.13" from the root project
+    peer react-dom@"^17.0.0 || ^18.0.0" from @mui/lab@5.0.0-alpha.153
+    node_modules/@mui/lab
+      @mui/lab@"^5.0.0-alpha.153" from the root project
+    peer react-dom@"^17.0.0 || ^18.0.0" from @mui/base@5.0.0-beta.24
+    node_modules/@mui/lab/node_modules/@mui/base
+      @mui/base@"5.0.0-beta.24" from @mui/lab@5.0.0-alpha.153
+      node_modules/@mui/lab
+        @mui/lab@"^5.0.0-alpha.153" from the root project
+    peer react-dom@"^17.0.0 || ^18.0.0" from @mui/material@5.14.14
+    node_modules/@mui/material
+      peer @mui/material@"^5.0.0" from @mui/icons-material@5.14.14
+      node_modules/@mui/icons-material
+        @mui/icons-material@"^5.14.13" from the root project
+      peer @mui/material@">=5.10.11" from @mui/lab@5.0.0-alpha.153
+      node_modules/@mui/lab
+        @mui/lab@"^5.0.0-alpha.153" from the root project
+      peer @mui/material@"^5.8.6" from @mui/x-date-pickers@6.18.1
+      node_modules/@mui/x-date-pickers
+        @mui/x-date-pickers@"^6.18.1" from the root project
+      @mui/material@"^5.14.13" from the root project
+    peer react-dom@"^17.0.0 || ^18.0.0" from @mui/x-date-pickers@6.18.1
+    node_modules/@mui/x-date-pickers
+      @mui/x-date-pickers@"^6.18.1" from the root project
+    peer react-dom@"^17.0.0 || ^18.0.0" from @mui/base@5.0.0-beta.24
+    node_modules/@mui/x-date-pickers/node_modules/@mui/base
+      @mui/base@"^5.0.0-beta.22" from @mui/x-date-pickers@6.18.1
+      node_modules/@mui/x-date-pickers
+        @mui/x-date-pickers@"^6.18.1" from the root project
+    peer react-dom@"^18.0.0" from @testing-library/react@13.4.0
+    node_modules/@testing-library/react
+      @testing-library/react@"^13.4.0" from the root project
+    peer react-dom@">=16.8" from react-router-dom@6.17.0
+    node_modules/react-router-dom
+      dev react-router-dom@"^6.16.0" from the root project
+    peer react-dom@"^0.14.0 || ^15.0.1 || ^16.0.0 || ^17.0.0 || ^18.0.0" from react-slick@0.29.0
+    node_modules/react-slick
+      react-slick@"^0.29.0" from the root project
+    peer react-dom@">=16.6.0" from react-transition-group@4.4.5
+    node_modules/react-transition-group
+      react-transition-group@"^4.4.5" from @mui/material@5.14.14
+      node_modules/@mui/material
+        peer @mui/material@"^5.0.0" from @mui/icons-material@5.14.14
+        node_modules/@mui/icons-material
+          @mui/icons-material@"^5.14.13" from the root project
+        peer @mui/material@">=5.10.11" from @mui/lab@5.0.0-alpha.153
+        node_modules/@mui/lab
+          @mui/lab@"^5.0.0-alpha.153" from the root project
+        peer @mui/material@"^5.8.6" from @mui/x-date-pickers@6.18.1
+        node_modules/@mui/x-date-pickers
+          @mui/x-date-pickers@"^6.18.1" from the root project
+        @mui/material@"^5.14.13" from the root project
+      react-transition-group@"^4.4.5" from @mui/x-date-pickers@6.18.1
+      node_modules/@mui/x-date-pickers
+        @mui/x-date-pickers@"^6.18.1" from the root project
+    peer react-dom@">= 16.8.0" from styled-components@6.1.0
+    node_modules/styled-components
+      peer styled-components@"^6.0.0" from @mui/styled-engine-sc@6.0.0-alpha.2
+      node_modules/@mui/styled-engine-sc
+        @mui/styled-engine-sc@"^6.0.0-alpha.1" from the root project
+      styled-components@"^6.1.0" from the root project
+    react-dom@"^18.2.0" from the root project
+  peer react@"*" from react-icons@4.12.0
+  node_modules/react-icons
+    dev react-icons@"^4.4.0" from the root project
+  peer react@">=16.8" from react-router@6.17.0
+  node_modules/react-router
+    react-router@"6.17.0" from react-router-dom@6.17.0
+    node_modules/react-router-dom
+      dev react-router-dom@"^6.16.0" from the root project
+  peer react@">=16.8" from react-router-dom@6.17.0
+  node_modules/react-router-dom
+    dev react-router-dom@"^6.16.0" from the root project
+  peer react@">= 16" from react-scripts@5.0.1
+  node_modules/react-scripts
+    react-scripts@"5.0.1" from the root project
+  peer react@"^0.14.0 || ^15.0.1 || ^16.0.0 || ^17.0.0 || ^18.0.0" from react-slick@0.29.0
+  node_modules/react-slick
+    react-slick@"^0.29.0" from the root project
+  peer react@">=16.6.0" from react-transition-group@4.4.5
+  node_modules/react-transition-group
+    react-transition-group@"^4.4.5" from @mui/material@5.14.14
+    node_modules/@mui/material
+      peer @mui/material@"^5.0.0" from @mui/icons-material@5.14.14
+      node_modules/@mui/icons-material
+        @mui/icons-material@"^5.14.13" from the root project
+      peer @mui/material@">=5.10.11" from @mui/lab@5.0.0-alpha.153
+      node_modules/@mui/lab
+        @mui/lab@"^5.0.0-alpha.153" from the root project
+      peer @mui/material@"^5.8.6" from @mui/x-date-pickers@6.18.1
+      node_modules/@mui/x-date-pickers
+        @mui/x-date-pickers@"^6.18.1" from the root project
+      @mui/material@"^5.14.13" from the root project
+    react-transition-group@"^4.4.5" from @mui/x-date-pickers@6.18.1
+    node_modules/@mui/x-date-pickers
+      @mui/x-date-pickers@"^6.18.1" from the root project
+  peer react@">= 16.8.0" from styled-components@6.1.0
+  node_modules/styled-components
+    peer styled-components@"^6.0.0" from @mui/styled-engine-sc@6.0.0-alpha.2
+    node_modules/@mui/styled-engine-sc
+      @mui/styled-engine-sc@"^6.0.0-alpha.1" from the root project
+    styled-components@"^6.1.0" from the root project
+  react@"^18.2.0" from the root project
+  peer react@"^16.8.0 || ^17.0.0 || ^18.0.0" from react-chartjs-2@5.2.0
+  node_modules/react-chartjs-2
+    react-chartjs-2@"*" from the root project
+
+Could not resolve dependency:
+peer react@"^17.0.0" from @mui/styles@5.14.14
+node_modules/@mui/styles
+  @mui/styles@"^5.14.13" from the root project
+
+Conflicting peer dependency: react@17.0.2
+node_modules/react
+  peer react@"^17.0.0" from @mui/styles@5.14.14
+  node_modules/@mui/styles
+    @mui/styles@"^5.14.13" from the root project
+
+Fix the upstream dependency conflict, or retry
+this command with --force or --legacy-peer-deps
+to accept an incorrect (and potentially broken) dependency resolution.

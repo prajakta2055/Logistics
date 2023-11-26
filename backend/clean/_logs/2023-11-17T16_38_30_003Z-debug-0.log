@@ -1,0 +1,272 @@
+0 verbose cli /opt/homebrew/Cellar/node/21.2.0/bin/node /opt/homebrew/bin/npm
+1 info using npm@10.2.3
+2 info using node@v21.2.0
+3 timing npm:load:whichnode Completed in 0ms
+4 timing config:load:defaults Completed in 0ms
+5 timing config:load:file:/opt/homebrew/lib/node_modules/npm/npmrc Completed in 1ms
+6 timing config:load:builtin Completed in 1ms
+7 timing config:load:cli Completed in 1ms
+8 timing config:load:env Completed in 0ms
+9 timing config:load:project Completed in 0ms
+10 timing config:load:file:/Users/prajaktakumbhar/.npmrc Completed in 0ms
+11 timing config:load:user Completed in 0ms
+12 timing config:load:file:/opt/homebrew/etc/npmrc Completed in 0ms
+13 timing config:load:global Completed in 0ms
+14 timing config:load:setEnvs Completed in 1ms
+15 timing config:load Completed in 4ms
+16 timing npm:load:configload Completed in 5ms
+17 timing config:load:flatten Completed in 1ms
+18 timing npm:load:mkdirpcache Completed in 2ms
+19 timing npm:load:mkdirplogs Completed in 0ms
+20 verbose title npm i nodemon
+21 verbose argv "i" "nodemon" "--global"
+22 timing npm:load:setTitle Completed in 2ms
+23 timing npm:load:display Completed in 0ms
+24 verbose logfile logs-max:10 dir:/Users/prajaktakumbhar/Downloads/Logistics-Hub-main/backend/clean/_logs/2023-11-17T16_38_30_003Z-
+25 verbose logfile /Users/prajaktakumbhar/Downloads/Logistics-Hub-main/backend/clean/_logs/2023-11-17T16_38_30_003Z-debug-0.log
+26 timing npm:load:logFile Completed in 4ms
+27 timing npm:load:timers Completed in 0ms
+28 timing npm:load:configScope Completed in 1ms
+29 timing npm:load Completed in 22ms
+30 timing config:load:flatten Completed in 1ms
+31 timing arborist:ctor Completed in 1ms
+32 silly logfile start cleaning logs, removing 1 files
+33 timing idealTree:init Completed in 4ms
+34 timing idealTree:userRequests Completed in 2ms
+35 silly idealTree buildDeps
+36 silly fetch manifest nodemon@*
+37 silly logfile done cleaning log files
+38 http fetch GET 200 https://registry.npmjs.org/nodemon 7ms (cache hit)
+39 silly placeDep ROOT nodemon@3.0.1 OK for:  want: *
+40 silly fetch manifest chokidar@^3.5.2
+41 silly fetch manifest debug@^3.2.7
+42 silly fetch manifest ignore-by-default@^1.0.1
+43 silly fetch manifest minimatch@^3.1.2
+44 silly fetch manifest pstree.remy@^1.1.8
+45 silly fetch manifest semver@^7.5.3
+46 silly fetch manifest simple-update-notifier@^2.0.0
+47 silly fetch manifest supports-color@^5.5.0
+48 silly fetch manifest touch@^3.1.0
+49 silly fetch manifest undefsafe@^2.0.5
+50 http fetch GET 200 https://registry.npmjs.org/pstree.remy 124ms (cache revalidated)
+51 http fetch GET 200 https://registry.npmjs.org/minimatch 134ms (cache revalidated)
+52 http fetch GET 200 https://registry.npmjs.org/undefsafe 139ms (cache revalidated)
+53 http fetch GET 200 https://registry.npmjs.org/supports-color 141ms (cache revalidated)
+54 http fetch GET 200 https://registry.npmjs.org/ignore-by-default 143ms (cache revalidated)
+55 http fetch GET 200 https://registry.npmjs.org/chokidar 144ms (cache revalidated)
+56 http fetch GET 200 https://registry.npmjs.org/debug 151ms (cache revalidated)
+57 http fetch GET 200 https://registry.npmjs.org/semver 152ms (cache revalidated)
+58 http fetch GET 200 https://registry.npmjs.org/simple-update-notifier 173ms (cache revalidated)
+59 http fetch GET 200 https://registry.npmjs.org/touch 388ms (cache revalidated)
+60 timing idealTree:#root Completed in 404ms
+61 silly placeDep node_modules/nodemon chokidar@3.5.3 OK for: nodemon@3.0.1 want: ^3.5.2
+62 silly fetch manifest anymatch@~3.1.2
+63 silly fetch manifest braces@~3.0.2
+64 silly fetch manifest glob-parent@~5.1.2
+65 silly fetch manifest is-binary-path@~2.1.0
+66 silly fetch manifest is-glob@~4.0.1
+67 silly fetch manifest normalize-path@~3.0.0
+68 silly fetch manifest readdirp@~3.6.0
+69 silly fetch manifest fsevents@~2.3.2
+70 silly placeDep node_modules/nodemon debug@3.2.7 OK for: nodemon@3.0.1 want: ^3.2.7
+71 silly fetch manifest ms@^2.1.1
+72 silly placeDep node_modules/nodemon ignore-by-default@1.0.1 OK for: nodemon@3.0.1 want: ^1.0.1
+73 silly placeDep node_modules/nodemon minimatch@3.1.2 OK for: nodemon@3.0.1 want: ^3.1.2
+74 silly fetch manifest brace-expansion@^1.1.7
+75 silly placeDep node_modules/nodemon pstree.remy@1.1.8 OK for: nodemon@3.0.1 want: ^1.1.8
+76 silly placeDep node_modules/nodemon semver@7.5.4 OK for: nodemon@3.0.1 want: ^7.5.3
+77 silly fetch manifest lru-cache@^6.0.0
+78 silly placeDep node_modules/nodemon simple-update-notifier@2.0.0 OK for: nodemon@3.0.1 want: ^2.0.0
+79 silly placeDep node_modules/nodemon supports-color@5.5.0 OK for: nodemon@3.0.1 want: ^5.5.0
+80 silly fetch manifest has-flag@^3.0.0
+81 silly placeDep node_modules/nodemon touch@3.1.0 OK for: nodemon@3.0.1 want: ^3.1.0
+82 silly fetch manifest nopt@~1.0.10
+83 silly placeDep node_modules/nodemon undefsafe@2.0.5 OK for: nodemon@3.0.1 want: ^2.0.5
+84 http fetch GET 200 https://registry.npmjs.org/anymatch 55ms (cache revalidated)
+85 http fetch GET 200 https://registry.npmjs.org/has-flag 53ms (cache revalidated)
+86 http fetch GET 200 https://registry.npmjs.org/ms 59ms (cache revalidated)
+87 http fetch GET 200 https://registry.npmjs.org/braces 64ms (cache revalidated)
+88 http fetch GET 200 https://registry.npmjs.org/is-binary-path 63ms (cache revalidated)
+89 http fetch GET 200 https://registry.npmjs.org/normalize-path 65ms (cache revalidated)
+90 http fetch GET 200 https://registry.npmjs.org/nopt 56ms (cache revalidated)
+91 http fetch GET 200 https://registry.npmjs.org/is-glob 66ms (cache revalidated)
+92 http fetch GET 200 https://registry.npmjs.org/lru-cache 62ms (cache revalidated)
+93 http fetch GET 200 https://registry.npmjs.org/glob-parent 74ms (cache revalidated)
+94 http fetch GET 200 https://registry.npmjs.org/readdirp 124ms (cache revalidated)
+95 http fetch GET 200 https://registry.npmjs.org/brace-expansion 120ms (cache revalidated)
+96 http fetch GET 200 https://registry.npmjs.org/fsevents 124ms (cache revalidated)
+97 timing idealTree:node_modules/nodemon Completed in 138ms
+98 silly placeDep node_modules/nodemon anymatch@3.1.3 OK for: chokidar@3.5.3 want: ~3.1.2
+99 silly fetch manifest normalize-path@^3.0.0
+100 silly fetch manifest picomatch@^2.0.4
+101 silly placeDep node_modules/nodemon braces@3.0.2 OK for: chokidar@3.5.3 want: ~3.0.2
+102 silly fetch manifest fill-range@^7.0.1
+103 silly placeDep node_modules/nodemon fsevents@2.3.3 OK for: chokidar@3.5.3 want: ~2.3.2
+104 silly placeDep node_modules/nodemon glob-parent@5.1.2 OK for: chokidar@3.5.3 want: ~5.1.2
+105 silly fetch manifest is-glob@^4.0.1
+106 silly placeDep node_modules/nodemon is-binary-path@2.1.0 OK for: chokidar@3.5.3 want: ~2.1.0
+107 silly fetch manifest binary-extensions@^2.0.0
+108 silly placeDep node_modules/nodemon is-glob@4.0.3 OK for: chokidar@3.5.3 want: ~4.0.1
+109 silly fetch manifest is-extglob@^2.1.1
+110 silly placeDep node_modules/nodemon normalize-path@3.0.0 OK for: chokidar@3.5.3 want: ~3.0.0
+111 silly placeDep node_modules/nodemon readdirp@3.6.0 OK for: chokidar@3.5.3 want: ~3.6.0
+112 silly fetch manifest picomatch@^2.2.1
+113 http fetch GET 200 https://registry.npmjs.org/picomatch 43ms (cache revalidated)
+114 http fetch GET 200 https://registry.npmjs.org/fill-range 44ms (cache revalidated)
+115 http fetch GET 200 https://registry.npmjs.org/picomatch 43ms (cache revalidated)
+116 http fetch GET 200 https://registry.npmjs.org/binary-extensions 50ms (cache revalidated)
+117 http fetch GET 200 https://registry.npmjs.org/is-extglob 84ms (cache revalidated)
+118 timing idealTree:node_modules/nodemon/node_modules/chokidar Completed in 90ms
+119 silly placeDep node_modules/nodemon picomatch@2.3.1 OK for: anymatch@3.1.3 want: ^2.0.4
+120 timing idealTree:node_modules/nodemon/node_modules/anymatch Completed in 1ms
+121 silly placeDep node_modules/nodemon fill-range@7.0.1 OK for: braces@3.0.2 want: ^7.0.1
+122 silly fetch manifest to-regex-range@^5.0.1
+123 http fetch GET 200 https://registry.npmjs.org/to-regex-range 37ms (cache revalidated)
+124 timing idealTree:node_modules/nodemon/node_modules/braces Completed in 38ms
+125 silly placeDep node_modules/nodemon ms@2.1.3 OK for: debug@3.2.7 want: ^2.1.1
+126 timing idealTree:node_modules/nodemon/node_modules/debug Completed in 1ms
+127 silly placeDep node_modules/nodemon to-regex-range@5.0.1 OK for: fill-range@7.0.1 want: ^5.0.1
+128 silly fetch manifest is-number@^7.0.0
+129 http fetch GET 200 https://registry.npmjs.org/is-number 43ms (cache revalidated)
+130 timing idealTree:node_modules/nodemon/node_modules/fill-range Completed in 45ms
+131 timing idealTree:node_modules/nodemon/node_modules/fsevents Completed in 0ms
+132 timing idealTree:node_modules/nodemon/node_modules/glob-parent Completed in 0ms
+133 timing idealTree:node_modules/nodemon/node_modules/ignore-by-default Completed in 0ms
+134 silly placeDep node_modules/nodemon binary-extensions@2.2.0 OK for: is-binary-path@2.1.0 want: ^2.0.0
+135 timing idealTree:node_modules/nodemon/node_modules/is-binary-path Completed in 0ms
+136 timing idealTree:node_modules/nodemon/node_modules/binary-extensions Completed in 0ms
+137 silly placeDep node_modules/nodemon is-extglob@2.1.1 OK for: is-glob@4.0.3 want: ^2.1.1
+138 timing idealTree:node_modules/nodemon/node_modules/is-glob Completed in 1ms
+139 timing idealTree:node_modules/nodemon/node_modules/is-extglob Completed in 0ms
+140 silly placeDep node_modules/nodemon brace-expansion@1.1.11 OK for: minimatch@3.1.2 want: ^1.1.7
+141 silly fetch manifest balanced-match@^1.0.0
+142 silly fetch manifest concat-map@0.0.1
+143 http fetch GET 200 https://registry.npmjs.org/concat-map 35ms (cache revalidated)
+144 http fetch GET 200 https://registry.npmjs.org/balanced-match 43ms (cache revalidated)
+145 timing idealTree:node_modules/nodemon/node_modules/minimatch Completed in 43ms
+146 silly placeDep node_modules/nodemon balanced-match@1.0.2 OK for: brace-expansion@1.1.11 want: ^1.0.0
+147 silly placeDep node_modules/nodemon concat-map@0.0.1 OK for: brace-expansion@1.1.11 want: 0.0.1
+148 timing idealTree:node_modules/nodemon/node_modules/brace-expansion Completed in 1ms
+149 timing idealTree:node_modules/nodemon/node_modules/balanced-match Completed in 0ms
+150 timing idealTree:node_modules/nodemon/node_modules/concat-map Completed in 0ms
+151 timing idealTree:node_modules/nodemon/node_modules/ms Completed in 0ms
+152 timing idealTree:node_modules/nodemon/node_modules/normalize-path Completed in 0ms
+153 timing idealTree:node_modules/nodemon/node_modules/picomatch Completed in 0ms
+154 timing idealTree:node_modules/nodemon/node_modules/pstree.remy Completed in 0ms
+155 timing idealTree:node_modules/nodemon/node_modules/readdirp Completed in 0ms
+156 silly placeDep node_modules/nodemon lru-cache@6.0.0 OK for: semver@7.5.4 want: ^6.0.0
+157 silly fetch manifest yallist@^4.0.0
+158 http fetch GET 200 https://registry.npmjs.org/yallist 45ms (cache revalidated)
+159 timing idealTree:node_modules/nodemon/node_modules/semver Completed in 46ms
+160 silly placeDep node_modules/nodemon yallist@4.0.0 OK for: lru-cache@6.0.0 want: ^4.0.0
+161 timing idealTree:node_modules/nodemon/node_modules/lru-cache Completed in 1ms
+162 timing idealTree:node_modules/nodemon/node_modules/simple-update-notifier Completed in 0ms
+163 silly placeDep node_modules/nodemon has-flag@3.0.0 OK for: supports-color@5.5.0 want: ^3.0.0
+164 timing idealTree:node_modules/nodemon/node_modules/supports-color Completed in 0ms
+165 timing idealTree:node_modules/nodemon/node_modules/has-flag Completed in 0ms
+166 silly placeDep node_modules/nodemon is-number@7.0.0 OK for: to-regex-range@5.0.1 want: ^7.0.0
+167 timing idealTree:node_modules/nodemon/node_modules/to-regex-range Completed in 1ms
+168 timing idealTree:node_modules/nodemon/node_modules/is-number Completed in 0ms
+169 silly placeDep node_modules/nodemon nopt@1.0.10 OK for: touch@3.1.0 want: ~1.0.10
+170 silly fetch manifest abbrev@1
+171 http fetch GET 200 https://registry.npmjs.org/abbrev 35ms (cache revalidated)
+172 timing idealTree:node_modules/nodemon/node_modules/touch Completed in 36ms
+173 silly placeDep node_modules/nodemon abbrev@1.1.1 OK for: nopt@1.0.10 want: 1
+174 timing idealTree:node_modules/nodemon/node_modules/nopt Completed in 1ms
+175 timing idealTree:node_modules/nodemon/node_modules/abbrev Completed in 0ms
+176 timing idealTree:node_modules/nodemon/node_modules/undefsafe Completed in 0ms
+177 timing idealTree:node_modules/nodemon/node_modules/yallist Completed in 0ms
+178 timing idealTree:buildDeps Completed in 849ms
+179 timing idealTree:fixDepFlags Completed in 1ms
+180 timing idealTree Completed in 857ms
+181 timing reify:loadTrees Completed in 859ms
+182 timing reify:diffTrees Completed in 2ms
+183 silly reify moves {}
+184 timing reify:retireShallow Completed in 1ms
+185 timing reify:createSparse Completed in 3ms
+186 timing reify:loadBundles Completed in 0ms
+187 timing reifyNode:node_modules/nodemon/node_modules/has-flag Completed in 51ms
+188 timing reifyNode:node_modules/nodemon/node_modules/abbrev Completed in 51ms
+189 timing reifyNode:node_modules/nodemon/node_modules/is-number Completed in 51ms
+190 timing reifyNode:node_modules/nodemon/node_modules/is-extglob Completed in 51ms
+191 timing reifyNode:node_modules/nodemon/node_modules/normalize-path Completed in 51ms
+192 timing reifyNode:node_modules/nodemon/node_modules/brace-expansion Completed in 52ms
+193 timing reifyNode:node_modules/nodemon/node_modules/ms Completed in 52ms
+194 timing reifyNode:node_modules/nodemon/node_modules/ignore-by-default Completed in 51ms
+195 timing reifyNode:node_modules/nodemon/node_modules/fill-range Completed in 51ms
+196 timing reifyNode:node_modules/nodemon/node_modules/is-binary-path Completed in 51ms
+197 timing reifyNode:node_modules/nodemon/node_modules/to-regex-range Completed in 52ms
+198 timing reifyNode:node_modules/nodemon/node_modules/anymatch Completed in 51ms
+199 timing reifyNode:node_modules/nodemon/node_modules/is-glob Completed in 51ms
+200 timing reifyNode:node_modules/nodemon/node_modules/glob-parent Completed in 51ms
+201 timing reifyNode:node_modules/nodemon/node_modules/lru-cache Completed in 52ms
+202 timing reifyNode:node_modules/nodemon/node_modules/supports-color Completed in 52ms
+203 timing reifyNode:node_modules/nodemon/node_modules/balanced-match Completed in 53ms
+204 timing reifyNode:node_modules/nodemon/node_modules/yallist Completed in 53ms
+205 timing reifyNode:node_modules/nodemon/node_modules/touch Completed in 52ms
+206 timing reifyNode:node_modules/nodemon/node_modules/binary-extensions Completed in 53ms
+207 timing reifyNode:node_modules/nodemon/node_modules/minimatch Completed in 52ms
+208 timing reifyNode:node_modules/nodemon/node_modules/readdirp Completed in 53ms
+209 timing reifyNode:node_modules/nodemon/node_modules/concat-map Completed in 54ms
+210 timing reifyNode:node_modules/nodemon/node_modules/nopt Completed in 54ms
+211 timing reifyNode:node_modules/nodemon/node_modules/undefsafe Completed in 54ms
+212 timing reifyNode:node_modules/nodemon/node_modules/debug Completed in 54ms
+213 timing reifyNode:node_modules/nodemon/node_modules/fsevents Completed in 54ms
+214 timing reifyNode:node_modules/nodemon/node_modules/braces Completed in 55ms
+215 timing reifyNode:node_modules/nodemon/node_modules/pstree.remy Completed in 55ms
+216 timing reifyNode:node_modules/nodemon/node_modules/simple-update-notifier Completed in 55ms
+217 timing reifyNode:node_modules/nodemon/node_modules/picomatch Completed in 55ms
+218 timing reifyNode:node_modules/nodemon/node_modules/chokidar Completed in 55ms
+219 timing reifyNode:node_modules/nodemon/node_modules/semver Completed in 59ms
+220 timing reifyNode:node_modules/nodemon Completed in 60ms
+221 timing reify:unpack Completed in 61ms
+222 timing reify:unretire Completed in 0ms
+223 timing build:queue Completed in 1ms
+224 timing build:link:node_modules/nodemon/node_modules/nopt Completed in 1ms
+225 timing build:link:node_modules/nodemon Completed in 1ms
+226 timing build:link:node_modules/nodemon/node_modules/touch Completed in 1ms
+227 timing build:link:node_modules/nodemon/node_modules/semver Completed in 1ms
+228 timing build:link Completed in 1ms
+229 timing build:deps Completed in 2ms
+230 timing build Completed in 3ms
+231 timing reify:build Completed in 3ms
+232 timing reify:trash Completed in 0ms
+233 timing reify Completed in 931ms
+234 silly ADD node_modules/nodemon
+235 silly ADD node_modules/nodemon/node_modules/abbrev
+236 silly ADD node_modules/nodemon/node_modules/nopt
+237 silly ADD node_modules/nodemon/node_modules/is-number
+238 silly ADD node_modules/nodemon/node_modules/has-flag
+239 silly ADD node_modules/nodemon/node_modules/yallist
+240 silly ADD node_modules/nodemon/node_modules/lru-cache
+241 silly ADD node_modules/nodemon/node_modules/concat-map
+242 silly ADD node_modules/nodemon/node_modules/balanced-match
+243 silly ADD node_modules/nodemon/node_modules/brace-expansion
+244 silly ADD node_modules/nodemon/node_modules/is-extglob
+245 silly ADD node_modules/nodemon/node_modules/binary-extensions
+246 silly ADD node_modules/nodemon/node_modules/to-regex-range
+247 silly ADD node_modules/nodemon/node_modules/ms
+248 silly ADD node_modules/nodemon/node_modules/fill-range
+249 silly ADD node_modules/nodemon/node_modules/picomatch
+250 silly ADD node_modules/nodemon/node_modules/readdirp
+251 silly ADD node_modules/nodemon/node_modules/normalize-path
+252 silly ADD node_modules/nodemon/node_modules/is-glob
+253 silly ADD node_modules/nodemon/node_modules/is-binary-path
+254 silly ADD node_modules/nodemon/node_modules/glob-parent
+255 silly ADD node_modules/nodemon/node_modules/fsevents
+256 silly ADD node_modules/nodemon/node_modules/braces
+257 silly ADD node_modules/nodemon/node_modules/anymatch
+258 silly ADD node_modules/nodemon/node_modules/undefsafe
+259 silly ADD node_modules/nodemon/node_modules/touch
+260 silly ADD node_modules/nodemon/node_modules/supports-color
+261 silly ADD node_modules/nodemon/node_modules/simple-update-notifier
+262 silly ADD node_modules/nodemon/node_modules/semver
+263 silly ADD node_modules/nodemon/node_modules/pstree.remy
+264 silly ADD node_modules/nodemon/node_modules/minimatch
+265 silly ADD node_modules/nodemon/node_modules/ignore-by-default
+266 silly ADD node_modules/nodemon/node_modules/debug
+267 silly ADD node_modules/nodemon/node_modules/chokidar
+268 timing command:i Completed in 935ms
+269 verbose exit 0
+270 timing npm Completed in 1058ms
+271 info ok

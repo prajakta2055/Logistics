@@ -1,0 +1,102 @@
+0 verbose cli /opt/homebrew/Cellar/node/21.2.0/bin/node /opt/homebrew/bin/npm
+1 info using npm@10.2.3
+2 info using node@v21.2.0
+3 timing npm:load:whichnode Completed in 0ms
+4 timing config:load:defaults Completed in 0ms
+5 timing config:load:file:/opt/homebrew/lib/node_modules/npm/npmrc Completed in 1ms
+6 timing config:load:builtin Completed in 1ms
+7 timing config:load:cli Completed in 1ms
+8 timing config:load:env Completed in 0ms
+9 timing config:load:project Completed in 0ms
+10 timing config:load:file:/Users/prajaktakumbhar/.npmrc Completed in 0ms
+11 timing config:load:user Completed in 0ms
+12 timing config:load:file:/opt/homebrew/etc/npmrc Completed in 0ms
+13 timing config:load:global Completed in 0ms
+14 timing config:load:setEnvs Completed in 1ms
+15 timing config:load Completed in 4ms
+16 timing npm:load:configload Completed in 5ms
+17 timing config:load:flatten Completed in 1ms
+18 timing npm:load:mkdirpcache Completed in 2ms
+19 timing npm:load:mkdirplogs Completed in 0ms
+20 verbose title npm install react-chartjs-2 chart.js
+21 verbose argv "install" "react-chartjs-2" "chart.js" "--global"
+22 timing npm:load:setTitle Completed in 2ms
+23 timing npm:load:display Completed in 1ms
+24 verbose logfile logs-max:10 dir:/Users/prajaktakumbhar/Downloads/Logistics-Hub-main/Logistics-Hub-main/clean/_logs/2023-11-17T17_04_19_198Z-
+25 verbose logfile /Users/prajaktakumbhar/Downloads/Logistics-Hub-main/Logistics-Hub-main/clean/_logs/2023-11-17T17_04_19_198Z-debug-0.log
+26 timing npm:load:logFile Completed in 4ms
+27 timing npm:load:timers Completed in 0ms
+28 timing npm:load:configScope Completed in 0ms
+29 timing npm:load Completed in 22ms
+30 timing config:load:flatten Completed in 1ms
+31 timing arborist:ctor Completed in 0ms
+32 silly logfile done cleaning log files
+33 timing idealTree:init Completed in 3ms
+34 timing idealTree:userRequests Completed in 2ms
+35 silly idealTree buildDeps
+36 silly fetch manifest react-chartjs-2@*
+37 http fetch GET 200 https://registry.npmjs.org/react-chartjs-2 199ms (cache miss)
+38 silly fetch manifest chart.js@*
+39 http fetch GET 200 https://registry.npmjs.org/chart.js 79ms (cache miss)
+40 silly placeDep ROOT chart.js@4.4.0 OK for:  want: *
+41 silly fetch manifest @kurkle/color@^0.3.0
+42 silly placeDep ROOT react-chartjs-2@5.2.0 OK for:  want: *
+43 silly fetch manifest react@^16.8.0 || ^17.0.0 || ^18.0.0
+44 http fetch GET 200 https://registry.npmjs.org/react 188ms (cache updated)
+45 http fetch GET 200 https://registry.npmjs.org/@kurkle%2fcolor 599ms (cache miss)
+46 timing idealTree:#root Completed in 889ms
+47 silly placeDep node_modules/chart.js @kurkle/color@0.3.2 OK for: chart.js@4.4.0 want: ^0.3.0
+48 timing idealTree:node_modules/chart.js Completed in 3ms
+49 silly placeDep node_modules/react-chartjs-2 react@18.2.0 OK for: react-chartjs-2@5.2.0 want: ^16.8.0 || ^17.0.0 || ^18.0.0
+50 silly fetch manifest loose-envify@^1.1.0
+51 http fetch GET 200 https://registry.npmjs.org/loose-envify 39ms (cache miss)
+52 timing idealTree:node_modules/react-chartjs-2 Completed in 42ms
+53 timing idealTree:node_modules/chart.js/node_modules/@kurkle/color Completed in 0ms
+54 silly placeDep node_modules/react-chartjs-2 loose-envify@1.4.0 OK for: react@18.2.0 want: ^1.1.0
+55 silly fetch manifest js-tokens@^3.0.0 || ^4.0.0
+56 http fetch GET 200 https://registry.npmjs.org/js-tokens 42ms (cache miss)
+57 timing idealTree:node_modules/react-chartjs-2/node_modules/react Completed in 45ms
+58 silly placeDep node_modules/react-chartjs-2 js-tokens@4.0.0 OK for: loose-envify@1.4.0 want: ^3.0.0 || ^4.0.0
+59 timing idealTree:node_modules/react-chartjs-2/node_modules/loose-envify Completed in 3ms
+60 timing idealTree:node_modules/react-chartjs-2/node_modules/js-tokens Completed in 0ms
+61 timing idealTree:buildDeps Completed in 984ms
+62 timing idealTree:fixDepFlags Completed in 1ms
+63 timing idealTree Completed in 990ms
+64 timing reify:loadTrees Completed in 992ms
+65 timing reify:diffTrees Completed in 1ms
+66 silly reify moves {}
+67 timing reify:retireShallow Completed in 2ms
+68 timing reify:createSparse Completed in 1ms
+69 timing reify:loadBundles Completed in 0ms
+70 silly tarball no local data for react-chartjs-2@https://registry.npmjs.org/react-chartjs-2/-/react-chartjs-2-5.2.0.tgz. Extracting by manifest.
+71 silly tarball no local data for chart.js@https://registry.npmjs.org/chart.js/-/chart.js-4.4.0.tgz. Extracting by manifest.
+72 silly tarball no local data for @kurkle/color@https://registry.npmjs.org/@kurkle/color/-/color-0.3.2.tgz. Extracting by manifest.
+73 timing reifyNode:node_modules/react-chartjs-2/node_modules/js-tokens Completed in 28ms
+74 timing reifyNode:node_modules/react-chartjs-2/node_modules/loose-envify Completed in 29ms
+75 timing reifyNode:node_modules/react-chartjs-2/node_modules/react Completed in 32ms
+76 http fetch GET 200 https://registry.npmjs.org/react-chartjs-2/-/react-chartjs-2-5.2.0.tgz 41ms (cache miss)
+77 timing reifyNode:node_modules/react-chartjs-2 Completed in 48ms
+78 http fetch GET 200 https://registry.npmjs.org/chart.js/-/chart.js-4.4.0.tgz 90ms (cache miss)
+79 timing reifyNode:node_modules/chart.js Completed in 98ms
+80 http fetch GET 200 https://registry.npmjs.org/@kurkle/color/-/color-0.3.2.tgz 504ms (cache miss)
+81 timing reifyNode:node_modules/chart.js/node_modules/@kurkle/color Completed in 511ms
+82 timing reify:unpack Completed in 512ms
+83 timing reify:unretire Completed in 0ms
+84 timing build:queue Completed in 0ms
+85 timing build:link:node_modules/react-chartjs-2/node_modules/loose-envify Completed in 3ms
+86 timing build:link Completed in 3ms
+87 timing build:deps Completed in 4ms
+88 timing build Completed in 4ms
+89 timing reify:build Completed in 4ms
+90 timing reify:trash Completed in 0ms
+91 timing reify Completed in 1517ms
+92 silly ADD node_modules/react-chartjs-2
+93 silly ADD node_modules/react-chartjs-2/node_modules/js-tokens
+94 silly ADD node_modules/react-chartjs-2/node_modules/loose-envify
+95 silly ADD node_modules/react-chartjs-2/node_modules/react
+96 silly ADD node_modules/chart.js
+97 silly ADD node_modules/chart.js/node_modules/@kurkle/color
+98 timing command:install Completed in 1522ms
+99 verbose exit 0
+100 timing npm Completed in 1658ms
+101 info ok
