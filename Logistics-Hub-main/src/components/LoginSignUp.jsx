@@ -41,7 +41,7 @@ const LoginSignUp = () => {
         // Process the successful response data
         console.log('Login successful!');
        
-        navigate('/orders');
+        navigate('/Shipments');
       }
     })
   }
@@ -83,8 +83,8 @@ const LoginSignUp = () => {
             value={usertype}
             onChange={handleTypeChange}
           >
-            <option className="opt" value="cust">new</option>
-            <option className="opt" value="customer">customer</option>
+            <option className="opt" value="cust">Select usertype</option>
+            <option className="opt" value="customer">Customer</option>
             <option className="opt" value="admin">Admin</option>
           </select>
         </div>

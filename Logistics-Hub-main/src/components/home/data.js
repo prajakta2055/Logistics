@@ -27,7 +27,6 @@ import CtaImg2 from '../../content/img/cta/image2.svg';
 import WhatsappIcon from '../../content/img/copyright/icons8-whatsapp.svg';
 import GmailIcon from '../../content/img/copyright/icons8-gmail-logo.svg';
 import PhoneIcon from '../../content/img/copyright/icons8-phone.svg';
-import DataAnalytics from './DataAnalytics';
 
 export const header = {
   logo: logo,
@@ -39,7 +38,7 @@ export const nav = [
   { name: 'Features', href: '#cta' },
   { name: 'Location', href: '#product'},
   { name: 'Reviews', href: '#testimonial' },
-  { name: 'Data Analytics', href: 'DataAnalytics'},
+  {name: 'Support', href:'chatgpt'}
 ];
 
 export const hero = {

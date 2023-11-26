@@ -2,13 +2,14 @@ const express = require('express');
 const mysql = require('mysql');
 const cors = require('cors');
 
+
 const app = express();
 app.use(express.json());
 app.use(cors());
 const db = mysql.createConnection({
     host: "localhost",
     user: "root",
-    password: "Oneplus@6",
+    password: "Parshwa@3103",
     database: "Logistic"
 })
 
@@ -16,7 +17,7 @@ app.post('/user', (req, res) => {
     const sql = "SELECT * from user WHERE username=? AND password=? AND usertype=?";
 
     db.query(sql, [req.body.username,req.body.password,req.body.usertype], (err, data) => {
-        console.log(req.body.usertype);
+        console.log(req.body);
         if (err) {
             console.error(err);
             return res.status(500).json({ error: "Internal Server Error", message: err.message });
@@ -81,6 +82,11 @@ app.get('/orderdata', (req, res) => {
         }
     });
 });
+
+
+
+
+
 app.listen(8081, () =>{
     console.log("Listening..");
 })

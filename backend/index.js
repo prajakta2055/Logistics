@@ -39,18 +39,10 @@ server.post('/demo',async(req,res)=>{
     res.json(doc);
 })
 
-
-server.get('/datareview', async (req, res) => {
-  try {
-    const reviews = await Review.find();
-    console.log("hi in rev");
-    console.log(reviews);
-    res.json(reviews);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Internal Server Error' });
-  }
-});
+server.get('/demo',async(req,res)=>{
+    const docs=await Review.find({});
+    res.json(docs)
+})
 
 server.listen(8080,()=>{
     console.log('server started');

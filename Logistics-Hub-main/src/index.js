@@ -16,6 +16,7 @@
 
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { ChakraProvider, theme } from '@chakra-ui/react'
 import Profile from "./components/account/Profile";
 import Billing from "./components/account/Billing";
 import ReportWebVitals from "./components/ReportWebVitals";
@@ -34,12 +35,15 @@ import Orders from "./components/Orders";
 import Shipments from "./components/Shipments";
 import Signup from "./components/Signup";
 import Review from "./components/Review";
-import DataAnalytics from "./components/home/DataAnalytics";
+import Chatgpt from "./components/Chatgpt";
+import Form from "./components/home/Form";
+
 
 export default function App() {
   return (
     <>
       <BrowserRouter>
+      <ChakraProvider theme={theme}>
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="profile" element={<Profile />} />
@@ -59,9 +63,11 @@ export default function App() {
           <Route path="orders" element={<Orders />} />
           <Route path="reviews" element={<Review />} />
           <Route path="shipments" element={<Shipments />} />
+          <Route path="chatgpt" element={<Chatgpt />} />
           <Route path="plan" element={<Plan />} />
-          <Route path="DataAnalytics" element={<DataAnalytics />} />
+          <Route path="Form" element={<Form />} />
         </Routes>
+        </ChakraProvider>
       </BrowserRouter>
     </>
   );
