@@ -37,13 +37,13 @@ import Signup from "./components/Signup";
 import Review from "./components/Review";
 import Chatgpt from "./components/Chatgpt";
 import Form from "./components/home/Form";
-
+import NewOrder from "./components/NewOrder"
 
 export default function App() {
   return (
     <>
       <BrowserRouter>
-      {/* <ChakraProvider theme={theme}> */}
+       <ChakraProvider theme={theme}> 
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="profile" element={<Profile />} />
@@ -66,8 +66,9 @@ export default function App() {
           <Route path="chatgpt" element={<Chatgpt />} />
           <Route path="plan" element={<Plan />} />
           <Route path="Form" element={<Form />} />
+          <Route path="NewOrder" element={<NewOrder />} />
         </Routes>
-        {/* </ChakraProvider> */}
+        </ChakraProvider> 
       </BrowserRouter>
     </>
   );

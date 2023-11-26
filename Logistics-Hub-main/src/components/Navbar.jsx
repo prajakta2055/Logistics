@@ -92,6 +92,12 @@ const Navbar = (props) => {
                             state: { tab: 'orders' } 
                         }}
                     >Orders</Link>
+                    <Link className={selectedTab === "newOrder" ? 'nav-button-select' : 'nav-button-deselect'}
+                        to={{
+                            pathname: "/NewOrder",
+                            state: { tab: 'orders' } 
+                        }}
+                    >Create new Shipment</Link>
                    
                     {/* <Link className={selectedTab === "products" ? 'nav-button-select' : 'nav-button-deselect'}  
                         onClick={()=>setSelectedTab("products") }
