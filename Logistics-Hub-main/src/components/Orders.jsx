@@ -1,9 +1,8 @@
+/* eslint-disable */
 import * as React from 'react';
 import { useEffect, useState } from 'react';
 import '../index.css';
-import { Button, Dialog, DialogTitle, DialogContent, DialogActions, Divider, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField, MenuItem } from "@mui/material";
-import Box from '@mui/material/Box';
-
+import { Button, Dialog, DialogTitle, DialogContent, DialogActions, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField, MenuItem } from "@mui/material";
 import Navbar from './Navbar';
 import axios from 'axios';
 

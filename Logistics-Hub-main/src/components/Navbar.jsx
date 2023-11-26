@@ -76,15 +76,17 @@ const Navbar = (props) => {
                     <div className={classes.logo} onClick={()=>navigate("/")}>
                         <img src="logonew.png" alt="Shipwise solutions" className="logo-image" />
                     </div>
-                    <Link className={selectedTab === "shipments" ? 'nav-button-select' : 'nav-button-deselect'}  
-                        onClick={()=>setSelectedTab("shipments") }
-                        to={{
-                            pathname: "/shipments",
-                            state: { tab: 'shipments' } 
-                        }}
-                    >Home</Link>
+                    <Link
+    className={selectedTab === "shipments" ? 'nav-button-select' : 'nav-button-deselect'}
+    to={{
+        pathname: "/shipments",
+        state: { tab: 'shipments' },
+    }}
+>
+    Home
+</Link>
+
                     <Link className={selectedTab === "orders" ? 'nav-button-select' : 'nav-button-deselect'}
-                        onClick={()=>setSelectedTab("orders")}
                         to={{
                             pathname: "/orders",
                             state: { tab: 'orders' } 

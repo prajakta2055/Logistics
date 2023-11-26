@@ -43,7 +43,7 @@ export default function App() {
   return (
     <>
       <BrowserRouter>
-      <ChakraProvider theme={theme}>
+      {/* <ChakraProvider theme={theme}> */}
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="profile" element={<Profile />} />
@@ -67,7 +67,7 @@ export default function App() {
           <Route path="plan" element={<Plan />} />
           <Route path="Form" element={<Form />} />
         </Routes>
-        </ChakraProvider>
+        {/* </ChakraProvider> */}
       </BrowserRouter>
     </>
   );
