@@ -48,20 +48,7 @@ const HomePageNav = (props) => {
                 <div className={classes.logo}>
                     <img src="logonew.png" alt="Shipwise solutions" className="logo-image" />
                 </div>
-                <nav className="navigation">
-                    <ul>
-                        {/* <li><button className={classes.button} href="homepage">
-                        <Link to="/homepage" style={{color:"black", fontSize:"medium"}}>Home</Link></button></li>
-                        <li><button className={classes.button} onClick={() => scrollToSection('services-highlights')}>Services</button></li>
-                        <li><button className={classes.button} onClick={() => scrollToSection('service-providers')}>Service Providers</button></li>
-                        <li><button className={classes.button} onClick={() => scrollToSection('logistics-hub-content')}>Coverage</button></li>
-                        <li><button className={classes.button} onClick={() => scrollToSection('about-us')}>About us</button></li> */}
-                    </ul>
-                </nav>
-                {/* <div>
-                    <Button className={classes.button}  style={{color:"black"}}href="/login">Login</Button>
-                    <Button className={classes.button}  style={{color:"black"}}href="/Signup">Signup</Button>
-                </div> */}
+               
             </nav>
         </div>
     );

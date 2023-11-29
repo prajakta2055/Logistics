@@ -16,7 +16,8 @@
 
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { ChakraProvider, theme } from '@chakra-ui/react'
+import { ChakraProvider, theme } from '@chakra-ui/react';
+import { UserProvider } from './components/userContext';
 import Profile from "./components/account/Profile";
 import Billing from "./components/account/Billing";
 import ReportWebVitals from "./components/ReportWebVitals";
@@ -37,12 +38,24 @@ import Signup from "./components/Signup";
 import Review from "./components/Review";
 import Chatgpt from "./components/Chatgpt";
 import Form from "./components/home/Form";
+<<<<<<< Updated upstream
 import NewOrder from "./components/NewOrder"
 import Confirmation from "./components/Confirmation";
+=======
+import NewOrder from "./components/NewOrder";
+import Manager from "./components/Manager";
+import DataAnalytics from "./components/DataAnalystic";
+import AddProvider from "./components/AddProvider";
+import UpdateProvider from "./components/UpdateProvider";
+import Report from "./components/Report";
+import CRUD_user from "./components/CRUD_user";
+
+>>>>>>> Stashed changes
 export default function App() {
   return (
     <>
       <BrowserRouter>
+      <UserProvider>
        <ChakraProvider theme={theme}> 
         <Routes>
           <Route path="/" element={<Homepage />} />
@@ -66,10 +79,20 @@ export default function App() {
           <Route path="chatgpt" element={<Chatgpt />} />
           <Route path="plan" element={<Plan />} />
           <Route path="Form" element={<Form />} />
+          <Route path="Manager" element={<Manager />} />
           <Route path="NewOrder" element={<NewOrder />} />
+<<<<<<< Updated upstream
           <Route path="Confirmation" element={<Confirmation />} /> 
+=======
+          <Route path="AddProvider" element={<AddProvider />} />
+          <Route path="UpdateProvider" element={<UpdateProvider />} />
+          <Route path="Report" element={<Report />} />
+          <Route path="CRUD_user" element={<CRUD_user />} />
+          <Route path="DataAnalytics" element={<DataAnalytics />}></Route>
+>>>>>>> Stashed changes
         </Routes>
-        </ChakraProvider> 
+        </ChakraProvider>
+        </UserProvider> 
       </BrowserRouter>
     </>
   );

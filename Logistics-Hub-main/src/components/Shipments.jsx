@@ -22,6 +22,7 @@ import { useRef, useState } from 'react'
 
 import '../index.css';
 import Navbar from './Navbar';
+import { useUser } from './userContext';
 
 const center = { lat: 41.8781, lng: -87.6298 };
 function Shipments() {
@@ -37,6 +38,8 @@ function Shipments() {
   const [duration, setDuration] = useState('')
   const [inputValue, setInputValue] = useState('');
   const [isValid, setIsValid] = useState(true);
+  const { user } = useUser();
+  const { usertype, username } = user;
   let digits = '';
 
   /** @type React.MutableRefObject<HTMLInputElement> */
@@ -47,6 +50,7 @@ function Shipments() {
   if (!isLoaded) {
     return <SkeletonText />
   }
+
 
   async function calculateRoute() {
     if (originRef.current.value === '' || destiantionRef.current.value === '') {
@@ -86,6 +90,7 @@ function Shipments() {
     <Navbar 
                 tab={"Shipments"}
             />
+             
      <div className="flex">             
     <div className="text-gray-600 body-font section">
       <div className="container   mx-auto">
