@@ -40,6 +40,13 @@ import Chatgpt from "./components/Chatgpt";
 import Form from "./components/home/Form";
 import NewOrder from "./components/NewOrder"
 import Confirmation from "./components/Confirmation";
+import Manager from './components/Manager';
+import DataAnalytics from "./components/DataAnalystic";
+import AddProvider from "./components/AddProvider";
+import UpdateProvider from "./components/UpdateProvider";
+import Report from "./components/Report";
+import CRUD_user from "./components/CRUD_user";
+import TrackingPage from  "./components/TrackingPage";
 export default function App() {
   return (
     <>
@@ -71,6 +78,12 @@ export default function App() {
           <Route path="Manager" element={<Manager />} />
           <Route path="NewOrder" element={<NewOrder />} />
           <Route path="Confirmation" element={<Confirmation />} /> 
+          <Route path="DataAnalytics" element={<DataAnalytics />} />
+          <Route path="AddProvider" element={<AddProvider />} />
+          <Route path="UpdateProvider" element={<UpdateProvider />} />
+          <Route path="Report" element={<Report />} />
+          <Route path="CRUD_user" element={<CRUD_user />} />
+          <Route path="trackingpage" element={<TrackingPage />} />
         </Routes>
         </ChakraProvider>
         </UserProvider> 
