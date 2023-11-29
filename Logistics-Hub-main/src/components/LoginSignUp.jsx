@@ -56,6 +56,7 @@ const LoginSignUp = () => {
 
   const handleButtonSignup = () => {
     setAction('Sign Up');
+    navigate('/Signup');
   };
 
   return (

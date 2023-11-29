@@ -11,12 +11,18 @@ import {
     Select,
     Text,
   } from '@chakra-ui/react';
+/* eslint-disable */
 
 function Confirmation(props) {
- 
 const location = useLocation();
+<<<<<<< Updated upstream
 
 const navigate = useNavigate();
+=======
+if (!location.state) {
+  return <p>Box Weight is not available</p>;
+}
+>>>>>>> Stashed changes
 const { boxweight, boxLength, shippingCost, deliveryDate, fromLocation, toLocation } = location.state;
 console.log(boxweight)
 console.log(deliveryDate);

@@ -18,7 +18,7 @@ import {
     MenuItem,
     TableContainer,
   } from '@chakra-ui/react';
-import Navbar from './Navbar';
+import Navbar from './Manager';
 import axios from 'axios';
 
 function Orders() {
@@ -57,10 +57,7 @@ function Orders() {
   const [currentOrder, setCurrentOrder] = useState(null);
   const [showMapPopup, setShowMapPopup] = useState(false);
 
-  const handleCreateLabelClick = () => {
-    setShowPopup(true);
-  };
-
+  
   const handlePopupClose = () => {
     setShowPopup(false);
   };
@@ -71,11 +68,11 @@ function Orders() {
         ? 'ups.svg'
         : carrierName === 'USPS'
         ? 'usps.svg'
-        : carrierName === 'Fedex'
+        : carrierName === 'FedEx'
         ? 'fedex.svg'
-        : carrierName === 'DHL'
-        ? 'dhl.svg'
-        : 'cdl.svg';
+        : carrierName === 'CDL'
+        ? 'cdl.svg'
+        : 'dhl.svg';
     axios
       .post('http://localhost:8081/order', {
         customer,
@@ -138,9 +135,8 @@ function Orders() {
       <Navbar tab={'orders'} />
       <div className="main-body">
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
-          <h4>{sampleData.length === 0 ? "No Orders yet. But you'll get one. Welcome. 🙏🏻" : 'Welcome. 🙏🏻'}</h4>
-          <Button onClick={handleCreateLabelClick}>Create a New Shipment Here</Button>
-          <Input label="Search" value={searchTerm} onChange={handleSearchTermChange} style={{ marginBottom: '16px' }} />
+          <h4>Customer Orders</h4>
+          <Input label="Search" value={searchTerm} placeholder='Search here about order details' onChange={handleSearchTermChange} style={{ marginBottom: '16px' }} />
           {filteredData.length > 0 && (
             <TableContainer>
               <Table variant="simple">
