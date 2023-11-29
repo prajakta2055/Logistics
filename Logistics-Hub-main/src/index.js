@@ -39,6 +39,7 @@ import Chatgpt from "./components/Chatgpt";
 import Form from "./components/home/Form";
 import NewOrder from "./components/NewOrder"
 import Confirmation from "./components/Confirmation";
+import TrackingPage from "./components/TrackingPage";
 export default function App() {
   return (
     <>
@@ -68,6 +69,7 @@ export default function App() {
           <Route path="Form" element={<Form />} />
           <Route path="NewOrder" element={<NewOrder />} />
           <Route path="Confirmation" element={<Confirmation />} /> 
+          <Route path="trackingpage" element={<TrackingPage />} /> 
         </Routes>
         </ChakraProvider> 
       </BrowserRouter>

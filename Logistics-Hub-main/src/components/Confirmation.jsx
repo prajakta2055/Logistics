@@ -1,6 +1,7 @@
 import { useLocation } from 'react-router-dom';
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import {
     Box,
     Input,
@@ -14,6 +15,8 @@ import {
 function Confirmation(props) {
  
 const location = useLocation();
+
+const navigate = useNavigate();
 const { boxweight, boxLength, shippingCost, deliveryDate, fromLocation, toLocation } = location.state;
 console.log(boxweight)
 console.log(deliveryDate);
@@ -25,10 +28,12 @@ const [customerDetails, setCustomerDetails] = useState({
     email: '',
     paymentMode: '',
     serviceProvider: '',
+    zipcode:'',
   });
 
 
-  const handleAddToTableClick = () => {
+  const handleAddToTableClick = (event) => {
+    event.preventDefault();
     console.log("inside function --before");
 
     const logo =
@@ -57,21 +62,14 @@ const [customerDetails, setCustomerDetails] = useState({
       price: shippingCost,
       paymentMode: customerDetails.paymentMode,
       cardNo: customerDetails.cardNo,
+      zipcode: customerDetails.zipcode,
     
     })
       .then((res) => {
-       
+       navigate('/trackingpage');
         console.log('Response status:', res.status);
         console.log('Response data:', res.data);
        
-        if (res.data === 'Error') {
-          console.error('Login failed. Server returned an error:', res.data);
-
-        } else {
-         
-          alert('Order placed successfully!');
-    
-        }
       });
   };
 
@@ -92,7 +90,7 @@ return (
   <div>
    
     <form>
-   fo':{fromLocation}
+   
     <FormControl>
               <FormLabel>Name:</FormLabel>
               <Input
@@ -108,6 +106,15 @@ return (
                 type='text'
                 name='address'
                 value={customerDetails.address}
+                onChange={handleCustomerDetailsChange}
+              />
+            </FormControl>
+            <FormControl>
+              <FormLabel>Zipcode:</FormLabel>
+              <Input
+                type='text'
+                name='zipcode'
+                value={customerDetails.zipcode}
                 onChange={handleCustomerDetailsChange}
               />
             </FormControl>
@@ -146,29 +153,31 @@ return (
             </Select>
           </FormControl>
           <FormControl mt={4}>
-            <FormLabel>Payment Method:</FormLabel>
-            <Select
-              name='paymentMode'
-              value={customerDetails.paymentMode}
-              onChange={handleCustomerDetailsChange}
-            >
-               <option value='select'>select method</option>
-              <option value='creditcard'>credit card</option>
-              <option value='cash'>cash</option>
-              {/* Add more options as needed */}
-            </Select>
-            </FormControl>
-            <FormControl>
-              <FormLabel>Card number:</FormLabel>
-              <Input
-                type='text'
-                name='cardNo'
-                value={customerDetails.cardNo}
-                onChange={handleCustomerDetailsChange}
-              />
-            </FormControl>
-            {/* Add other form fields for address, phone, email, paymentMode, and serviceProvider */}
-            {/* ... (similar FormControl and Input components for other fields) */}
+  <FormLabel>Payment Method:</FormLabel>
+  <Select
+    name='paymentMode'
+    value={customerDetails.paymentMode}
+    onChange={handleCustomerDetailsChange}
+  >
+    <option value='select'>Select method</option>
+    <option value='creditcard'>Credit Card</option>
+    <option value='cash'>Cash</option>
+    {/* Add more options as needed */}
+  </Select>
+</FormControl>
+
+{customerDetails.paymentMode === 'creditcard' && (
+  <FormControl>
+    <FormLabel>Card number:</FormLabel>
+    <Input
+      type='text'
+      name='cardNo'
+      value={customerDetails.cardNo}
+      onChange={handleCustomerDetailsChange}
+    />
+  </FormControl>
+)}
+
 
             <Button type='submit' onClick={handleAddToTableClick}>
               Submit Order

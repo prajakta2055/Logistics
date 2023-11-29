@@ -1,8 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
-import Confirmation from './Confirmation';
 import {
   Box,
   Input,
@@ -20,7 +18,6 @@ import { useJsApiLoader, GoogleMap, Marker, Autocomplete, DirectionsRenderer } f
 import Navbar from './Navbar';
 
 
-
 const center = { lat: 41.8781, lng: -87.6298 };
 
 const NewOrder = () => {
@@ -28,13 +25,13 @@ const NewOrder = () => {
     googleMapsApiKey: 'AIzaSyDEQ4J-WXRoHlO9LuaCfoMcOITAV6ySZr4',
     libraries: ['places'],
   });
-
- 
+  const navigate = useNavigate();
   const [shipmentData, setShipmentData] = useState({
     weight: '',
     boxLength: '',
     boxWidth: '',
     boxHeight: '',
+    serviceProvider: '',
   });
   const [sampleData, setSampleData] = useState([]);
   const [map, setMap] = useState(null);
@@ -44,15 +41,36 @@ const NewOrder = () => {
   const [shippingCost, setShippingCost] = useState('');
   const [inputValue, setInputValue] = useState('');
   const [isValid, setIsValid] = useState(true);
+  const [fromLocation, setFromLocation] = useState('');
+  const [destination, setDestination] = useState('');
   let digits = '';
-  const navigate = useNavigate();
+
   const originRef = useRef();
   const destiantionRef = useRef();
   const [estimatedDeliveryDate, setEstimatedDeliveryDate] = useState(null);
   const [isOrderPlaced, setIsOrderPlaced] = useState(false);
-  const [fromLocation, setFromLocation] = useState('');
-  const [destination, setDestination] = useState('');
-  
+  const [customerDetails, setCustomerDetails] = useState({
+    name: '',
+    address: '',
+    phone: '',
+    email: '',
+    paymentMode: '',
+    serviceProvider: '',
+  });
+  const handlePlaceOrder = () => {
+    
+    setCustomerDetails({
+      name: '',
+      address: '',
+      zipcode:'',
+      phone: '',
+      email: '',
+      paymentMode: '',
+      serviceProvider: '',
+      cardNo:'',
+    });
+    setIsOrderPlaced(true);
+  };
   const handleChange = (e) => {
     const { name, value } = e.target;
     setShipmentData({
@@ -71,33 +89,30 @@ const NewOrder = () => {
     return formattedDeliveryDate;
   };  
 
-  async function calculateRoute() {
-    // setShipmentData({fromLocation: originRef});
-    // setShipmentData({toLocation:destiantionRef});
+  async function calculateRoute(event) {
+event.preventDefault();
     if (originRef.current.value === '' || destiantionRef.current.value === '') {
       return;
     }
 // eslint-disable-next-line no-undef
     const directionsService = new google.maps.DirectionsService();
-   
     const results = await directionsService.route({
-      
       origin: originRef.current.value,
       destination: destiantionRef.current.value,
       // eslint-disable-next-line no-undef
       travelMode: google.maps.TravelMode.DRIVING,
     });
-    console.log(results);
-    console.log(results.request.destination.query);
+
+  
     setFromLocation(results.request.origin.query);
     setDestination(results.request.destination.query);
-
     setDirectionsResponse(results);
+    
     setDistance(results.routes[0].legs[0].distance.text);
     setDuration(results.routes[0].legs[0].duration.text);
     const deliveryDate = calculateDeliveryDate(results.routes[0].legs[0].duration.value);
     setEstimatedDeliveryDate(deliveryDate);
-console.log(estimatedDeliveryDate);
+
     const newdist = parseFloat(results.routes[0].legs[0].distance.text) * 0.1;
     const calcQuote = parseFloat(calculateQuote());
     const actual = calcQuote + newdist;
@@ -105,7 +120,56 @@ console.log(estimatedDeliveryDate);
     setShippingCost(actual);
   }
 
- 
+  const handleAddToTableClick = (event) => {
+    event.preventDefault();
+    console.log(shipmentData);
+   
+
+    const logo =
+      customerDetails.serviceProvider === 'UPS'
+        ? 'ups.svg'
+        : customerDetails.serviceProvider === 'USPS'
+        ? 'usps.svg'
+        : customerDetails.serviceProvider === 'Fedex'
+        ? 'fedex.svg'
+        : customerDetails.serviceProvider === 'DHL'
+        ? 'dhl.svg'
+        : 'cdl.svg';
+        
+        
+    axios.post('http://localhost:8081/order', {
+      name: customerDetails.name,
+      email: customerDetails.email,
+      phone: customerDetails.phone,
+      address: customerDetails.address,
+      itemWeight: shipmentData.weight,
+      packageDimensions: shipmentData.boxLength,
+      serviceProvider: shipmentData.serviceProvider,
+      deliveryDate: estimatedDeliveryDate,
+      destination: destination,
+      logo: logo,
+      price: shippingCost,
+      paymentMode: customerDetails.paymentMode,
+      cardNo: customerDetails.cardNo,
+      zipcode: customerDetails.zipcode,
+      fromLocation: fromLocation,
+    
+    })
+      .then((res) => {
+        navigate('/trackingpage');
+        console.log('Response status:', res.status);
+        console.log('Response data:', res.data);
+       
+        if (res.data === 'Error') {
+          console.error('Login failed. Server returned an error:', res.data);
+
+        } else {
+          navigate('/trackingpage');
+          alert('Order placed successfully!');
+    
+        }
+      });
+  };
   const calculateQuote = () => {
     const { boxLength, boxWidth, boxHeight, weight } = shipmentData;
     const distanceValue = parseFloat(distance);
@@ -117,46 +181,126 @@ console.log(estimatedDeliveryDate);
     return totalQuote.toFixed(2);
   };
 
- const handleSubmitclick = () => {
-  console.log(fromLocation)
-  navigate('/Confirmation', {
-    state: {
-      boxweight: shipmentData.weight,
-      boxLength: shipmentData.boxLength,
-      shippingCost: shippingCost,
-      deliveryDate: estimatedDeliveryDate,
-      fromLocation: fromLocation,
-      toLocation: destination,
-    }
-  });
- }
+  const handleCustomerDetailsChange = (e) => {
+    const { name, value } = e.target;
+    setCustomerDetails({
+      ...customerDetails,
+      [name]: value,
+    });
+  };
 
- const handleSelect = (value) => {
-  console.log(value);
-  setInputValue(value);
 
-  // Set your additional value based on the selected value or any other logic
-  setShipmentData({fromLocation: value});
-
-};
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Shipment Data:', shipmentData);
-    setShipmentData({
-      weight: '',
-      boxLength: '',
-      boxWidth: '',
-      boxHeight: '',
-      fromLocation: '',
-      toLocation: '',
-    });
+    // setShipmentData({
+    //   weight: '',
+    //   boxLength: '',
+    //   boxWidth: '',
+    //   boxHeight: '',
+    //   fromLocation: '',
+    //   toLocation: '',
+    // });
   };
 
   return (
     <div>
       <Navbar tab={'NewOrder'} />
 
-       
+      <Box p={4} position='absolute' left='0%' top='80%' h='50%' w='50%'>
+        {isOrderPlaced ? (
+          <form>
+            <HStack spacing={4} mt={4} justifyContent='space-between'>
+              <Text>Distance: {distance} </Text>
+              <Text>Duration: {duration} </Text>
+              {digits = distance.replace(/\D/g, '')}
+              <Text>Total Shipment Cost: ${shippingCost} </Text>
+              {estimatedDeliveryDate && (
+          <Text>Estimated Delivery Date: {estimatedDeliveryDate}</Text>
+        )}
+              </HStack>
+            {/* Add form fields for customer details */}
+            <FormControl>
+              <FormLabel>Name:</FormLabel>
+              <Input
+                type='text'
+                name='name'
+                value={customerDetails.name}
+                onChange={handleCustomerDetailsChange}
+              />
+            </FormControl>
+            <FormControl>
+              <FormLabel>Address:</FormLabel>
+              <Input
+                type='text'
+                name='address'
+                value={customerDetails.address}
+                onChange={handleCustomerDetailsChange}
+              />
+            </FormControl>
+            <FormControl>
+              <FormLabel>Zipcode:</FormLabel>
+              <Input
+                type='text'
+                name='zipcode'
+                value={customerDetails.zipcode}
+                onChange={handleCustomerDetailsChange}
+              />
+            </FormControl>
+            <FormControl>
+              <FormLabel>Email ID:</FormLabel>
+              <Input
+                type='text'
+                name='email'
+                value={customerDetails.email}
+                onChange={handleCustomerDetailsChange}
+              />
+            </FormControl>
+            <FormControl>
+              <FormLabel>Contact Number:</FormLabel>
+              <Input
+                type='text'
+                name='phone'
+                value={customerDetails.phone}
+                onChange={handleCustomerDetailsChange}
+              />
+            </FormControl>
+           
+      
+          <FormControl mt={4}>
+  <FormLabel>Payment Method:</FormLabel>
+  <Select
+    name='paymentMode'
+    value={customerDetails.paymentMode}
+    onChange={handleCustomerDetailsChange}
+  >
+    <option value='select'>Select method</option>
+    <option value='creditcard'>Credit Card</option>
+    <option value='cash'>Cash</option>
+    {/* Add more options as needed */}
+  </Select>
+</FormControl>
+
+{customerDetails.paymentMode === 'creditcard' && (
+  <FormControl>
+    <FormLabel>Card number:</FormLabel>
+    <Input
+      type='text'
+      name='cardNo'
+      value={customerDetails.cardNo}
+      onChange={handleCustomerDetailsChange}
+    />
+  </FormControl>
+)}
+
+
+            <Button type='submit' onClick={handleAddToTableClick}>
+              Submit Order
+            </Button>
+          
+          </form>
+        ) : (
+          <form onSubmit={handleSubmit}>
             <FormControl>
               <FormLabel>Item Weight:</FormLabel>
               <Input
@@ -202,7 +346,7 @@ console.log(estimatedDeliveryDate);
             <FormControl mt={4}>
             <FormLabel>Service provider:</FormLabel>
             <Select
-              name='serviceprovider'
+              name='serviceProvider'
               value={shipmentData.serviceProvider}
               onChange={handleChange}
             >
@@ -216,16 +360,20 @@ console.log(estimatedDeliveryDate);
           </FormControl>
 
             <HStack spacing={2} justifyContent='space-between'>
-            <Box flexGrow={1}>
-  <Autocomplete  onSelect={(value) => setFromLocation(value)}>
-    <Input type='text' placeholder='Origin'  ref={originRef} />
-  </Autocomplete>
-</Box>
-<Box flexGrow={1}>
-  <Autocomplete onSelect={(value) => setInputValue(value)}>
-    <Input type='text' placeholder='Destination' ref={destiantionRef} />
-  </Autocomplete>
-</Box>
+              <Box flexGrow={1}>
+                <Autocomplete>
+                  <Input type='text' placeholder='Origin' ref={originRef} />
+                </Autocomplete>
+              </Box>
+              <Box flexGrow={1}>
+                <Autocomplete>
+                  <Input
+                    type='text'
+                    placeholder='Destination'
+                    ref={destiantionRef}
+                  />
+                </Autocomplete>
+              </Box>
               <Box flexGrow={1}>
                 {!isValid && (
                   <Text color='red' fontSize='sm' mt={1}>
@@ -246,19 +394,19 @@ console.log(estimatedDeliveryDate);
               <Text>Shipment Cost: ${shippingCost} </Text>
 
               {shippingCost !== 0 && (
-                 <Button type='submit' onClick={handleSubmitclick}>
-                 submit
-               </Button>
+                <Button onClick={handlePlaceOrder}>
+                  Proceed to Place Order
+                </Button>
               )}
             </HStack>
-         
-       
-     
+          </form>
+        )}
+      </Box>
 
       <form>
         <Box position='absolute' left='50%' top='100%' h='620%' w='50%'>
         
-          // eslint-disable-next-line no-undef
+          
           <GoogleMap
             center={center}
             zoom={10}
