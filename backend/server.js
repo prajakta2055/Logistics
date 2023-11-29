@@ -9,7 +9,7 @@ app.use(cors());
 const db = mysql.createConnection({
     host: "localhost",
     user: "root",
-    password: "Oneplus@6",
+    password: "Parshwa@3103",
     database: "Logistic"
 })
 
@@ -34,6 +34,23 @@ app.post('/user', (req, res) => {
     
 })
 
+app.get('/userdata', (req, res) => {
+    const sql = "SELECT * from user";
+
+    db.query(sql, (err, data) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).json({ error: "Internal Server Error", message: err.message });
+        }
+
+        if (data.length > 0) {
+            return res.json({ message: "Data retrieved successfully", data });
+        } else {
+            return res.status(404).json({ error: "No data found" });
+        }
+    });
+});
+
 app.post('/register', (req, res) => {
     const { username, password, usertype, name, phone_number, email_address, address } = req.body;
 
@@ -50,15 +67,15 @@ app.post('/register', (req, res) => {
 });
 
 app.post('/order', (req, res) => {
-    const { name, email, phone, address,itemWeight, packageDimensions, serviceProvider,deliveryDate,destination,logo, price, paymentMode, cardNo } = req.body;
+    const { name, email, phone, address,itemWeight, packageDimensions, serviceProvider,deliveryDate,destination,logo, price, paymentMode, cardNo, zipcode, fromLocation } = req.body;
 console.log(req.body);
-    const sql = "INSERT INTO orders (customer, itemWeight, packageDimensions, carrierName, dateOrdered, destination, logo, price, phone_number, email_address, address, payment_method,card_no) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    const sql = "INSERT INTO orders (customer, itemWeight, packageDimensions, carrierName, dateOrdered, destination, logo, price, phone_number, email_address, address, payment_method,card_no,zipcode, fromLocation) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?)";
 
-    db.query(sql, [name, itemWeight, packageDimensions, serviceProvider,deliveryDate,destination,logo,price, phone, email,address,paymentMode,cardNo], (err, result) => {
+    db.query(sql, [name, itemWeight, packageDimensions, serviceProvider,deliveryDate,destination,logo,price, phone, email,address,paymentMode,cardNo,zipcode, fromLocation], (err, result) => {
         if (err) {
             console.error(err);
             return res.status(500).json({ error: "Internal Server Error", message: err.message });
-        }
+        }   
 
         return res.json({ message: "Order successful", result });
     });
@@ -82,10 +99,199 @@ app.get('/orderdata', (req, res) => {
     });
 });
 
+app.get('/serviceProviders', (req, res) => {
+    const sql = "SELECT * FROM service_providers";
+
+    db.query(sql, (err, data) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).json({ error: "Internal Server Error", message: err.message });
+        }
+
+        if (data.length > 0) {
+            return res.json({ message: "Service providers retrieved successfully", data });
+        } else {
+            return res.status(404).json({ error: "No service providers found" });
+        }
+    });
+});
+
+// Assuming you have already set up your Express app and connected to the database
+
+// Define a route to handle DELETE requests for deleting a service provider
+app.delete('/serviceProviders/:id', (req, res) => {
+    const serviceProviderId = req.params.id;
+    console.log(serviceProviderId);
+  
+    // SQL query to delete a service provider based on the provided ID
+    const sql = 'DELETE FROM service_providers WHERE id = ?';
+  
+    // Execute the query
+    db.query(sql, [serviceProviderId], (err, result) => {
+      if (err) {
+        console.error(err);
+        return res.status(500).json({ error: 'Internal Server Error', message: err.message });
+      }
+  
+      // Check if any rows were affected by the delete operation
+      if (result.affectedRows === 0) {
+        return res.status(404).json({ error: 'Service Provider not found' });
+      }
+  
+      return res.json({ message: 'Service Provider deleted successfully' });
+    });
+  });
+  
+
+app.post('/AddserviceProviders', (req, res) => {
+    const {
+        provider_name,
+        email,
+        phone_number,
+        address,
+        shipping_service,
+        tracking_service,
+        express_delivery_service,
+        logo,
+        agreement,
+        rate
+    } = req.body;
+
+    const sql = `
+        INSERT INTO service_providers (
+            provider_name,
+            email,
+            phone_number,
+            address,
+            shipping_service,
+            tracking_service,
+            express_delivery_service,
+            logo,
+            agreement,
+            rate
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    `;
+
+    const values = [
+        provider_name,
+        email,
+        phone_number,
+        address,
+        shipping_service,
+        tracking_service,
+        express_delivery_service,
+        logo,
+        agreement,
+        rate
+    ];
+
+    db.query(sql, values, (err, result) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).json({ error: "Internal Server Error", message: err.message });
+        }
+
+        return res.json({ message: "Service provider added successfully", result });
+    });
+});
 
 
+app.put('/updateProviders/:id', (req, res) => {
+    const serviceProviderId = req.params.id;
+    const {
+        provider_name,
+        email,
+        phone_number,
+        address,
+        shipping_service,
+        tracking_service,
+        express_delivery_service,
+        logo,
+        agreement,
+        rate,
+    } = req.body;
+  
+    const sql = `
+      UPDATE service_providers 
+      SET 
+        provider_name = ?,
+        email = ?,
+        phone_number = ?,
+        address = ?,
+        shipping_service = ?,
+        tracking_service = ?,
+        express_delivery_service = ?,
+        logo = ?,
+        agreement =?,
+        rate =?
+        -- Add other fields here based on your data model
+      WHERE id = ?
+    `;
+  
+    db.query(
+      sql,
+      [provider_name, email, phone_number, address, shipping_service, tracking_service, express_delivery_service, logo, agreement, rate, serviceProviderId],
+      (err, result) => {
+        if (err) {
+          console.error(err);
+          return res
+            .status(500)
+            .json({ error: 'Internal Server Error', message: err.message });
+        }
+  
+        return res.json({
+          message: 'Service Provider updated successfully',
+          result,
+        });
+      }
+    );
+  });
 
-
+  app.delete('/user/:userId', (req, res) => {
+    const userId = req.params.userId;
+    console.log(userId);
+  
+    const sql = 'DELETE FROM user WHERE id = ?';
+  
+    db.query(sql, [userId], (err, result) => {
+      if (err) {
+        console.error('Error deleting user:', err);
+        res.status(500).json({ error: 'Internal Server Error', message: err.message });
+      } else if (result.affectedRows === 0) {
+        res.status(404).json({ error: 'User not found', message: 'No user with the specified ID' });
+      } else {
+        res.json({ message: 'User deleted successfully' });
+      }
+    });
+  });
+ 
+  app.put('/user/:id', (req, res) => {
+    const userId = req.params.id;
+    const { username, email_address, password, usertype, name, phone_number } = req.body;
+  
+    const sql = `
+      UPDATE user
+      SET
+        username = ?,
+        email_address = ?,
+        password = ?,
+        usertype = ?,
+        name = ?,
+        phone_number = ?
+      WHERE id = ?
+    `;
+  
+    db.query(sql, [username, email_address, password, usertype, name, phone_number, userId], (err, result) => {
+      if (err) {
+        console.error('Error updating user:', err);
+        return res.status(500).json({ error: 'Internal Server Error', message: err.message });
+      }
+  
+      return res.json({ message: 'User updated successfully', result });
+    });
+  });
+  
+  
 app.listen(8081, () =>{
     console.log("Listening..");
 })

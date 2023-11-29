@@ -44,6 +44,101 @@ server.get('/demo',async(req,res)=>{
     res.json(docs)
 })
 
+
+server.get('/dataAnalytics', async (req, res) => {
+  try {
+    const { serviceProviderName, reviewRating, compareRating, retailerZipcode } = req.query;
+    console.log(serviceProviderName +" "+ reviewRating+" "+compareRating+" "+retailerZipcode);
+
+    // Build the filter object based on the provided form fields
+    const filter = {};
+    if (serviceProviderName && serviceProviderName !== 'ALL_PRODUCTS') {
+      filter.serviceProviderName = serviceProviderName;
+    }
+    if (reviewRating) {
+      filter.serviceProviderRating = reviewRating;
+    }
+    if (compareRating) {
+      // Modify the comparison condition based on your comparison logic
+      // This is just an example; you should adjust it according to your requirements
+      if (compareRating === 'EQUALS_TO') {
+        // Modify this line based on your actual field names in the schema
+        filter.$expr = { $eq: ["$serviceProviderRating", "$reviewRating"] };
+      } else if (compareRating === 'GREATER_THAN') {
+        // Modify this line based on your actual field names in the schema
+        filter.serviceProviderRating = { $gt: reviewRating };
+      } else if (compareRating === 'LESS_THAN') {
+        // Modify this line based on your actual field names in the schema
+        filter.serviceProviderRating = { $lt: reviewRating };
+      }
+    }
+    // if (retailerZipcode) {
+    //   filter.retailerZipcode = retailerZipcode;
+    // }
+console.log(filter)
+    const docs = await Review.find(filter);
+    console.log(docs);
+    res.json(docs);
+  } catch (error) {
+    console.error('Error filtering data:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+
+
+server.put('/updateProvider/:id', (req, res) => {
+  const serviceProviderId = req.params.id;
+  const {
+      provider_name,
+      email,
+      phone_number,
+      address,
+      shipping_service,
+      tracking_service,
+      express_delivery_service,
+      logo,
+      agreement
+  } = req.body;
+
+  const sql = `
+      UPDATE service_providers 
+      SET 
+          provider_name = ?,
+          email = ?,
+          phone_number = ?,
+          address = ?,
+          shipping_service = ?,
+          tracking_service = ?,
+          express_delivery_service = ?,
+          logo = ?,
+          agreement = ?
+      WHERE id = ?
+  `;
+
+  db.query(sql, [
+      provider_name,
+      email,
+      phone_number,
+      address,
+      shipping_service,
+      tracking_service,
+      express_delivery_service,
+      logo,
+      agreement,
+      serviceProviderId
+  ], (err, result) => {
+      if (err) {
+          console.error(err);
+          return res.status(500).json({ error: "Internal Server Error", message: err.message });
+      }
+
+      return res.json({ message: "Service Provider updated successfully", result });
+  });
+});
+
+
+
 server.listen(8080,()=>{
     console.log('server started');
 })

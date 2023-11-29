@@ -46,6 +46,7 @@ function Review() {
         feedback: '',
         orderID: '',
         dateOfService: '',
+        retailerZipcode: '',
         recommendService: false,
       });
       
@@ -129,6 +130,16 @@ function Review() {
             name="dateOfService"
             onChange={handleForm}
           />
+        </div>
+        <div>
+        <label>
+          Retailer Zip Code:
+          <input
+            type="text"
+            name="retailerZipcode"
+            onChange={handleForm}
+          />
+        </label>
         </div>
         <div>
           <label htmlFor="recommendService">Recommend Service</label>

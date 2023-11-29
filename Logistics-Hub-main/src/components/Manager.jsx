@@ -62,11 +62,10 @@ const Navbar = (props) => {
     const { usertype, username } = user;
 
     const handleLogout = () => {
-    navigate("/");
-    logout();
-    console.log(username);
-    };
-
+        navigate("/");
+        logout();
+        console.log(username);
+        };
     useEffect(()=>{
         console.log(props.tab)
         setSelectedTab(props.tab)
@@ -82,28 +81,51 @@ const Navbar = (props) => {
                         <img src="logonew.png" alt="Shipwise solutions" className="logo-image" />
                     </div>
                     <Link
-    className={selectedTab === "shipments" ? 'nav-button-select' : 'nav-button-deselect'}
+    className={selectedTab === "Manager" ? 'nav-button-select' : 'nav-button-deselect'}
     to={{
-        pathname: "/shipments",
-        state: { tab: 'shipments' },
+        pathname: "/Manager",
+        state: { tab: 'Manager' },
     }}
 >
     Home
 </Link>
-
+{/* 
                     <Link className={selectedTab === "orders" ? 'nav-button-select' : 'nav-button-deselect'}
                         to={{
                             pathname: "/orders",
                             state: { tab: 'orders' } 
                         }}
-                    >Orders</Link>
+                    >Orders</Link> */}
+                    <Link className={selectedTab === "DataAnalytics" ? 'nav-button-select' : 'nav-button-deselect'}
+                        to={{
+                            pathname: "/DataAnalytics",
+                            state: { tab: 'DataAnalytics' } 
+                        }}
+                    >DataAnalytics</Link>
+                    <Link className={selectedTab === "AddProvider" ? 'nav-button-select' : 'nav-button-deselect'}
+                        to={{
+                            pathname: "/AddProvider",
+                            state: { tab: 'AddProvider' } 
+                        }}
+                    >Add</Link>
+                    <Link className={selectedTab === "UpdateProvider" ? 'nav-button-select' : 'nav-button-deselect'}
+                        to={{
+                            pathname: "/UpdateProvider",
+                            state: { tab: 'UpdateProvider' } 
+                        }}
+                    >Update/Delete</Link>
                     <Link className={selectedTab === "newOrder" ? 'nav-button-select' : 'nav-button-deselect'}
                         to={{
-                            pathname: "/NewOrder",
-                            state: { tab: 'orders' } 
+                            pathname: "/Report",
+                            state: { tab: 'Report' } 
                         }}
-                    >Create new Shipment</Link>
-                   
+                    >Reports</Link>
+                    <Link className={selectedTab === "newOrder" ? 'nav-button-select' : 'nav-button-deselect'}
+                        to={{
+                            pathname: "/CRUD_user",
+                            state: { tab: 'CRUD_user' } 
+                        }}
+                    >Reports</Link>
                     {/* <Link className={selectedTab === "products" ? 'nav-button-select' : 'nav-button-deselect'}  
                         onClick={()=>setSelectedTab("products") }
                         to={{
@@ -113,11 +135,8 @@ const Navbar = (props) => {
                     >Products</Link> */}
                 </div>
                 <div style={{ display: 'flex', gap: '25px', paddingRight:"25px" }}>
-                  
                     <p>Hi, {username}</p>
                     <div className={classes.logo} onClick={handleLogout}>Logout</div>
-               
-                    
                 </div>
             </nav>
         </div>
