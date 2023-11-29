@@ -49,13 +49,12 @@ app.post('/register', (req, res) => {
     });
 });
 
-
 app.post('/order', (req, res) => {
-    const { customer, itemName, itemWeight, packageDimensions, carrierName,dateOrdered,destination,logo } = req.body;
+    const { name, email, phone, address,itemWeight, packageDimensions, serviceProvider,deliveryDate,destination,logo, price, paymentMode, cardNo } = req.body;
+console.log(req.body);
+    const sql = "INSERT INTO orders (customer, itemWeight, packageDimensions, carrierName, dateOrdered, destination, logo, price, phone_number, email_address, address, payment_method,card_no) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-    const sql = "INSERT INTO orders (customer, itemName, itemWeight, packageDimensions, carrierName,dateOrdered,destination,logo) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-
-    db.query(sql, [customer, itemName, itemWeight, packageDimensions, carrierName,dateOrdered,destination,logo], (err, result) => {
+    db.query(sql, [name, itemWeight, packageDimensions, serviceProvider,deliveryDate,destination,logo,price, phone, email,address,paymentMode,cardNo], (err, result) => {
         if (err) {
             console.error(err);
             return res.status(500).json({ error: "Internal Server Error", message: err.message });
