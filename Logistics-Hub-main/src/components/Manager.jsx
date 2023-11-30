@@ -133,6 +133,7 @@ const Navbar = (props) => {
                 </div>
                 <div style={{ display: 'flex', gap: '25px', paddingRight:"25px" }}>
                     <p>Hi, {username}</p>
+                    <div onClick={() => navigate('/UserProfile')}>Profile</div>
                     <div className={classes.logo} onClick={handleLogout}>Logout</div>
                 </div>
             </nav>

@@ -13,6 +13,7 @@ import {
 import { useUser } from './userContext';
 import axios from 'axios';
 import Navbar from './Navbar';
+import Manager from './Manager';
 
 // ... (imports)
 
@@ -28,7 +29,7 @@ const UserDetails = () => {
       // Add more fields as needed
     });
     const { user } = useUser();
-    const { username } = user;
+    const { username, usertype } = user;
   
     useEffect(() => {
       const fetchUserData = async () => {
@@ -77,7 +78,11 @@ const UserDetails = () => {
   
     return (
       <div>
-        <Navbar tab={'orders'} />
+      {
+        usertype === 'customer'?
+        <Navbar tab={'orders'} />:<Manager tab={'orders'} />
+      }
+        
         <Center>
           <Box width="600px">
             <Heading mb={4} textAlign="center" color="teal.500">

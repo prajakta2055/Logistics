@@ -48,6 +48,8 @@ import Report from "./components/Report";
 import CRUD_user from "./components/CRUD_user";
 import TrackingPage from  "./components/TrackingPage";
 import ManagerHome from "./components/ManagerHome";
+import CustomerOrder from "./components/CustomerOrder";
+import UserProfile from "./components/UserProfile";
 
 export default function App() {
   return (
@@ -87,6 +89,8 @@ export default function App() {
           <Route path="CRUD_user" element={<CRUD_user />} />
           <Route path="trackingpage" element={<TrackingPage />} />
           <Route path="ManagerHome" element={<ManagerHome />} />
+          <Route path="CustomerOrder" element={<CustomerOrder />} />
+          <Route path="UserProfile" element={<UserProfile />} />
         </Routes>
         </ChakraProvider>
         </UserProvider> 

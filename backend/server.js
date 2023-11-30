@@ -292,6 +292,149 @@ app.put('/updateProviders/:id', (req, res) => {
   });
   
   
+
+  app.put('/Order/:id', (req, res) => {
+    const orderId = req.params.id;
+    const {
+      customer,
+      itemWeight,
+      packageDimensions,
+      carrierName,
+      dateOrdered,
+      destination,
+      logo,
+      price,
+      phone_number,
+      email_address,
+      address,
+      payment_method,
+      card_no,
+      fromLocation,
+      zipcode,
+    } = req.body;
+  
+    const sql = `
+      UPDATE orders 
+      SET 
+        customer = ?,
+        itemWeight = ?,
+        packageDimensions = ?,
+        carrierName = ?,
+        dateOrdered = ?,
+        destination = ?,
+        logo = ?,
+        price = ?,
+        phone_number = ?,
+        email_address = ?,
+        address = ?,
+        payment_method = ?,
+        card_no = ?,
+        fromLocation = ?,
+        zipcode = ?
+        -- Add other fields here based on your data model
+      WHERE orderId = ?
+    `;
+  
+    db.query(
+      sql,
+      [
+        customer,
+        itemWeight,
+        packageDimensions,
+        carrierName,
+        dateOrdered,
+        destination,
+        logo,
+        price,
+        phone_number,
+        email_address,
+        address,
+        payment_method,
+        card_no,
+        fromLocation,
+        zipcode,
+        orderId,
+      ],
+      (err, result) => {
+        if (err) {
+          console.error(err);
+          return res
+            .status(500)
+            .json({ error: 'Internal Server Error', message: err.message });
+        }
+  
+        return res.json({
+          message: 'Order updated successfully',
+          result,
+        });
+      }
+    );
+  });
+
+
+  app.delete('/order/:userId', (req, res) => {
+    const userId = req.params.userId;
+    console.log(userId);
+  
+    const sql = 'DELETE FROM orders WHERE orderId = ?';
+  
+    db.query(sql, [userId], (err, result) => {
+      if (err) {
+        console.error('Error deleting user:', err);
+        res.status(500).json({ error: 'Internal Server Error', message: err.message });
+      } else if (result.affectedRows === 0) {
+        res.status(404).json({ error: 'User not found', message: 'No user with the specified ID' });
+      } else {
+        res.json({ message: 'User deleted successfully' });
+      }
+    });
+  });
+ 
+
+  // Assuming you have the required modules and database connection
+
+app.get('/user/:username', (req, res) => {
+  const username = req.params.username;
+
+  const sql = 'SELECT * FROM user WHERE username = ?';
+
+  db.query(sql, [username], (err, result) => {
+    if (err) {
+      console.error('Error executing query:', err);
+      return res.status(500).json({ error: 'Internal Server Error', message: err.message });
+    }
+
+    if (result.length === 0) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    return res.json({ message: 'Query executed successfully', result: result[0] });
+  });
+});
+
+  
+// Assuming you have the required modules and database connection
+app.get('/orderdata/:username', (req, res) => {
+  const username = req.params.username;
+
+  const sql = 'SELECT * FROM orders WHERE customer LIKE ?';
+
+  db.query(sql, [`%${username}%`], (err, result) => {
+    if (err) {
+      console.error('Error executing query:', err);
+      return res.status(500).json({ error: 'Internal Server Error', message: err.message });
+    }
+
+    if (result.length === 0) {
+      return res.status(404).json({ message: 'No orders found for the user' });
+    }
+
+    return res.json({ message: 'Query executed successfully', result });
+  });
+});
+
+
+
 app.listen(8081, () =>{
     console.log("Listening..");
 })

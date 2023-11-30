@@ -78,9 +78,7 @@ const Navbar = (props) => {
         <div className={classes.divhead}>
             <nav className={classes.navbar}>
                 <div style={{ display: 'flex', gap: '25px', justifyContent:"center", alignItems:"center"}}>
-                    <div className={classes.logo} onClick={()=>navigate("/")}>
-                        <img src="logonew.png" alt="Shipwise solutions" className="logo-image" />
-                    </div>
+                    
                     <Link
     className={selectedTab === "shipments" ? 'nav-button-select' : 'nav-button-deselect'}
     to={{
@@ -93,8 +91,8 @@ const Navbar = (props) => {
 
                     <Link className={selectedTab === "orders" ? 'nav-button-select' : 'nav-button-deselect'}
                         to={{
-                            pathname: "/orders",
-                            state: { tab: 'orders' } 
+                            pathname: "/CustomerOrder",
+                            state: { tab: 'CustomerOrder' } 
                         }}
                     >Orders</Link>
                     <Link className={selectedTab === "newOrder" ? 'nav-button-select' : 'nav-button-deselect'}
@@ -115,6 +113,7 @@ const Navbar = (props) => {
                 <div style={{ display: 'flex', gap: '25px', paddingRight:"25px" }}>
                   
                     <p>Hi, {username}</p>
+                    <div onClick={() => navigate('/UserProfile')}>Profile</div>
                     <div className={classes.logo} onClick={handleLogout}>Logout</div>
                
                     

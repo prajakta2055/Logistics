@@ -43,7 +43,7 @@ const LoginSignUp = () => {
         // Process the successful response data
         console.log('Login successful!');
         login(username, usertype);
-        if(usertype=== 'admin')
+        if(usertype === 'admin')
           navigate('/ManagerHome');
         else{
           navigate('/Shipments');
