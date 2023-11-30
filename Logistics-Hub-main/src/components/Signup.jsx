@@ -42,28 +42,35 @@ const Signup = () => {
   const handlePhoneChange = (e) => {
     setPhone(e.target.value);
   };
-const handleUserNameChange=(e)=>{
-  setUserName(e.target.value);
-}
+
+  const handleUserNameChange = (e) => {
+    setUserName(e.target.value);
+  };
 
   const handleButtonClick = (event) => {
     event.preventDefault();
-    axios.post('http://localhost:8081/register', {username, password, usertype, name, phone_number, address, email_address})
-    .then(res => {
-      console.log('Response status:', res.status);
-      console.log('Response data:', res.data);
-  
+    // Validate if all fields are entered
+    if (!name || !email_address || !password || !username || !usertype || !address || !phone_number) {
+      alert('Please enter all fields.');
+      return;
+    }
 
-      if (res.data === 'Error') {
-        console.error('Login failed. Server returned an error:', res.data);
-        
-      } else {
-        // Process the successful response data
-        console.log('Login successful!');
-       
-        navigate('/Homepage');
-      }
-    })
+    axios.post('http://localhost:8081/register', { username, password, usertype, name, phone_number, address, email_address })
+      .then(res => {
+        console.log('Response status:', res.status);
+        console.log('Response data:', res.data);
+
+        if (res.data === 'Error') {
+          console.error('Signup failed. Server returned an error:', res.data);
+        } else {
+          // Process the successful response data
+          console.log('Signup successful!');
+          navigate('/Homepage');
+        }
+      })
+      .catch(error => {
+        console.error('An error occurred:', error.message);
+      });
   };
 
   const handleButtonLogin = () => {
@@ -80,45 +87,45 @@ const handleUserNameChange=(e)=>{
         </div>
         <div className="inputs">
           <div className="input">
-            <img class="logo-container" src={user_icon} alt="" />
-            <input type="text" placeholder="Name" value={name} onChange={handleNameChange} />
+            <img className="logo-container" src={user_icon} alt="" />
+            <input type="text" placeholder="Name" value={name} onChange={handleNameChange} required />
           </div>
         </div>
-       
+
         <div className="inputs">
           <div className="input">
-            <img class="logo-container" src={password_icon} alt="" />
-            <input type="password" placeholder="Password" value={password} onChange={handlePasswordChange} />
-          </div>
-        </div>
-        <div className="inputs">
-          <div className="input">
-            <img class="logo-container" src={password_icon} alt="" />
-            <input type="text" placeholder="UserType" value={usertype} onChange={handleUsertypeChange} />
+            <img className="logo-container" src={user_icon} alt="" />
+            <input type="text" placeholder="UserName" value={username} onChange={handleUserNameChange} required />
           </div>
         </div>
         <div className="inputs">
           <div className="input">
-            <img class="logo-container" src={user_icon} alt="" />
-            <input type="text" placeholder="UserName" value={username} onChange={handleUserNameChange} />
+            <img className="logo-container" src={password_icon} alt="" />
+            <input type="password" placeholder="Password" value={password} onChange={handlePasswordChange} required />
           </div>
         </div>
         <div className="inputs">
           <div className="input">
-            <img class="logo-container" src={password_icon} alt="" />
-            <input type="text" placeholder="Address" value={address} onChange={handleAddressChange} />
+            <img className="logo-container" src={user_icon} alt="" />
+            <input type="text" placeholder="UserType" value={usertype} onChange={handleUsertypeChange} required />
           </div>
         </div>
         <div className="inputs">
           <div className="input">
-            <img class="logo-container" src={password_icon} alt="" />
-            <input type="text" placeholder="Phone Number" value={phone_number} onChange={handlePhoneChange} />
+            <img className="logo-container" src={password_icon} alt="" />
+            <input type="text" placeholder="Address" value={address} onChange={handleAddressChange} required />
           </div>
         </div>
         <div className="inputs">
           <div className="input">
-            <img class="logo-container" src={password_icon} alt="" />
-            <input type="text" placeholder="Email" value={email_address} onChange={handleEmailChange} />
+            <img className="logo-container" src={password_icon} alt="" />
+            <input type="text" placeholder="Phone Number" value={phone_number} onChange={handlePhoneChange} required />
+          </div>
+        </div>
+        <div className="inputs">
+          <div className="input">
+            <img className="logo-container" src={password_icon} alt="" />
+            <input type="text" placeholder="Email" value={email_address} onChange={handleEmailChange} required />
           </div>
         </div>
         {action === 'Sign Up' ? <div></div> : <div className="forgot-password">Forgot Password?<span>Click Here!</span></div>}

@@ -31,6 +31,12 @@ const LoginSignUp = () => {
 
   const handleButtonClick = async (event) => {
     event.preventDefault();
+    // Validate if all fields are entered
+    if (!username || !password || !usertype) {
+      alert('Please enter all fields.');
+      return;
+    }
+
     try {
       const res = await axios.post('http://localhost:8081/user', { username, password, usertype });
 
@@ -62,43 +68,42 @@ const LoginSignUp = () => {
 
   return (
     <>
-      
       <div className="login_container">
-      <button
-    onClick={() => navigate("/")}
-    style={{
-      padding: '10px',
-      backgroundColor: '#3498db',  // Change the background color as needed
-      color: '#fff',              // Change the text color as needed
-      border: 'none',
-      borderRadius: '5px',
-      cursor: 'pointer',
-      fontSize: '16px',
-      marginLeft: '8%',
-      marginRight: '8%',
-    }}
-  >
-    Back to Home
-  </button>
+        <button
+          onClick={() => navigate("/")}
+          style={{
+            padding: '10px',
+            backgroundColor: '#3498db',  // Change the background color as needed
+            color: '#fff',              // Change the text color as needed
+            border: 'none',
+            borderRadius: '5px',
+            cursor: 'pointer',
+            fontSize: '16px',
+            marginLeft: '8%',
+            marginRight: '8%',
+          }}
+        >
+          Back to Home
+        </button>
         <div className="header_Login">
           <div className="text">{action}</div>
         </div>
         <div className="inputs">
           <div className="input">
             <img className="logo-container" src={email_icon} alt="" />
-            <input type="email" placeholder="Username" value={username} onChange={handleUsernameChange} />
+            <input type="email" placeholder="Username" value={username} onChange={handleUsernameChange} required />
           </div>
         </div>
         <div className="inputs">
           <div className="input">
             <img className="logo-container" src={password_icon} alt="" />
-            <input type="password" placeholder="Password" value={password} onChange={handlePasswordChange} />
+            <input type="password" placeholder="Password" value={password} onChange={handlePasswordChange} required />
           </div>
         </div>
         <div className="inputs">
           <div className="input">
             <img className="logo-container" src={password_icon} alt="" />
-            <select value={usertype} onChange={handleTypeChange}>
+            <select value={usertype} onChange={handleTypeChange} required>
               <option className="opt" value="cust">
                 Select usertype
               </option>
