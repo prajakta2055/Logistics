@@ -45,9 +45,7 @@ const HomePageNav = (props) => {
     return (
         <div style={props.isHome ?{background:"#fff"}:{}} className={classes.divhead}>
             <nav className={classes.navbar} style={{display: "flex", justifyContent: "space-between", alignItems: "center", margin: "0px 20px"}}>
-                <div className={classes.logo}>
-                    <img src="logonew.png" alt="Shipwise solutions" className="logo-image" />
-                </div>
+                
                
             </nav>
         </div>

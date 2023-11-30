@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import '../css/LoginSignUp.css';
-import email_icon from '../content/mail.png';
+import email_icon from '../content/user.png';
 import password_icon from '../content/password.png';
 import { useNavigate } from 'react-router-dom';
 import Navbar from './Navbar';
@@ -44,12 +44,13 @@ const LoginSignUp = () => {
         console.log('Login successful!');
         login(username, usertype);
         if(usertype=== 'admin')
-          navigate('/Manager');
+          navigate('/ManagerHome');
         else{
           navigate('/Shipments');
         } 
       }
     } catch (error) {
+      alert("Invalid Login Credentials...!")
       console.error('An error occurred:', error.message);
     }
   };
@@ -61,15 +62,31 @@ const LoginSignUp = () => {
 
   return (
     <>
-      {log ? <Navbar /> : <HomePageNav />}
+      
       <div className="login_container">
+      <button
+    onClick={() => navigate("/")}
+    style={{
+      padding: '10px',
+      backgroundColor: '#3498db',  // Change the background color as needed
+      color: '#fff',              // Change the text color as needed
+      border: 'none',
+      borderRadius: '5px',
+      cursor: 'pointer',
+      fontSize: '16px',
+      marginLeft: '8%',
+      marginRight: '8%',
+    }}
+  >
+    Back to Home
+  </button>
         <div className="header_Login">
           <div className="text">{action}</div>
         </div>
         <div className="inputs">
           <div className="input">
             <img className="logo-container" src={email_icon} alt="" />
-            <input type="email" placeholder="Email Id" value={username} onChange={handleUsernameChange} />
+            <input type="email" placeholder="Username" value={username} onChange={handleUsernameChange} />
           </div>
         </div>
         <div className="inputs">

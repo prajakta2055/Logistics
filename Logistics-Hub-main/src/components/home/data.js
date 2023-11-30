@@ -191,7 +191,7 @@ export const testimonials = {
       message:
         'Your delivery is swift. What I love about your delivery is time management. Thanks for making my business go smoothly, I appreciate it, God bless your business',
       image: AvatarImg2,
-      name: 'John',
+      name: 'Prajakta',
       position: 'CEO',
       borderColor: '#FFBE21',
     },
@@ -199,7 +199,7 @@ export const testimonials = {
       message:
         'Fast,reliable and dependable hard-working but easy to communicate with',
       image: AvatarImg3,
-      name: 'OOF',
+      name: 'Shivdeep',
       position: 'CEO',
       borderColor: '#4756DF',
     },
