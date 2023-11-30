@@ -34,9 +34,19 @@ CREATE TABLE orders (
     payment_method VARCHAR(255),
     card_no VARCHAR(255),
     zipcode VARCHAR(255),
-    fromLocation VARCHAR(255)
+    fromLocation VARCHAR(255),
+	status varchar(50) default "Ordered"
 );
 
+CREATE TABLE tracking (
+  orderId INT,
+  originLat VARCHAR(50),
+  originLon VARCHAR(50),
+  destinationLat VARCHAR(50),
+  destinationLon VARCHAR(50),
+  status varchar(50),
+  FOREIGN KEY (orderId) REFERENCES orders(orderId)
+);
 
 select * from orders;
 
