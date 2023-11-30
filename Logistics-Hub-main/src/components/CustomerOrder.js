@@ -22,9 +22,16 @@ import {
     FormControl,
     FormLabel,
     Box,
-  } from '@chakra-ui/react';
+    ModalHeader,
+    ModalContent,
+    ModalOverlay,
+    Modal,
+    ModalBody,  ModalCloseButton,  ModalFooter, } from '@chakra-ui/react';
 import Navbar from './Navbar';
+import { GoogleMap, Polyline, Marker, LoadScript } from '@react-google-maps/api';
 import axios from 'axios';
+import carIconUrl from './car.png';
+import OrderStatusDemo from './OrderStatusLine'; // Update the path accordingly
 
 function Orders() {
   const [showPopup, setShowPopup] = useState(false);
@@ -42,17 +49,30 @@ function Orders() {
   const [selectedUser, setSelectedUser] = useState(null);
   const { user } = useUser();
   const {  username } = user;
+  const [showStatusDialog, setShowStatusDialog] = useState(false);
+  const [trackingData, setTrackingData] = useState(null);
+  
+  const openStatusDialog = () => {
+    setShowStatusDialog(true);
+  };
 
+  const closeStatusDialog = () => {
+    setShowStatusDialog(false);
+  };
   useEffect(() => {
     const fetchOrderData = async () => {
       try {
         console.log(username);
-        const response = await axios.get(`http://localhost:8081/orderdata/${username}`);
+        const response = await axios.get(`http://localhost:8081/orderdata`, {
+          params: {
+            username: username,
+          },
+        });
         console.log('Response status:', response.status);
         console.log('Response data:', response.data);
 
-        if (response.data.message === 'Query executed successfully') {
-          setSampleData(response.data.result);
+        if (response.data.message === 'Data retrieved successfully') {
+          setSampleData(response.data.data);
         } else {
           // Handle error case if needed
           console.error('Error executing query:', response.data.message);
@@ -136,14 +156,63 @@ function Orders() {
       });
   };
 
+  const handleShippedButtonClick = () => {
+    setShowMapPopup(true);
+    console.log('Shipped button clicked!');
+  };
+
   const handleSearchTermChange = (event) => {
     setSearchTerm(event.target.value);
   };
 
-  const handleTrackButtonClick = (orderId, customer, itemName, itemWeight, packageDimensions, carrierName) => {
-    setCurrentOrder({ orderId, customer, itemName, itemWeight, packageDimensions, carrierName });
-    setShowMapPopup(true);
+  function getRandomLocationBetween(origin, destination) {
+    const latRatio = Math.random();
+    const lngRatio = Math.random();
+    const latDiff = destination.lat - origin.lat;
+    const lngDiff = destination.lng - origin.lng;
+    const randomLat = origin.lat + latRatio * latDiff;
+    const randomLng = origin.lng + lngRatio * lngDiff;
+    return { lat: randomLat, lng: randomLng };
+  }
+
+  const handleTrackButtonClick = async (orderId, customer, itemName, itemWeight, packageDimensions, carrierName) => {
+    try {
+      const response = await axios.get(`http://localhost:8081/trackingData`, {
+        params: {
+          orderId: orderId,
+        },
+      });
+      setTrackingData(response.data.data[0]);
+      const trackingData1 = response.data.data[0];
+      const originLatLng = { lat: parseFloat(trackingData1.originLat), lng: parseFloat(trackingData1.originLon) }; // San Jose, CA
+      const destinationLatLng = { lat: parseFloat(trackingData1.destinationLat), lng: parseFloat(trackingData1.destinationLon) }; // Los Angeles, CA
+      const randomLocationBetween = getRandomLocationBetween(originLatLng, destinationLatLng);
+      const waypointsLatLng = [originLatLng, randomLocationBetween, destinationLatLng];
+
+      setCurrentOrder({
+        orderId,
+        customer,
+        itemName,
+        itemWeight,
+        packageDimensions,
+        carrierName,
+        randomLocation : randomLocationBetween,
+        origin: originLatLng,
+        destination: destinationLatLng,
+        waypoints: waypointsLatLng,
+      });
+
+      openStatusDialog();
+      setShowMapPopup(true);
+    } catch (error) {
+      console.error('Error fetching tracking data:', error.message);
+    }
   };
+
+  // const handleTrackButtonClick = (orderId, customer, itemName, itemWeight, packageDimensions, carrierName) => {
+  //   setCurrentOrder({ orderId, customer, itemName, itemWeight, packageDimensions, carrierName });
+  //   setShowMapPopup(true);
+  // };
 
   const handleMapPopupClose = () => {
     setCurrentOrder(null);
@@ -188,28 +257,63 @@ function Orders() {
     }
   };
 
-  const trackButton = () => {
+  const trackButton = (data) => {
     return (
-      <Button onClick={() => handleTrackButtonClick(orderId, customer, itemName, itemWeight, packageDimensions, carrierName)}>
+      <Button onClick={() => handleTrackButtonClick(data.orderId, data.customer, data.itemName, data.itemWeight, data.packageDimensions, data.carrierName)}>
         Track
       </Button>
     );
   };
 
-  const filteredData = sampleData.filter((data) => {
+  const filteredData = sampleData?.filter((data) => {
     const searchRegex = new RegExp(searchTerm, 'i');
     return searchRegex.test(data.orderId) || searchRegex.test(data.customer) || searchRegex.test(data.itemName) || searchRegex.test(data.carrierName);
   });
 
   return (
     <div style={{ width: '100%' }}>
+      {currentOrder && (
+        <Modal isOpen={showStatusDialog} onClose={closeStatusDialog} size="xl">
+          <ModalOverlay />
+          <ModalContent>
+            <ModalHeader>Order Status</ModalHeader>
+            <ModalCloseButton />
+            <ModalBody>
+            <OrderStatusDemo trackingData={trackingData} />
+              {trackingData.status === 'Shipped' && (
+                 <>
+                 <Button onClick={handleShippedButtonClick}>Shipped</Button>
+                 {showMapPopup && (
+                   // Render maps below the "Shipped" button
+                   <LoadScript googleMapsApiKey="AIzaSyBLD3HWQnIC_vkojQ6XAdenFaMG8H6bc2c">
+                     <GoogleMap
+                       mapContainerStyle={{ width: '100%', height: '400px' }}
+                       zoom={8}
+                       center={currentOrder.waypoints[0]}>
+
+                       <Polyline path={[currentOrder.origin, ...currentOrder.waypoints, currentOrder.destination]}
+                         options={{ strokeColor: '#0000FF', strokeWeight: 2 }}
+                       />
+                        
+                       <Marker position={currentOrder.origin} label="Origin" />
+                       <Marker position={currentOrder.destination} label="Destination" />
+                       <Marker position={currentOrder.randomLocation} icon={{ url: carIconUrl, scaledSize: { width: 50, height: 50 } }} />
+                     </GoogleMap>
+                   </LoadScript>
+                 )}
+               </>
+             )}
+            </ModalBody>
+          </ModalContent>
+        </Modal>
+      )}
       <Navbar tab={'orders'} />
       {!selectedUser ?
         (<div className="main-body">
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
           <h4>Customer Orders</h4>
           <Input label="Search" value={searchTerm} placeholder='Search here about order details' onChange={handleSearchTermChange} style={{ marginBottom: '16px' }} />
-          {filteredData.length > 0 && (
+          {filteredData?.length > 0 && (
             <TableContainer>
               <Table variant="simple">
                 
@@ -243,7 +347,7 @@ function Orders() {
                       <Td>{data.price}</Td>
                       <Td>{data.fromLocation}</Td>
                       <Td>{data.destination}</Td>
-                      <Td>{trackButton()}</Td>
+                      <Td>{trackButton(data)}</Td>
                       <Td><Button
                           colorScheme="teal"
                           onClick={() => handleUpdate(data.orderId)}
@@ -427,7 +531,41 @@ function Orders() {
     })
   }
 />
+{currentOrder && (
+        <Modal isOpen={showStatusDialog} onClose={closeStatusDialog} size="xl">
+          <ModalOverlay />
+          <ModalContent>
+            <ModalHeader>Order Status</ModalHeader>
+            <ModalCloseButton />
+            <ModalBody>
+            <OrderStatusDemo trackingData={trackingData} />
+              {trackingData.status === 'Shipped' && (
+                 <>
+                 <Button onClick={handleShippedButtonClick}>Shipped</Button>
+                 {showMapPopup && (
+                   // Render maps below the "Shipped" button
+                   <LoadScript googleMapsApiKey="AIzaSyBLD3HWQnIC_vkojQ6XAdenFaMG8H6bc2c">
+                     <GoogleMap
+                       mapContainerStyle={{ width: '100%', height: '400px' }}
+                       zoom={8}
+                       center={currentOrder.waypoints[0]}>
 
+                       <Polyline path={[currentOrder.origin, ...currentOrder.waypoints, currentOrder.destination]}
+                         options={{ strokeColor: '#0000FF', strokeWeight: 2 }}
+                       />
+                        
+                       <Marker position={currentOrder.origin} label="Origin" />
+                       <Marker position={currentOrder.destination} label="Destination" />
+                       <Marker position={currentOrder.randomLocation} icon={{ url: carIconUrl, scaledSize: { width: 50, height: 50 } }} />
+                     </GoogleMap>
+                   </LoadScript>
+                 )}
+               </>
+             )}
+            </ModalBody>
+          </ModalContent>
+        </Modal>
+      )}
 
   {/* Add more input fields as needed */}
 </VStack>

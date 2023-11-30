@@ -1,7 +1,7 @@
 const express = require('express');
 const mysql = require('mysql');
 const cors = require('cors');
-
+const { json } = require('body-parser');
 
 const app = express();
 app.use(express.json());
@@ -9,8 +9,8 @@ app.use(cors());
 const db = mysql.createConnection({
     host: "localhost",
     user: "root",
-    password: "Parshwa@3103",
-    database: "Logistic"
+    password: "root",
+    database: "logistic"
 })
 
 app.post('/user', (req, res) => {
@@ -22,7 +22,6 @@ app.post('/user', (req, res) => {
             console.error(err);
             return res.status(500).json({ error: "Internal Server Error", message: err.message });
         }
-
         if (data.length > 0) {
             // Assuming you have a 'user' object in your data
             const user = data[0];
@@ -51,6 +50,28 @@ app.get('/userdata', (req, res) => {
     });
 });
 
+app.post('/updateOrder', (req, res) => {
+    const { orderId, status } = req.body;
+    console.log(req.body);
+
+    const sql = "UPDATE orders SET status = ? WHERE orderId = ?";
+
+    db.query(sql, [status, orderId], (err, result) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).json({ error: "Internal Server Error", message: err.message });
+        }
+    });
+    const sql2 = "UPDATE tracking SET status = ? WHERE orderId = ?";
+    db.query(sql2, [status, orderId], (err, result) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).json({ error: "Internal Server Error", message: err.message });
+        }
+        return res.json({ message: "Order updated successfully", result});
+    });
+});
+
 app.post('/register', (req, res) => {
     const { username, password, usertype, name, phone_number, email_address, address } = req.body;
 
@@ -66,19 +87,30 @@ app.post('/register', (req, res) => {
     });
 });
 
-app.post('/order', (req, res) => {
-    const { name, email, phone, address,itemWeight, packageDimensions, serviceProvider,deliveryDate,destination,logo, price, paymentMode, cardNo, zipcode, fromLocation } = req.body;
-console.log(req.body);
+app.post('/order', async (req, res) => {
+    const { name, email, phone, address,itemWeight, packageDimensions, serviceProvider,deliveryDate,originCo,destCo,destination,logo, price, paymentMode, cardNo, zipcode, fromLocation } = req.body;
+    console.log(req.body);
     const sql = "INSERT INTO orders (customer, itemWeight, packageDimensions, carrierName, dateOrdered, destination, logo, price, phone_number, email_address, address, payment_method,card_no,zipcode, fromLocation) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?)";
+    var id;
+    db.query(sql, [name, itemWeight, packageDimensions, serviceProvider, deliveryDate, destination, logo, price, phone, email, address, paymentMode, cardNo, zipcode, fromLocation], (err, result) => {
+      if (err) {
+          console.error(err);
+          return res.status(500).json({ error: "Internal Server Error", message: err.message });
+      }
 
-    db.query(sql, [name, itemWeight, packageDimensions, serviceProvider,deliveryDate,destination,logo,price, phone, email,address,paymentMode,cardNo,zipcode, fromLocation], (err, result) => {
-        if (err) {
-            console.error(err);
-            return res.status(500).json({ error: "Internal Server Error", message: err.message });
-        }   
+      console.log(JSON.stringify(result));
+      const id = result.insertId;
 
-        return res.json({ message: "Order successful", result });
-    });
+      const sql2 = "INSERT INTO tracking (orderId, originLat, originLon, destinationLat, destinationLon, status) VALUES (?, ?, ?, ?, ?, ?)";
+      db.query(sql2, [id, originCo.lat, originCo.lng, destCo.lat, destCo.lng, "Ordered"], (err, trackingResult) => {
+          if (err) {
+              console.error(err);
+              return res.status(500).json({ error: "Internal Server Error", message: err.message });
+          }
+
+          return res.json({ message: "Order successful", orderResult: result, trackingResult });
+      });
+  });
 });
 
 
@@ -116,6 +148,26 @@ app.get('/serviceProviders', (req, res) => {
     });
 });
 
+app.get('/trackingData', (req, res) => {
+
+  const orderId = req.query.orderId;
+    console.log(orderId);
+  
+    const sql = 'SELECT * FROM tracking WHERE orderId = ?';
+  
+    db.query(sql, [orderId], (err, data) => {
+      if (err) {
+        console.error(err);
+        return res.status(500).json({ error: 'Internal Server Error', message: err.message });
+      }
+  
+      if (data.length > 0) {
+        return res.json({ message: 'Tracking data retrieved successfully', data });
+      } else {
+        return res.status(404).json({ error: 'No tracking data found' });
+      }
+    });
+  });
 // Assuming you have already set up your Express app and connected to the database
 
 // Define a route to handle DELETE requests for deleting a service provider

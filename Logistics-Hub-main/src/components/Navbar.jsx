@@ -80,14 +80,14 @@ const Navbar = (props) => {
                 <div style={{ display: 'flex', gap: '25px', justifyContent:"center", alignItems:"center"}}>
                     
                     <Link
-    className={selectedTab === "shipments" ? 'nav-button-select' : 'nav-button-deselect'}
-    to={{
-        pathname: "/shipments",
-        state: { tab: 'shipments' },
-    }}
->
-    Home
-</Link>
+                        className={selectedTab === "shipments" ? 'nav-button-select' : 'nav-button-deselect'}
+                        to={{
+                            pathname: "/shipments",
+                            state: { tab: 'shipments' },
+                        }}
+                    >
+                        Home
+                    </Link>
 
                     <Link className={selectedTab === "orders" ? 'nav-button-select' : 'nav-button-deselect'}
                         to={{

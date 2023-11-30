@@ -87,12 +87,6 @@ const Navbar = (props) => {
     Home
 </Link>
  
-                    <Link className={selectedTab === "orders" ? 'nav-button-select' : 'nav-button-deselect'}
-                        to={{
-                            pathname: "/orders",
-                            state: { tab: 'orders' } 
-                        }}
-                    >Orders</Link> 
                     <Link className={selectedTab === "DataAnalytics" ? 'nav-button-select' : 'nav-button-deselect'}
                         to={{
                             pathname: "/DataAnalytics",
@@ -105,6 +99,12 @@ const Navbar = (props) => {
                             state: { tab: 'AddProvider' } 
                         }}
                     >Add</Link>
+                    <Link className={selectedTab === "orders" ? 'nav-button-select' : 'nav-button-deselect'}
+                        to={{
+                            pathname: "/orders-manage",
+                            state: { tab: 'orders' } 
+                        }}
+                    >Orders</Link>
                     <Link className={selectedTab === "UpdateProvider" ? 'nav-button-select' : 'nav-button-deselect'}
                         to={{
                             pathname: "/UpdateProvider",
