@@ -76,8 +76,17 @@ setTyping(true);
   }
   return (
     <div>
-      <div style={{ position: "relative", height: "600px", width: "500px" ,marginLeft: "630px", marginTop: "20px"}}>
-        <MainContainer>
+      <div style={{
+        zIndex: "999999",
+         position: "fixed",
+         height: "70vh",
+         width: "-webkit-fill-available",
+         display: "flex",
+         marginTop: "200px",
+         justifyContent: "center",
+         alignItems: "center",
+         }}>
+        <MainContainer style={{width:"330px", position:"absolute", right:"-550px"}}>
           <ChatContainer>
             <MessageList
               scrollBehavior='smooth'
