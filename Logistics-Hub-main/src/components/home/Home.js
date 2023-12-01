@@ -11,11 +11,13 @@ import Hero from './Hero';
 import Feature1 from './Feature1';
 import Feature2 from './Feature2';
 import Feature3 from './Feature3';
+import Product from '../Nearme';
 import Testimonials from './Testimonials';
 import Cta from './Cta';
 // import Footer from './Footer';
 import From from './Form';
 import './home.css'
+import { NearMe } from '@mui/icons-material';
 
 const Home = () => {
   // initialize aos
@@ -30,6 +32,7 @@ const Home = () => {
       <Feature1 />
       <Feature2 />
       <Feature3 />
+      <Product/>
       <From />
       <Testimonials />
       <Cta />

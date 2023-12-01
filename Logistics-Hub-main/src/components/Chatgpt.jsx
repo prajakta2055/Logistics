@@ -240,7 +240,7 @@ function Chatgpt() {
 
   return (
     <div>
-      <Navbar />
+
       <div style={{
         zIndex: "999999",
          position: "fixed",

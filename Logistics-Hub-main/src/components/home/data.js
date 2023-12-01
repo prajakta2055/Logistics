@@ -38,7 +38,7 @@ export const nav = [
   { name: 'Services', href: '#form' },
   { name: 'Location', href: '#product'},
   { name: 'Reviews', href: '#testimonial' },
-  {name: 'Recommendation', href:'chatgpt'}
+  {name: 'Recommendation', href:'chatgpt'},
 ];
 
 export const hero = {

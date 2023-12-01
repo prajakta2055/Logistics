@@ -1,13 +1,8 @@
-import React from 'react';
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-// import data
-import { product } from './data';
-// import components
-// import Cards from './Cards';
-
-const Product = () => {
-  // destructure product data
+import Navbar from './Navbar';
+import axios from 'axios'; // Don't forget to import axios
+// import './Nearme.css';
+const NearMe = () => {
   const [userLocation, setUserLocation] = useState(null);
   const [locations, setLocations] = useState([]);
 
@@ -113,27 +108,22 @@ const Product = () => {
     };
   }, []);
 
-  const { title, subtitle } = product;
   return (
-    <section className='section' id='product'>
-      <div className='container mx-auto'>
-      <div className='flex flex-col lg:flex-row lg:items-center lg:gap-x-[30px]'>
-          {/* text */}
-          <div className='flex-1' data-aos='fade-right' data-aos-offset='400'>
-            <div className='pretitle'>{pretitle}</div>
-        {/* title & subtitle */}
-        <div className='flex flex-col items-center lg:flex-row mb-10 lg:mb-20'>
-        <div id="map" style={{ height: '600px', width: '70%' }}></div>
-        </div>
-        <div className='flex-1' data-aos='fade-left' data-aos-offset='300' data-aos-delay='-100'>
-        </div>
-        </div>
-        </div>
-        {/* cards */}
-        {/* <Cards /> */}
-      </div>
-    </section>
+    <div>
+         <div style={{
+        zIndex: "999999",
+         position: "fixed",
+         height: "70vh",
+         width: "-webkit-fill-available",
+         display: "flex",
+         marginTop: "200px",
+         justifyContent: "center",
+         alignItems: "center",
+         }}></div>
+     
+      <div id="map" style={{ height: '600px', width: '70%' }}></div>
+    </div>
   );
 };
 
-export default Product;
+export default NearMe;
