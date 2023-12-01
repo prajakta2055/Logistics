@@ -56,11 +56,7 @@ function Orders() {
 
   const handleTrackButtonClick = async (orderId, customer, itemName, itemWeight, packageDimensions, carrierName) => {
   try {
-    const response = await axios.get(`http://localhost:8081/trackingData`, {
-      params: {
-        orderId: orderId,
-      },
-    });
+    const response = await axios.get(`http://localhost:8081/trackingData/${orderId}`);
     setTrackingData(response.data.data[0]);
     const trackingData1 = response.data.data[0];
     const originLatLng = { lat: parseFloat(trackingData1.originLat), lng: parseFloat(trackingData1.originLon) }; // San Jose, CA

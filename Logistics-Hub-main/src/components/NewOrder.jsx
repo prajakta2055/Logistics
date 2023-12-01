@@ -185,7 +185,7 @@ const NewOrder = () => {
     
     })
       .then((res) => {
-        navigate('/trackingpage');
+        navigate('/CustomerOrder');
         console.log('Response status:', res.status);
         console.log('Response data:', res.data);
        
@@ -193,7 +193,7 @@ const NewOrder = () => {
           console.error('Login failed. Server returned an error:', res.data);
 
         } else {
-          navigate('/trackingpage');
+          navigate('/CustomerOrder');
           alert('Order placed successfully!');
     
         }

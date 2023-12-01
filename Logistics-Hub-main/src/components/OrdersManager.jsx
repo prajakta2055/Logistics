@@ -110,11 +110,7 @@ function OrdersManager() {
 
   const handleTrackButtonClick = async (orderId, customer, itemName, itemWeight, packageDimensions, carrierName) => {
   try {
-    const response = await axios.get(`http://localhost:8081/trackingData`, {
-      params: {
-        orderId: orderId,
-      },
-    });
+    const response = await axios.get(`http://localhost:8081/trackingData/${orderId}`);
     setTrackingData(response.data.data[0]);
     const trackingData1 = response.data.data[0];
     const originLatLng = { lat: parseFloat(trackingData1.originLat), lng: parseFloat(trackingData1.originLon) }; // San Jose, CA
@@ -239,7 +235,7 @@ function OrdersManager() {
 
   const handleUpdateSubmit = async () => {
     try {
-      await axios.put(`http://localhost:8081/order/${selectedUser.orderId}`, updateFormData);
+      await axios.put(`http://localhost:8081/Order/${selectedUser.orderId}`, updateFormData);
       // Update the local state with the updated data
       setSampleData((prevUsers) =>
         prevUsers.map((user) =>

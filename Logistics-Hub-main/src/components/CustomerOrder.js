@@ -72,8 +72,8 @@ function Orders() {
         console.log('Response status:', response.status);
         console.log('Response data:', response.data);
         setOrders(response.data.data);
-        if (response.data.message === 'Data retrieved successfully') {
-          setSampleData(response.data.data);
+        if (response.status === 200) {
+          setSampleData(response.data.result);
         } else {
           // Handle error case if needed
           console.error('Error executing query:', response.data.message);
@@ -200,11 +200,7 @@ function Orders() {
 
   const handleTrackButtonClick = async (orderId, customer, itemName, itemWeight, packageDimensions, carrierName) => {
     try {
-      const response = await axios.get(`http://localhost:8081/trackingData`, {
-        params: {
-          orderId: orderId,
-        },
-      });
+      const response = await axios.get(`http://localhost:8081/trackingData/${orderId}`);
       setTrackingData(response.data.data[0]);
       setOrderId(response.data.data[0].orderId);
       const trackingData1 = response.data.data[0];
@@ -251,7 +247,7 @@ function Orders() {
 
   const handleUpdateSubmit = async () => {
     try {
-      await axios.put(`http://localhost:8081/order/${selectedUser.orderId}`, updateFormData);
+      await axios.put(`http://localhost:8081/Order/${selectedUser.orderId}`, updateFormData);
       // Update the local state with the updated data
       setSampleData((prevUsers) =>
         prevUsers.map((user) =>

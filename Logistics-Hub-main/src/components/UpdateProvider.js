@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import {
   Box,
   Table,
@@ -20,6 +21,7 @@ import Navbar from './Manager';
 /* eslint-disable */
 
 const UpdateProvider = () => {
+  const navigate = useNavigate();
   const [serviceProviders, setServiceProviders] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -34,8 +36,16 @@ const UpdateProvider = () => {
   useEffect(() => {
     const fetchServiceProviders = async () => {
       try {
-        const response = await axios.get('http://localhost:8081/serviceProviders');
+        const response = await axios.get('http://localhost:8081/serviceProvider');
+        if(response.data.message === 'No service providers found')
+        {
+          // setError('No service providers found');
+          alert('No service providers found');
+          navigate('/AddProvider');
+        }
+        else{
         setServiceProviders(response.data.data);
+        }
       } catch (error) {
         console.error('Error fetching service providers:', error);
         setError('Error fetching data');
@@ -87,7 +97,8 @@ const UpdateProvider = () => {
   }
 
   if (error) {
-    return <p>Error: {error}</p>;
+    navigate('/AddProvider');
+    return <p>No Service Providers were present add few</p>;
   }
 
   return (

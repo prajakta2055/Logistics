@@ -9,7 +9,7 @@ app.use(cors());
 const db = mysql.createConnection({
     host: "localhost",
     user: "root",
-    password: "Parshwa@3103",
+    password: "root",
     database: "logistic"
 })
 
@@ -131,7 +131,8 @@ app.get('/orderdata', (req, res) => {
     });
 });
 
-app.get('/serviceProviders', (req, res) => {
+app.get('/serviceProvider', (req, res) => {
+    console.log("Service Provider");
     const sql = "SELECT * FROM service_providers";
 
     db.query(sql, (err, data) => {
@@ -143,15 +144,15 @@ app.get('/serviceProviders', (req, res) => {
         if (data.length > 0) {
             return res.json({ message: "Service providers retrieved successfully", data });
         } else {
-            return res.status(404).json({ error: "No service providers found" });
+            return res.json({ message: "No service providers found" });
         }
     });
 });
 
-app.get('/trackingData', (req, res) => {
+app.get('/trackingData/:orderId', (req, res) => {
 
-  const orderId = req.query.orderId;
-    console.log(orderId);
+  const orderId = req.params.orderId;
+    console.log("tracking:",orderId);
   
     const sql = 'SELECT * FROM tracking WHERE orderId = ?';
   
@@ -347,6 +348,7 @@ app.put('/updateProviders/:id', (req, res) => {
 
   app.put('/Order/:id', (req, res) => {
     const orderId = req.params.id;
+    console.log(orderId);
     const {
       customer,
       itemWeight,
@@ -427,7 +429,17 @@ app.put('/updateProviders/:id', (req, res) => {
   app.delete('/order/:userId', (req, res) => {
     const userId = req.params.userId;
     console.log(userId);
-  
+    const sq1 = 'DELETE FROM tracking WHERE orderId = ?';
+    db.query(sq1, [userId], (err, result) => {
+      if (err) {
+        console.error('Error deleting user:', err);
+        res.status(500).json({ error: 'Internal Server Error', message: err.message });
+      } else if (result.affectedRows === 0) {
+        res.status(404).json({ error: 'User not found', message: 'No user with the specified ID' });
+      } else {
+        res.json({ message: 'User deleted successfully' });
+      }
+    });
     const sql = 'DELETE FROM orders WHERE orderId = ?';
   
     db.query(sql, [userId], (err, result) => {
