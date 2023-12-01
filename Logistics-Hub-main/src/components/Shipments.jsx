@@ -4,131 +4,177 @@ import {
   ButtonGroup,
   Flex,
   HStack,
+  Heading,
   IconButton,
   Input,
   SkeletonText,
   Text,
 } from '@chakra-ui/react'
 import { FaTimes } from 'react-icons/fa'
-
-import {
-  useJsApiLoader,
-  GoogleMap,
-  Marker,
-  Autocomplete,
-  DirectionsRenderer,
-} from '@react-google-maps/api'
-import { useRef, useState } from 'react'
+import axios from 'axios'; 
+import React, { useEffect, useState } from 'react';
 
 import '../index.css';
 import Navbar from './Navbar';
 import { useUser } from './userContext';
 
-const center = { lat: 41.8781, lng: -87.6298 };
+
 function Shipments() {
     
-  const { isLoaded } = useJsApiLoader({
-    googleMapsApiKey: 'AIzaSyDEQ4J-WXRoHlO9LuaCfoMcOITAV6ySZr4',
-    libraries: ['places'],
-  })
 
-  const [map, setMap] = useState(/** @type google.maps.Map */ (null))
-  const [directionsResponse, setDirectionsResponse] = useState(null)
-  const [distance, setDistance] = useState('')
-  const [duration, setDuration] = useState('')
-  const [inputValue, setInputValue] = useState('');
-  const [isValid, setIsValid] = useState(true);
+
+  
   const { user } = useUser();
   const { usertype, username } = user;
-  let digits = '';
+  
 
-  /** @type React.MutableRefObject<HTMLInputElement> */
-  const originRef = useRef()
-  /** @type React.MutableRefObject<HTMLInputElement> */
-  const destiantionRef = useRef()
-
-  if (!isLoaded) {
-    return <SkeletonText />
-  }
+ 
 
 
-  async function calculateRoute() {
-    if (originRef.current.value === '' || destiantionRef.current.value === '') {
-      return
+  
+
+  
+  // google
+  const [userLocation, setUserLocation] = useState(null);
+  const [locations, setLocations] = useState([]);
+
+  useEffect(() => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const { latitude, longitude } = position.coords;
+          setUserLocation({ lat: latitude, lng: longitude });
+        },
+        (error) => {
+          console.error('Error getting user location:', error.message);
+        }
+      );
+    } else {
+      console.error('Geolocation is not supported by this browser.');
     }
-    // eslint-disable-next-line no-undef
-    const directionsService = new google.maps.DirectionsService()
-    const results = await directionsService.route({
-      origin: originRef.current.value,
-      destination: destiantionRef.current.value,
-      // eslint-disable-next-line no-undef
-      travelMode: google.maps.TravelMode.DRIVING,
-    })
-    console.log(results.routes[0].legs[0].distance.text)
-    setDirectionsResponse(results)
-    setDistance(results.routes[0].legs[0].distance.text)
-    setDuration(results.routes[0].legs[0].duration.text)
-  }
+  }, []);
 
-  const handleInputChange = (e) => {
-    const newValue = e.target.value;
-    setInputValue(newValue);
+  useEffect(() => {
+    if (userLocation) {
+      fetchLocations();
+    }
+  }, [userLocation]);
 
-    // Check if the input contains only digits
-    setIsValid(/^\d*$/.test(newValue));
+  const fetchLocations = async () => {
+    try {
+      const radius = 10;
+      const query = `
+        SELECT *
+        FROM locations
+        WHERE
+        ACOS(
+          SIN(RADIANS(${userLocation.lat})) * SIN(RADIANS(latitude)) +
+          COS(RADIANS(${userLocation.lat})) * COS(RADIANS(latitude)) *
+          COS(RADIANS(${userLocation.lng} - longitude))
+        ) * 6371 <= ${radius}
+        LIMIT 5;`;
+
+      const response = await axios.post('http://localhost:8081/location', {
+        queryType: 'custom',
+        customQuery: query,
+      });
+
+      const nearbyLocations = response.data.result;
+      setLocations(nearbyLocations); // Update state with fetched locations
+    } catch (error) {
+      console.error('Error querying nearby locations:', error);
+    }
   };
-  function clearRoute() {
-    setDirectionsResponse(null)
-    setDistance('')
-    setDuration('')
-    originRef.current.value = ''
-    destiantionRef.current.value = ''
-  }
 
+  useEffect(() => {
+    if (userLocation) {
+      initMap();
+    }
+  }, [userLocation, locations]);
+
+  function initMap() {
+    const map = new window.google.maps.Map(document.getElementById('map'), {
+      center: userLocation,
+      zoom: 15,
+    });
+  
+    const userMarker = new window.google.maps.Marker({
+        position: userLocation,
+    map: map,
+    title: 'You are here!',
+    icon: {
+      url: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png', // URL to a red marker icon
+      scaledSize: new window.google.maps.Size(42, 42), // Adjust the size as needed
+    },
+    });
+  
+    const markers = locations.map((place) => {
+      return new window.google.maps.Marker({
+        position: { lat: place.latitude, lng: place.longitude },
+        map: map,
+        title: place.name,
+      });
+    });
+  
+    // Create a LatLngBounds object to contain all markers
+    const bounds = new window.google.maps.LatLngBounds();
+  
+    // Extend the bounds with each marker's position
+    markers.forEach(marker => bounds.extend(marker.getPosition()));
+  
+    // Fit the map to the bounds
+    map.fitBounds(bounds);
+  }
+  
+
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyDEQ4J-WXRoHlO9LuaCfoMcOITAV6ySZr4&libraries=places`;
+    script.async = true;
+    script.defer = true;
+    script.onload = initMap;
+    document.head.appendChild(script);
+
+    return () => {
+      document.head.removeChild(script);
+    };
+  }, []);
   return (
     <div>
+      
     <Navbar 
-                tab={"Shipments"}
-            />
-             
-     <div className="flex">             
-    <div className="text-gray-600 body-font section">
-      <div className="container   mx-auto">
-        <div className="bg-gray-100 rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0">
-          <h2
-            className="title mb-5 lg:mb-10 text-center max-w-[920px] mx-auto"
-            
-          >
-            Why don't you give us a try
-          </h2>
-          <p
-            className="leading-relaxed text-center mb-3 text-[30px] font-medium"
-       
-          >
-            We're <em>READY</em> to <em>RUN</em> for <em>YOU!</em>
-          </p>
-          <h2 className="leading-relaxed text-center mb-3 text-[30px] font-medium">Service Providers</h2>
-          <div className="container">
-            <section id="service-providers justify-center">
-           
-              <div className="flex flex-row p-10 gap-[30px]  justify-center">
-                <div><img src="usps_r.svg" /></div>
-                <div><img src="ups_r.svg" /></div>
-                <div><img src="fedex.svg" /></div>
-                <div><img src="dhl_r.svg" /></div>
-                <div><img src="cdl.svg" /></div>
-              </div>
-            </section>
-  
-          </div>
-          
+                  tab={"Shipments"}
+              />
+            <Box position='absolute' left='0%' top='0%' h='50%' w='100%'>  
+    <div className="text-gray-600 body-font section" style={{ width: '50%', marginRight: 'auto',marginTop: 0 }}>
+    <div className="container mx-auto">
+      <div className="bg-gray-100 rounded-lg p-8 flex flex-col w-full mt-10 md:mt-0" style={{ marginTop: 0 }}>
+        <h2 className="title mb-5 lg:mb-10 text-center max-w-[920px] mx-auto">
+          Why don't you give us a try
+        </h2>
+        <p className="leading-relaxed text-center mb-3 text-[30px] font-medium">
+          We're <em>READY</em> to <em>RUN</em> for <em>YOU!</em>
+        </p>
+        <h2 className="leading-relaxed text-center mb-3 text-[30px] font-medium">
+          Service Providers
+        </h2>
+        <div className="container">
+          <section id="service-providers justify-center">
+            <div className="flex flex-row p-10 gap-[30px] justify-center">
+              <div><img src="usps_r.svg" /></div>
+              <div><img src="ups_r.svg" /></div>
+              <div><img src="fedex.svg" /></div>
+              <div><img src="dhl_r.svg" /></div>
+              <div><img src="cdl.svg" /></div>
+            </div>
+          </section>
         </div>
-        
       </div>
     </div>
-    </div>
-    
+  </div>
+  </Box>
     <div className='flex'>
+    
     <Flex
   position='relative'
   flexDirection='column'
@@ -136,89 +182,10 @@ function Shipments() {
   h='100vh'
   w='100vw'
 >
-  <Box position='absolute' left='25%' top='25%' h='50%' w='50%'>
-    {/* Google Map Box */}
-    <GoogleMap
-      center={center}
-      zoom={10}
-      mapContainerStyle={{ width: '100%', height: '100%' }}
-      options={{
-        zoomControl: false,
-        streetViewControl: false,
-        mapTypeControl: false,
-        fullscreenControl: false,
-      }}
-      //onLoad={map => setMap(map)}
-    >
-      <Marker position={center} />
-      {directionsResponse && (
-        <DirectionsRenderer directions={directionsResponse} />
-      )}
-    </GoogleMap>
-  </Box>
-  <Box
-    p={4}
-    borderRadius='lg'
-    m={4}
-    bgColor='white'
-    shadow='base'
-    minW='container.md'
-    zIndex='1'
-  >
-    <HStack spacing={2} justifyContent='space-between'>
-      <Box flexGrow={1}>
-        <Autocomplete>
-          <Input type='text' placeholder='Origin' ref={originRef} />
-        </Autocomplete>
-      </Box>
-      <Box flexGrow={1}>
-        <Autocomplete>
-          <Input
-            type='text'
-            placeholder='Destination'
-            ref={destiantionRef}
-          />
-        </Autocomplete>
-      </Box>
-      <Box flexGrow={1}>
-  <Input
-    type='text'
-    placeholder='Weight'
-    value={inputValue}
-    onChange={handleInputChange}
-  />
-  {!isValid && (
-    <Text color='red' fontSize='sm' mt={1}>
-      Please enter only numeric digits.
-    </Text>
-  )}
-</Box>
-      <ButtonGroup>
-        <Button colorScheme='blue' type='submit' onClick={calculateRoute}>
-          Calculate Shippment Cost
-        </Button>
-        <IconButton
-          aria-label='center back'
-          icon={<FaTimes />}
-          onClick={clearRoute}
-        />
-      </ButtonGroup>
-    </HStack>
-    <HStack spacing={4} mt={4} justifyContent='space-between'>
-      <Text>Distance: {distance} </Text>
-      <Text>Duration: {duration} </Text>
-      {digits = distance.replace(/\D/g, '')}
-      <Text>Shippment Cost: $ {digits*2} </Text>
-      {/* <IconButton
-        aria-label='center back'
-        icon={<FaLocationArrow />}
-        isRound
-        onClick={() => {
-          map.panTo(center)
-          map.setZoom(15)
-        }}
-      /> */}
-    </HStack>
+
+  <Box position='absolute' left='50%' top='10%' h='100%' w='70%'>
+    <Heading>Find near me drop locations </Heading>
+  <div id="map" style={{ height: '600px', width: '70%' }}></div>
   </Box>
 </Flex>
 </div>
