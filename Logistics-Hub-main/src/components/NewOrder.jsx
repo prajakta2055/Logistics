@@ -16,9 +16,9 @@ import {
 } from '@chakra-ui/react';
 
 import { useJsApiLoader, GoogleMap, Marker, Autocomplete, DirectionsRenderer } from '@react-google-maps/api';
-
+import { useUser } from './userContext';
 import Navbar from './Navbar';
-
+import Manager from './Manager';
 
 const center = { lat: 41.8781, lng: -87.6298 };
 
@@ -56,6 +56,8 @@ const NewOrder = () => {
   const destiantionRef = useRef();
   const [estimatedDeliveryDate, setEstimatedDeliveryDate] = useState(null);
   const [isOrderPlaced, setIsOrderPlaced] = useState(false);
+  const { user } = useUser();
+  const { username, usertype } = user;
   const [customerDetails, setCustomerDetails] = useState({
     name: '',
     address: '',
@@ -232,7 +234,8 @@ const NewOrder = () => {
 
   return (
     <div>
-      <Navbar tab={'NewOrder'} />
+    {usertype === 'customer'?<Navbar tab={'NewOrder'} />:<Manager tab={'NewOrder'} />}
+      
 
       <Box p={4} position='absolute' left='0%' top='80%' h='50%' w='50%'>
         {isOrderPlaced ? (

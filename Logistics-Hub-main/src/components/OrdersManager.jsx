@@ -1,5 +1,6 @@
 /* eslint-disable */
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
     Table,
     Thead,
@@ -12,7 +13,12 @@ import {
     Input,
     Select,
     MenuItem,
+    Heading,
     TableContainer,
+    Box,
+    VStack,
+    FormControl,
+    FormLabel,
   } from '@chakra-ui/react';
 import { GoogleMap, Polyline, Marker, LoadScript } from '@react-google-maps/api';
 import usePlacesAutocomplete, { getLatLng, getGeocode } from 'use-places-autocomplete';
@@ -41,6 +47,29 @@ function OrdersManager() {
   const [searchTerm, setSearchTerm] = useState('');
   const [currentOrder, setCurrentOrder] = useState(null);
   const [showMapPopup, setShowMapPopup] = useState(false);
+  const navigate = useNavigate();
+
+  const [updateFormData, setUpdateFormData] = useState({
+    orderId: '',
+    customer: '',
+    itemWeight: '',
+    packageDimensions: '',
+    carrierName: '',
+    dateOrdered: '',
+    destination: '',
+    logo: '',
+    price: '',
+    phone_number: '',
+    email_address: '',
+    address: '',
+    payment_method: '',
+    card_no: '',
+    fromLocation: '',
+    zipcode: '',
+    // ... other fields from your data model
+  });
+  
+
   
   
   const openStatusDialog = () => {
@@ -114,7 +143,7 @@ function OrdersManager() {
 };
 
   const handleCreateLabelClick = () => {
-    setShowPopup(true);
+    navigate("/NewOrder");
   };
 
   const handlePopupClose = () => {
@@ -201,6 +230,45 @@ function OrdersManager() {
     );
   };
 
+  //Update code added Manager can Update Order 
+  const handleUpdate = (id) => {
+    const userToUpdate = sampleData.find((user) => user.orderId === id);
+    setSelectedUser(userToUpdate);
+    setUpdateFormData(userToUpdate);
+  };
+
+  const handleUpdateSubmit = async () => {
+    try {
+      await axios.put(`http://localhost:8081/order/${selectedUser.orderId}`, updateFormData);
+      // Update the local state with the updated data
+      setSampleData((prevUsers) =>
+        prevUsers.map((user) =>
+          user.orderId === selectedUser.orderId ? { ...user, ...updateFormData } : user
+        )
+      );
+      // Reset the selected user and update form data
+      setSelectedUser(null);
+      setUpdateFormData({});
+      console.log('User updated successfully');
+    } catch (error) {
+      console.error('Error updating user:', error);
+    }
+  };
+
+
+//Manager can delete order 
+
+  const handleDelete = async (id) => {
+    console.log(`Delete user with id ${id}`);
+    try {
+      await axios.delete(`http://localhost:8081/order/${id}`);
+      setSampleData((prevUsers) => prevUsers.filter((sampleData) => sampleData.orderId !== id));
+      console.log(`User with id ${id} deleted successfully`);
+    } catch (error) {
+      console.error('Error deleting user:', error);
+    }
+  };
+
   const filteredData = sampleData.filter((data) => {
     const searchRegex = new RegExp(searchTerm, 'i');
     return searchRegex.test(data.orderId) || searchRegex.test(data.customer) || searchRegex.test(data.itemName) || searchRegex.test(data.carrierName);
@@ -209,46 +277,51 @@ function OrdersManager() {
   return (
     <div style={{ width: '100%' }}>
       <Navbar tab={'orders'} />
-      <div className="main-body">
+      {!selectedUser ?
+      (<div className="main-body">
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
-          <h4>{sampleData.length === 0 ? "No Orders yet. But you'll get one. Welcome. 🙏🏻" : 'Welcome. 🙏🏻'}</h4>
+        <Heading mb={4} textAlign="center">
+          Customer Orders
+        </Heading>
           <Button onClick={handleCreateLabelClick}>Create a New Shipment Here</Button>
-          <Input label="Search" value={searchTerm} onChange={handleSearchTermChange} style={{ marginBottom: '16px' }} />
+          <Input label="Search" value={searchTerm} placeholder='Search here about order details' onChange={handleSearchTermChange} style={{ marginBottom: '16px' }} /> 
           {filteredData.length > 0 && (
             <TableContainer>
             <Table variant="simple">
               <Thead>
                 <Tr>
-                  <Th>OrderId</Th>
-                  <Th>Date Ordered</Th>
-                  <Th>Customer</Th>
-                  <Th>Item</Th>
-                  <Th>Package</Th>
-                  <Th>Carrier</Th>
-                  <Th>Price</Th>
-                  <Th>Destination</Th>
-                  <Th>Track</Th>
-                  <Th>Status</Th>
+                <Th>OrderId</Th>
+                    <Th>Date Ordered</Th>
+                    <Th>Customer</Th>
+                    <Th>Package Dimensions </Th>
+                    <Th>Package Weight </Th>
+                    <Th>Carrier</Th>
+                    <Th>Price</Th>
+                    <Th>From Location</Th>
+                    <Th>Destination</Th>
+                    <Th>Track</Th>
+                    <Th>Status</Th>
+                    <Th>Actions</Th>
                 </Tr>
               </Thead>
               <Tbody>
                 {filteredData.map((data) => (
                   <Tr key={data.orderId}>
-                    <Td>{data.orderId}</Td>
-                    <Td>{data.dateOrdered}</Td>
-                    <Td>{data.customer}</Td>
-                    <Td>{`${data.itemName} (${data.itemWeight})`}</Td>
-                    <Td>{data.packageDimensions}</Td>
-                    <Td>
-                      <div style={{ display: 'flex', gap: '5px' }}>
-                        {<img src={data.logo} style={{ width: '30px' }} alt={`${data.carrierName} logo`} />}
-                        {data.carrierName}
-                      </div>
-                    </Td>
-                    <Td>{data.price}</Td>
-                    <Td>{data.destination}</Td>
-                    <Td>{trackButton(data)}</Td>
-                    <Td>
+                      <Td>{data.orderId}</Td>
+                      <Td>{data.dateOrdered}</Td>
+                      <Td>{data.customer}</Td>
+                      <Td>{data.packageDimensions} inches</Td>
+                      <Td>{data.itemWeight} lb</Td>
+                      <Td>
+                        <div style={{ display: 'flex', gap: '5px' }}>
+                          {<img src={data.logo} style={{ width: '30px' }} alt={`${data.carrierName} logo`} />}
+                          {data.carrierName}
+                        </div>
+                      </Td>
+                      <Td>{data.price}</Td>
+                      <Td>{data.fromLocation}</Td>
+                      <Td>{data.destination}</Td>
+                      <Td>{trackButton(data)}</Td>                    <Td>
                       <select style={{width:"fit-content"}} value={data.status} onChange={(e) => handleStatusChange(data.orderId, e.target.value)} disabled={data.status === "Delivered"}>
                         <option value="Ordered">Ordered</option>
                         <option value="Shipped">Shipped</option>
@@ -256,6 +329,19 @@ function OrdersManager() {
                         <option value="Delivered">Delivered</option>
                       </select>
                     </Td>
+                    <Td><Button
+                          colorScheme="teal"
+                          onClick={() => handleUpdate(data.orderId)}
+                        >
+                          Update
+                        </Button>
+                        <Button
+                          colorScheme="red"
+                          marginLeft="2"
+                          onClick={() => handleDelete(data.orderId)}
+                        >
+                          Delete
+                        </Button></Td>
                   </Tr>
                 ))}
               </Tbody>
@@ -264,7 +350,171 @@ function OrdersManager() {
           )}
           {filteredData.length === 0 && <p>No matching orders found.</p>}
         </div>
-      </div>
+      </div>):( <Box
+  width="600px"
+  margin="auto"
+  marginTop="50px"
+  border="1px solid #ddd"
+  padding="20px"
+  borderRadius="8px"
+  boxShadow="md"
+>
+        <div>
+        <VStack align="start" spacing={4}>
+        <Input
+  type="text"
+  name="customer"
+  placeholder="Customer"
+  value={updateFormData.customer}
+  onChange={(e) =>
+    setUpdateFormData({
+      ...updateFormData,
+      customer: e.target.value,
+    })
+  }
+/>
+
+<Input
+  type="text"
+  name="itemWeight"
+  placeholder="Item Weight"
+  value={updateFormData.itemWeight}
+  onChange={(e) =>
+    setUpdateFormData({
+      ...updateFormData,
+      itemWeight: e.target.value,
+    })
+  }
+/>
+
+<Input
+  type="text"
+  name="packageDimensions"
+  placeholder="Package Dimensions"
+  value={updateFormData.packageDimensions}
+  onChange={(e) =>
+    setUpdateFormData({
+      ...updateFormData,
+      packageDimensions: e.target.value,
+    })
+  }
+/>
+
+<FormControl mt={4}>
+  <FormLabel>Carrier Name:</FormLabel>
+  <Select
+    name='carrierName'
+    value={updateFormData.carrierName}
+    onChange={(e) =>
+      setUpdateFormData({
+        ...updateFormData,
+        carrierName: e.target.value,
+      })
+    }
+  >
+    <option value='DHL'>DHL</option>
+    <option value='CDL'>CDL</option>
+    <option value='USPS'>USPS</option>
+    <option value='UPS'>UPS</option>
+    <option value='FedEx'>FedEx</option>
+    {/* Add more options as needed */}
+  </Select>
+</FormControl>
+
+<Input
+  type="text"
+  name="dateOrdered"
+  placeholder="Date Ordered"
+  value={updateFormData.dateOrdered}
+  onChange={(e) =>
+    setUpdateFormData({
+      ...updateFormData,
+      dateOrdered: e.target.value,
+    })
+  }
+/>
+
+<Input
+  type="text"
+  name="destination"
+  placeholder="Destination"
+  value={updateFormData.destination}
+  onChange={(e) =>
+    setUpdateFormData({
+      ...updateFormData,
+      destination: e.target.value,
+    })
+  }
+/>
+
+<Input
+  type="text"
+  name="logo"
+  placeholder="Logo"
+  value={updateFormData.logo}
+  onChange={(e) =>
+    setUpdateFormData({
+      ...updateFormData,
+      logo: e.target.value,
+    })
+  }
+/>
+
+<Input
+  type="text"
+  name="price"
+  placeholder="Price"
+  value={updateFormData.price}
+  onChange={(e) =>
+    setUpdateFormData({
+      ...updateFormData,
+      price: e.target.value,
+    })
+  }
+/>
+
+<Input
+  type="text"
+  name="phone_number"
+  placeholder="Phone Number"
+  value={updateFormData.phone_number}
+  onChange={(e) =>
+    setUpdateFormData({
+      ...updateFormData,
+      phone_number: e.target.value,
+    })
+  }
+/>
+
+<Input
+  type="email"
+  name="email_address"
+  placeholder="Email Address"
+  value={updateFormData.email_address}
+  onChange={(e) =>
+    setUpdateFormData({
+      ...updateFormData,
+      email_address: e.target.value,
+    })
+  }
+/>
+
+<Input
+  type="text"
+  name="address"
+  placeholder="Address"
+  value={updateFormData.address}
+  onChange={(e) =>
+    setUpdateFormData({
+      ...updateFormData,
+      address: e.target.value,
+    })
+  }
+/></VStack>
+<Button onClick={handleUpdateSubmit}>Update User</Button>
+</div>
+</Box>
+)}
 
       {currentOrder && (
         <Modal isOpen={showStatusDialog} onClose={closeStatusDialog} size="xl">

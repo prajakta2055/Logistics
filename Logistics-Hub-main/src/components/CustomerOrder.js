@@ -18,6 +18,7 @@ import {
     Select,
     MenuItem,
     VStack,
+    Heading,
     TableContainer,
     FormControl,
     FormLabel,
@@ -67,11 +68,7 @@ function Orders() {
     const fetchOrderData = async () => {
       try {
         console.log(username);
-        const response = await axios.get(`http://localhost:8081/orderdata`, {
-          params: {
-            username: username,
-          },
-        });
+        const response = await axios.get(`http://localhost:8081/orderdata/${username}`);
         console.log('Response status:', response.status);
         console.log('Response data:', response.data);
         setOrders(response.data.data);
@@ -88,7 +85,7 @@ function Orders() {
     };
 
     fetchOrderData();
-  }, [username]);
+  }, []);
 
   useEffect(() => {
     if(carIconLocation === 'destination'){
@@ -371,7 +368,9 @@ function Orders() {
       {!selectedUser ?
         (<div className="main-body">
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
-          <h4>Customer Orders</h4>
+        <Heading mb={4} textAlign="center">
+          Your Orders
+        </Heading>
           <Input label="Search" value={searchTerm} placeholder='Search here about order details' onChange={handleSearchTermChange} style={{ marginBottom: '16px' }} />
           {filteredData?.length > 0 && (
             <TableContainer>
@@ -382,7 +381,8 @@ function Orders() {
                     <Th>OrderId</Th>
                     <Th>Date Ordered</Th>
                     <Th>Customer</Th>
-                    <Th>Package Dimensions (inch)</Th>
+                    <Th>Package Dimensions </Th>
+                    <Th>Package Weight </Th>
                     <Th>Carrier</Th>
                     <Th>Price</Th>
                     <Th>From Location</Th>
@@ -397,7 +397,8 @@ function Orders() {
                       <Td>{data.orderId}</Td>
                       <Td>{data.dateOrdered}</Td>
                       <Td>{data.customer}</Td>
-                      <Td>{data.packageDimensions}</Td>
+                      <Td>{data.packageDimensions} inches</Td>
+                      <Td>{data.itemWeight} lb</Td>
                       <Td>
                         <div style={{ display: 'flex', gap: '5px' }}>
                           {<img src={data.logo} style={{ width: '30px' }} alt={`${data.carrierName} logo`} />}

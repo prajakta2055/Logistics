@@ -9,7 +9,7 @@ app.use(cors());
 const db = mysql.createConnection({
     host: "localhost",
     user: "root",
-    password: "root",
+    password: "Parshwa@3103",
     database: "logistic"
 })
 
@@ -468,7 +468,7 @@ app.get('/user/:username', (req, res) => {
 // Assuming you have the required modules and database connection
 app.get('/orderdata/:username', (req, res) => {
   const username = req.params.username;
-
+  console.log("Comming.....");
   const sql = 'SELECT * FROM orders WHERE customer LIKE ?';
 
   db.query(sql, [`%${username}%`], (err, result) => {
