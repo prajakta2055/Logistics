@@ -104,7 +104,7 @@ const DataAnalytics = () => {
         </>):(<></>)
         }
 
-        <button type="submit">Find Data</button>
+        <button type="submit">Find Reviews</button>
       </form>
 
       {/* Display filtered data */}
