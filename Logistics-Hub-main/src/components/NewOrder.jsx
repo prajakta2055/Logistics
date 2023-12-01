@@ -138,11 +138,14 @@ const NewOrder = () => {
     setDuration(results.routes[0].legs[0].duration.text);
     const deliveryDate = calculateDeliveryDate(results.routes[0].legs[0].duration.value);
     setEstimatedDeliveryDate(deliveryDate);
-  
-    const newdist = parseFloat(results.routes[0].legs[0].distance.text) * 0.1;
+ // console.log(" distance" ,results.routes[0].legs[0].distance.text);
+  const distanceValue = parseInt(results.routes[0].legs[0].distance.text.replace(/,/g, ''), 10);
+    const newdist = distanceValue * 0.01;
+    console.log(distanceValue);
     const calcQuote = parseFloat(calculateQuote());
+   // console.log(calcQuote);
     const actual = calcQuote + newdist;
-  
+  console.log(actual);
     setShippingCost(actual);
   }
   
@@ -204,7 +207,8 @@ const NewOrder = () => {
     const distanceValue = parseFloat(distance);
     const volume = boxLength * boxWidth * boxHeight;
     const weightQuote = weight * 0.5;
-    const volumeQuote = volume * 0.2;
+    const volumeQuote = volume * 0.1;
+  // const distanceQuote = distanceValue * 0.01;
 
     const totalQuote = weightQuote + volumeQuote;
     return totalQuote.toFixed(2);
@@ -332,7 +336,7 @@ const NewOrder = () => {
         ) : (
           <form onSubmit={handleSubmit}>
             <FormControl>
-              <FormLabel>Item Weight:</FormLabel>
+              <FormLabel>Item Weight(in LBS):</FormLabel>
               <Input
                 type='text'
                 name='weight'
@@ -345,7 +349,7 @@ const NewOrder = () => {
               <FormLabel>Box Dimensions:</FormLabel>
               <Box>
                 <FormControl>
-                  <FormLabel>Length:</FormLabel>
+                  <FormLabel>Length(in inches):</FormLabel>
                   <Input
                     type='text'
                     name='boxLength'
@@ -354,7 +358,7 @@ const NewOrder = () => {
                   />
                 </FormControl>
                 <FormControl>
-                  <FormLabel>Width:</FormLabel>
+                  <FormLabel>Width(in inches):</FormLabel>
                   <Input
                     type='text'
                     name='boxWidth'
@@ -363,7 +367,7 @@ const NewOrder = () => {
                   />
                 </FormControl>
                 <FormControl>
-                  <FormLabel>Height:</FormLabel>
+                  <FormLabel>Height(in inches):</FormLabel>
                   <Input
                     type='text'
                     name='boxHeight'

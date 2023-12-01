@@ -9,7 +9,7 @@ app.use(cors());
 const db = mysql.createConnection({
     host: "localhost",
     user: "root",
-    password: "root",
+    password: "Parshwa@3103",
     database: "logistic"
 })
 
@@ -318,6 +318,69 @@ app.put('/updateProviders/:id', (req, res) => {
     });
   });
  
+
+  //chatgpt code
+
+  app.post('/orderdatagpt', (req, res) => {
+    try {
+      const { queryType, customQuery } = req.body;
+  
+      if (queryType === 'custom') {
+        // Execute the custom query on your database
+        executeCustomQuery(customQuery, (err, result) => {
+          if (err) {
+            console.error('Error executing custom query:', err);
+            res.status(500).json({ error: 'Internal Server Error', message: err.message });
+          } else {
+            console.log(result);
+            res.json({ result: result });
+          }
+        });
+      } else {
+        res.status(400).json({ error: 'Invalid query type' });
+      }
+    } catch (error) {
+      console.error('Error handling request:', error);
+      res.status(500).json({ error: 'Internal server error' });
+    }
+  });
+
+  app.post('/location', (req, res) => {
+    try {
+      const { queryType, customQuery } = req.body;
+  
+      if (queryType === 'custom') {
+        // Execute the custom query on your database
+        executeCustomQuery(customQuery, (err, result) => {
+          if (err) {
+            console.error('Error executing custom query:', err);
+            res.status(500).json({ error: 'Internal Server Error', message: err.message });
+          } else {
+            console.log(result);
+            res.json({ result: result });
+          }
+        });
+      } else {
+        res.status(400).json({ error: 'Invalid query type' });
+      }
+    } catch (error) {
+      console.error('Error handling request:', error);
+      res.status(500).json({ error: 'Internal server error' });
+    }
+  });
+  
+  function executeCustomQuery(query, callback) {
+   
+  console.log(query);
+  
+    // Execute the actual SQL code on your database
+    db.query(query, (err, result) => {
+     
+      callback(err, result);
+    });
+  }
+
+  
   app.put('/user/:id', (req, res) => {
     const userId = req.params.id;
     const { username, email_address, password, usertype, name, phone_number } = req.body;
