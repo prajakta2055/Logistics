@@ -167,13 +167,18 @@ function OrdersManager() {
   };
 
   const handleStatusChange = (orderId, status) => {
-    
     axios
-      .post('http://localhost:8081/updateOrder', {orderId, status})
+      .post('http://localhost:8081/updateOrder', { orderId, status })
       .then((res) => {
         console.log('Response status:', res.status);
         console.log('Response data:', res.data);
         alert('Status updated successfully!');
+        // Update the status in local state
+        setSampleData((prevData) =>
+          prevData.map((data) =>
+            data.orderId === orderId ? { ...data, status } : data
+          )
+        );
       });
   };
 
@@ -247,7 +252,7 @@ function OrdersManager() {
                       <select style={{width:"fit-content"}} value={data.status} onChange={(e) => handleStatusChange(data.orderId, e.target.value)} disabled={data.status === "Delivered"}>
                         <option value="Ordered">Ordered</option>
                         <option value="Shipped">Shipped</option>
-                        <option value="OutForDelivery">Out for delivery</option>
+                        <option value="Out for Delivery">Out for delivery</option>
                         <option value="Delivered">Delivered</option>
                       </select>
                     </Td>

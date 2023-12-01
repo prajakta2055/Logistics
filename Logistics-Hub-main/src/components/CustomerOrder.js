@@ -35,6 +35,7 @@ import OrderStatusDemo from './OrderStatusLine'; // Update the path accordingly
 
 function Orders() {
   const [showPopup, setShowPopup] = useState(false);
+  const [orders, setOrders] = useState('');
   const [orderId, setOrderId] = useState('');
   const [customer, setCustomer] = useState('');
   const [itemName, setItemName] = useState('');
@@ -51,7 +52,10 @@ function Orders() {
   const {  username } = user;
   const [showStatusDialog, setShowStatusDialog] = useState(false);
   const [trackingData, setTrackingData] = useState(null);
-  
+  const [carIconLocation, setCarIconLocation] = useState('origin'); // Added state for car icon location
+  const [mapKey, setMapKey] = useState(0); // Added state for the map key
+  const carLocations = ['origin', 'random', 'destination'];
+
   const openStatusDialog = () => {
     setShowStatusDialog(true);
   };
@@ -70,7 +74,7 @@ function Orders() {
         });
         console.log('Response status:', response.status);
         console.log('Response data:', response.data);
-
+        setOrders(response.data.data);
         if (response.data.message === 'Data retrieved successfully') {
           setSampleData(response.data.data);
         } else {
@@ -85,6 +89,30 @@ function Orders() {
 
     fetchOrderData();
   }, [username]);
+
+  useEffect(() => {
+    if(carIconLocation === 'destination'){
+      console.log('Order delivered!');
+      axios
+      .post('http://localhost:8081/updateOrder', {orderId, status: 'Out for Delivery'})
+      .then((res) => {
+        console.log('Response status:', res.status);
+        console.log('Response data:', res.data);
+        alert('Status updated successfully!');
+      });
+     setShowStatusDialog(false);
+    }
+    else{
+      const interval = setInterval(() => {
+        const currentIndex = carLocations.indexOf(carIconLocation);
+        if (currentIndex < carIconLocation.length - 1) {
+          setCarIconLocation(carLocations[currentIndex + 1]);
+        }
+      }, 30000); 
+      return () => clearInterval(interval);
+    }
+    
+  }, [carIconLocation]);
 
   const [searchTerm, setSearchTerm] = useState('');
   const [currentOrder, setCurrentOrder] = useState(null);
@@ -158,9 +186,7 @@ function Orders() {
 
   const handleShippedButtonClick = () => {
     setShowMapPopup(true);
-    console.log('Shipped button clicked!');
   };
-
   const handleSearchTermChange = (event) => {
     setSearchTerm(event.target.value);
   };
@@ -183,6 +209,7 @@ function Orders() {
         },
       });
       setTrackingData(response.data.data[0]);
+      setOrderId(response.data.data[0].orderId);
       const trackingData1 = response.data.data[0];
       const originLatLng = { lat: parseFloat(trackingData1.originLat), lng: parseFloat(trackingData1.originLon) }; // San Jose, CA
       const destinationLatLng = { lat: parseFloat(trackingData1.destinationLat), lng: parseFloat(trackingData1.destinationLon) }; // Los Angeles, CA
@@ -287,18 +314,51 @@ function Orders() {
                    // Render maps below the "Shipped" button
                    <LoadScript googleMapsApiKey="AIzaSyBLD3HWQnIC_vkojQ6XAdenFaMG8H6bc2c">
                      <GoogleMap
-                       mapContainerStyle={{ width: '100%', height: '400px' }}
-                       zoom={8}
-                       center={currentOrder.waypoints[0]}>
-
-                       <Polyline path={[currentOrder.origin, ...currentOrder.waypoints, currentOrder.destination]}
-                         options={{ strokeColor: '#0000FF', strokeWeight: 2 }}
-                       />
-                        
-                       <Marker position={currentOrder.origin} label="Origin" />
-                       <Marker position={currentOrder.destination} label="Destination" />
-                       <Marker position={currentOrder.randomLocation} icon={{ url: carIconUrl, scaledSize: { width: 50, height: 50 } }} />
-                     </GoogleMap>
+                      key={mapKey}
+                      mapContainerStyle={{ width: '100%', height: '400px' }}
+                      zoom={8}
+                      center={
+                        carIconLocation === 'origin'
+                          ? currentOrder.origin
+                          : carIconLocation === 'random'
+                          ? currentOrder.randomLocation
+                          : currentOrder.destination
+                      }
+                    >
+                      <Polyline
+                        path={[currentOrder.origin, ...currentOrder.waypoints, currentOrder.destination]}
+                        options={{ strokeColor: '#0000FF', strokeWeight: 2 }}
+                      />
+                      <Marker position={currentOrder.origin} label="Origin" />
+                      <Marker position={currentOrder.destination} label="Destination" />
+                      {carIconLocation === 'origin' && (
+                        <Marker
+                          position={currentOrder.origin}
+                          icon={{
+                            url: carIconUrl,
+                            scaledSize: { width: 70, height: 70 }, // Move scaledSize inside the icon object
+                          }}
+                        />
+                      )}
+                      {carIconLocation === 'random' && (
+                        <Marker
+                          position={currentOrder.randomLocation}
+                          icon={{
+                            url: carIconUrl,
+                            scaledSize: { width: 50, height: 50 }, // Move scaledSize inside the icon object
+                          }}
+                        />
+                      )}
+                      {carIconLocation === 'destination' && (
+                        <Marker
+                          position={currentOrder.destination}
+                          icon={{
+                            url: carIconUrl,
+                            scaledSize: { width: 70, height: 70 }, // Move scaledSize inside the icon object
+                          }}
+                        />
+                      )}
+                    </GoogleMap>
                    </LoadScript>
                  )}
                </>
