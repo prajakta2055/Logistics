@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import HomePageNav from './HomePageNav';
-import '../css/Review.css'
+import '../css/Review.css';
+
 
 function Review() {
   const [form, setForm] = useState({

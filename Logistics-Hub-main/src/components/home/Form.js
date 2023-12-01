@@ -64,49 +64,7 @@ const Form = () => {
                 <div><img src="cdl.svg" /></div>
               </div>
             </section>
-
-            <section id="services-highlights" className="flex gap-30 justify-center">
-              <button className={`${delivery === 'Express' ? 'bg-yellow-500 text-white' : 'text-black'} rounded-lg p-4`} onClick={() => updateDelivery('Express')}>
-                <div className="service-card">
-                  <h2>Express Shipping</h2>
-                  <p>Fast and reliable delivery solutions.</p>
-                </div>
-              </button>
-              <button className={`${delivery === 'International' ? 'bg-yellow-500 text-white' : 'text-black'} rounded-lg p-4`} onClick={() => updateDelivery('International')}>
-                <div className="service-card">
-                  <h2>International Logistics</h2>
-                  <p>Efficient global shipping services.</p>
-                </div>
-              </button>
-            </section>
-             
-            {delivery &&
-              <section className="search-and-book flex flex-col justify-center">
-                <div className="search-box flex flex-row justify-center p-10">
-                  <div>
-                    <div className="flex p-5">
-                      <label style={{ width: "130px" }}>From:</label>
-                      <input type="text" placeholder="From" className="w-full rounded border border-gray-300 focus:border-yellow-500 focus:ring-2 focus:ring-yellow-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
-                    </div>
-                    <div className="flex p-5">
-                      <label style={{width:"-webkit-fill-available"}}>Package Type:</label>
-                      <input type="text" placeholder="Package Type" className="w-full rounded border border-gray-300 focus:border-yellow-500 focus:ring-2 focus:ring-yellow-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
-                    </div>
-                  </div>
-                  <div>
-                    <div className="flex p-5">
-                      <label style={{ width: "130px" }}>To:</label>
-                      <input type="text" placeholder="To" className="w-full rounded border border-gray-300 focus:border-yellow-500 focus:ring-2 focus:ring-yellow-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
-                    </div>
-                    <div className="flex p-5">
-                      <label style={{width:"-webkit-fill-available"}}>Service Type:</label>
-                      <input type="text" placeholder="Service Type" className="w-full rounded border border-gray-300 focus:border-yellow-500 focus:ring-2 focus:ring-yellow-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
-                    </div>
-                  </div>
-                  <button className="search-button bg-yellow-500 text-white rounded-md p-2">Search</button>
-                </div>
-              </section>
-            }
+                        
 
           </div>
           {/* <div

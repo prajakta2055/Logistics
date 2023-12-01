@@ -35,7 +35,7 @@ export const header = {
 
 export const nav = [
   { name: 'About us', href: '#feature' },
-  { name: 'Features', href: '#cta' },
+  { name: 'Services', href: '#form' },
   { name: 'Location', href: '#product'},
   { name: 'Reviews', href: '#testimonial' },
   {name: 'Recommendation', href:'chatgpt'}
@@ -44,8 +44,6 @@ export const nav = [
 export const hero = {
   title: 'Welcome to the Logistics and Shipping Hub!',
   subtitle: 'Are you in need of reliable shipping and delivery services?',
-  btnText: 'Place Order',
-  compText: '— Web, iOS and Android',
   image: HeroImg,
 };
 
@@ -184,7 +182,6 @@ export const testimonials = {
         'Logistics Hub provides good services. They have outstanding skills and experience."',
       image: AvatarImg1,
       name: 'Pavani',
-      position: 'CEO',
       borderColor: '#FF7235',
     },
     {
@@ -192,23 +189,18 @@ export const testimonials = {
         'Your delivery is swift. What I love about your delivery is time management. Thanks for making my business go smoothly, I appreciate it, God bless your business',
       image: AvatarImg2,
       name: 'Prajakta',
-      position: 'CEO',
       borderColor: '#FFBE21',
     },
     {
       message:
         'Fast,reliable and dependable hard-working but easy to communicate with',
-      image: AvatarImg3,
       name: 'Shivdeep',
-      position: 'CEO',
       borderColor: '#4756DF',
     },
     {
       message:
       'You are a trustworthy dispatcher,humble,committed to your work 💯...your delivery is fast and reliable 💯....hard working dispatcher 100 💯 lastly your line is also available 💯not like other incompetent dispatchers❌....carry go ✔️✔️always together 💯 ',
-      image: AvatarImg4,
       name: 'Body Care',
-      position: 'CEO',
       borderColor: '#3EC1F3',
     },
   ],

@@ -73,7 +73,7 @@ function Orders() {
         console.log('Response data:', response.data);
         setOrders(response.data.data);
         if (response.status === 200) {
-          setSampleData(response.data.result);
+          setSampleData(response.data.data);
         } else {
           // Handle error case if needed
           console.error('Error executing query:', response.data.message);

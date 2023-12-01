@@ -1,17 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { Table, Thead, Tbody, Tr, Th, Td } from '@chakra-ui/react';
 import Navbar from './Manager';
-
+import Manager from './Navbar';
+import { useUser } from './userContext';
 const DataAnalytics = () => {
   const [formValues, setFormValues] = useState({
     serviceProviderName: 'ALL_PRODUCTS',
     reviewRating: '1',
-    compareRating: 'EQUALS_TO',
+    compareRating: 'GREATER_THAN',
     retailerZipcode: '',
   });
 
   const [filteredData, setFilteredData] = useState([]);
-
+  const { user } = useUser();
+  const { username, usertype } = user;
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormValues((prevValues) => ({
@@ -37,9 +39,8 @@ const DataAnalytics = () => {
 
   return (
     <div>
-     <Navbar 
-                tab={"DataAnalystics"}
-            />
+    {usertype === 'customer'?<Manager tab={'DataAnalystics'} />:<Navbar tab={'DataAnalystics'} />}
+     
     <div>
       <form onSubmit={handleSubmit}>
         {/* Your form fields */}
@@ -59,7 +60,8 @@ const DataAnalytics = () => {
             {/* Add other service provider options */}
           </select>
         </label>
-
+        {usertype === 'admin'?(  
+          <>
         <label>
           Review Rating:
           <select
@@ -69,9 +71,9 @@ const DataAnalytics = () => {
           >
             <option value="1">1</option>
             <option value="2">2</option>
-            <option value="2">3</option>
-            <option value="2">4</option>
-            <option value="2">5</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
             {/* Add other rating options */}
           </select>
         </label>
@@ -83,9 +85,9 @@ const DataAnalytics = () => {
             value={formValues.compareRating}
             onChange={handleInputChange}
           >
-            <option value="EQUALS_TO">Equals</option>
-            <option value="GREATER_THAN">Greater Than</option>
+          <option value="GREATER_THAN">Greater Than</option>
             <option value="LESS_THAN">Less Than</option>
+            <option value="EQUALS_TO">Equals</option> 
             {/* Add other comparison options */}
           </select>
         </label>
@@ -99,6 +101,8 @@ const DataAnalytics = () => {
             onChange={handleInputChange}
           />
         </label>
+        </>):(<></>)
+        }
 
         <button type="submit">Find Data</button>
       </form>
@@ -112,9 +116,11 @@ const DataAnalytics = () => {
               <Th>Service Provider</Th>
               <Th>Rating</Th>
               <Th>Feedback</Th>
+              {usertype === 'admin'?(<>
               <Th>Order ID</Th>
               <Th>Date of Service</Th>
               <Th>Recommend Service</Th>
+              </>):(<></>)}
             </Tr>
           </Thead>
           <Tbody>
@@ -124,9 +130,11 @@ const DataAnalytics = () => {
                 <Td>{item.serviceProviderName}</Td>
                 <Td>{item.serviceProviderRating}</Td>
                 <Td>{item.feedback}</Td>
+                {usertype === 'admin'?(<>
                 <Td>{item.orderID}</Td>
                 <Td>{item.dateOfService}</Td>
                 <Td>{item.recommendService}</Td>
+                </>):(<></>)}
               </Tr>
             ))}
           </Tbody>

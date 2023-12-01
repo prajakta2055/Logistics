@@ -1,5 +1,5 @@
 import React from 'react';
-
+/* eslint-disable */
 // import aos
 import Aos from 'aos';
 // import aos css
@@ -11,7 +11,6 @@ import Hero from './Hero';
 import Feature1 from './Feature1';
 import Feature2 from './Feature2';
 import Feature3 from './Feature3';
-import Product from './Product';
 import Testimonials from './Testimonials';
 import Cta from './Cta';
 // import Footer from './Footer';
@@ -31,7 +30,6 @@ const Home = () => {
       <Feature1 />
       <Feature2 />
       <Feature3 />
-      <Product />
       <From />
       <Testimonials />
       <Cta />

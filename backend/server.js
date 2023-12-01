@@ -543,7 +543,7 @@ app.get('/user/:username', (req, res) => {
 // Assuming you have the required modules and database connection
 app.get('/orderdata/:username', (req, res) => {
   const username = req.params.username;
-  console.log("Comming.....");
+  console.log("Comming.....",username);
   const sql = 'SELECT * FROM orders WHERE customer LIKE ?';
 
   db.query(sql, [`%${username}%`], (err, result) => {

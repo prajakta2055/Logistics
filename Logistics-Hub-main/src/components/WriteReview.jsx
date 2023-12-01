@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Navbar from './Navbar';
 import '../css/Review.css'
 
@@ -14,6 +15,7 @@ function Review() {
   });
   const [reviews, setReviews] = useState([]);
   const [showReviews, setShowReviews] = useState(false);
+  const navigate = useNavigate();
 
   const handleForm = (e) => {
     const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
@@ -65,7 +67,10 @@ function Review() {
     setShowReviews(true);
   };
 
-
+  const handleWriteReview = () => {
+    // Navigate to the write review page or perform your action
+    navigate('/DataAnalytics'); // Replace '/write-review' with your actual route
+  };
 
   return (
     <div className="App">
