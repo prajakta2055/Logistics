@@ -487,6 +487,48 @@ app.get('/orderdata/:username', (req, res) => {
 
 
 
+app.put('/user/:username', (req, res) => {
+  const username = req.params.username;
+  const updatedUser = req.body;
+console.log(username);
+console.log(updatedUser);
+  const sql = `
+    UPDATE user
+    SET
+      password = ?,
+      usertype = ?,
+      name = ?,
+      phone_number = ?,
+      email_address = ?,
+      address = ?
+      -- Add other fields here based on your data model
+    WHERE id = ?
+  `;
+
+  db.query(
+    sql,
+    [
+      updatedUser.password,
+      updatedUser.usertype,
+      updatedUser.name,
+      updatedUser.phone_number,
+      updatedUser.email_address,
+      updatedUser.address,
+      username
+    ],
+    (err, result) => {
+      if (err) {
+        console.error('Error updating user:', err);
+        return res.status(500).json({ error: 'Internal Server Error', message: err.message });
+      }
+
+      return res.json({ message: 'User updated successfully', result });
+    }
+  );
+});
+
+
+
 app.listen(8081, () =>{
     console.log("Listening..");
 })

@@ -37,6 +37,7 @@ const UserDetails = () => {
           const response = await axios.get(`http://localhost:8081/user/${username}`);
           if (response.data.message === 'Query executed successfully') {
             setSampleData([response.data.result]);
+            console.log(sampleData);
             setUpdatedUser(response.data.result);
           } else {
             console.error('Error executing query:', response.data.message);
@@ -55,8 +56,10 @@ const UserDetails = () => {
     // Function to handle the update button click
     const handleUpdateClick = async () => {
       try {
-        const response = await axios.put(`http://localhost:8081/user/${username}`, updatedUser);
+        console.log(sampleData[0].id);
+        const response = await axios.put(`http://localhost:8081/user/${sampleData[0].id}`, updatedUser);
         if (response.data.message === 'User updated successfully') {
+          console.log(updatedUser);
           setSampleData([updatedUser]);
           console.log('User updated successfully');
         } else {
@@ -92,7 +95,7 @@ const UserDetails = () => {
               <VStack spacing={4} align="start" key={user.id}>
                 <FormControl>
                   <FormLabel>Username</FormLabel>
-                  <Input type="text" value={user.username} isReadOnly />
+                  <Input type="text" value={user.username} onChange={handleInputChange}/>
                 </FormControl>
                 <FormControl>
                   <FormLabel>Password</FormLabel>

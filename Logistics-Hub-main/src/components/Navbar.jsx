@@ -89,7 +89,7 @@ const Navbar = (props) => {
                         Home
                     </Link>
 
-                    <Link className={selectedTab === "orders" ? 'nav-button-select' : 'nav-button-deselect'}
+                    <Link className={selectedTab === "CustomerOrder" ? 'nav-button-select' : 'nav-button-deselect'}
                         to={{
                             pathname: "/CustomerOrder",
                             state: { tab: 'CustomerOrder' } 
