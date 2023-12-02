@@ -12,19 +12,7 @@ CREATE TABLE user (
   email_address VARCHAR(255),
   address VARCHAR(255)
 );
-  
-CREATE TABLE service_providers (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    provider_name VARCHAR(255) NOT NULL,
-    email VARCHAR(255) NOT NULL,
-    phone_number VARCHAR(15),
-    address TEXT,
-    shipping_service BOOLEAN,
-    tracking_service BOOLEAN,
-    express_delivery_service BOOLEAN,
-    logo VARCHAR(255),
-    agreement VARCHAR(255)
-);
+ 
 
 
 
