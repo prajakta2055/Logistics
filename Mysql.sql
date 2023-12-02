@@ -2,15 +2,14 @@ create database Logistic;
 
 use Logistic;
 
-create table user (username varchar(255), password varchar(255), usertype varchar(255));
+create table user (username varchar(255), password varchar(255), usertype varchar(255),name VARCHAR(255),phone_number VARCHAR(15),email_address VARCHAR(255),address VARCHAR(255));
 
-INSERT INTO user (username, password, usertype) VALUES
-  ('user1', 'pass123', 'admin'),
+INSERT INTO user (username, password, usertypes) VALUES
+  ('user1', 'pass123', 'admin', 'admin123', '7818744563', 'admin@gmail.com', 'peoria,chicago'),
   ('user2', 'pass456', 'customer'),
-  ('user3', 'pass789', 'customer'),
-  ('user4', 'passabc', 'admin'),
-  ('user5', 'passdef', 'customer');
-  
+ 
+ 
+
 ALTER TABLE user
 ADD COLUMN name VARCHAR(255),
 ADD COLUMN phone_number VARCHAR(15),
