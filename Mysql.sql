@@ -5,8 +5,8 @@ use Logistic;
 create table user (username varchar(255), password varchar(255), usertype varchar(255),name VARCHAR(255),phone_number VARCHAR(15),email_address VARCHAR(255),address VARCHAR(255));
 
 INSERT INTO user (username, password, usertypes) VALUES
-  ('user1', 'pass123', 'admin', 'admin123', '7818744563', 'admin@gmail.com', 'peoria,chicago'),
-  ('user2', 'pass456', 'customer'),
+  ('admin', 'pass123', 'admin', 'admin123', '7818744563', 'admin@gmail.com', 'peoria,chicago'),
+  ('user1', 'pass456', 'customer','shivdeep','7846374657','shivdeep@gmail.com','400 e 33rd,chicago');
  
  
 
