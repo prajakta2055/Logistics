@@ -74,7 +74,55 @@ CREATE TABLE tracking (
 );
 
 select * from orders;
+INSERT INTO locations (location_id, name, latitude, longitude)
+VALUES
+  (1, 'Millennium Park', 41.8825, -87.6237),
+  (2, 'Navy Pier', 41.8917, -87.6086),
+  (3, 'Art Institute of Chicago', 41.8796, -87.6237),
+  (4, 'The Field Museum', 41.8663, -87.6163),
+  (5, 'Willis Tower', 41.8789, -87.6359),
+  (6, 'Magnificent Mile', 41.8950, -87.6247),
+  (7, 'Grant Park', 41.8786, -87.6205),
+  (8, 'Shedd Aquarium', 41.8676, -87.6140),
+  (9, 'Wrigley Field', 41.9484, -87.6553),
+  (10, 'Lincoln Park Zoo', 41.9203, -87.6333),
+  (11, 'Chicago Riverwalk', 41.8889, -87.6265),
+  (12, 'Museum of Science and Industry', 41.7918, -87.5839),
+  (13, 'Buckingham Fountain', 41.8758, -87.6189),
+  (14, 'Cloud Gate (The Bean)', 41.8827, -87.6233),
+  (15, 'John Hancock Center', 41.8986, -87.6215),
+  (16, 'Adler Planetarium', 41.8663, -87.6068),
+  (17, 'Chicago Theatre', 41.8856, -87.6275),
+  (18, 'Windy City Pizza', 41.9014, -87.6315),
+  (19, 'Lincoln Park Conservatory', 41.9231, -87.6324),
+  (20, 'The Robey Hotel', 41.9055, -87.6784),
+  (21, 'Chicago Botanic Garden', 42.1500, -87.7900),
+  (22, 'Garfield Park Conservatory', 41.8840, -87.7175),
+  (23, 'Union Station', 41.8787, -87.6389),
+  (24, 'Montrose Beach', 41.9656, -87.6384),
+  (25, 'Adams/Wabash L Station', 41.8796, -87.6265),
+  (26, 'Gino\'s East', 41.8986, -87.6256),
+  (27, 'The Drake Hotel', 41.9006, -87.6265),
+  (28, 'Maggie Daley Park', 41.8813, -87.6191),
+  (29, 'Gibsons Bar & Steakhouse', 41.9110, -87.6315),
+  (30, 'The Second City', 41.9115, -87.6346),
+  (31, 'Chicago History Museum', 41.9110, -87.6315),
+  (32, 'Oak Street Beach', 41.9031, -87.6239),
+  (33, 'The Magnificent Mile (North End)', 41.8950, -87.6247),
+  (34, 'Chicago Cultural Center', 41.8841, -87.6247),
+  (35, 'Peggy Notebaert Nature Museum', 41.9273, -87.6374),
+  (36, 'North Avenue Beach', 41.9124, -87.6270),
+  (37, 'Oriental Institute Museum', 41.7899, -87.5987),
+  (38, 'Chicago Public Library - Harold Washington Library Center', 41.8765, -87.6280),
+  (39, 'The Gwen Hotel', 41.8930, -87.6314),
+  (40, 'Chicago Symphony Center', 41.8782, -87.6254);
 
+CREATE TABLE locations (
+  location_id INT PRIMARY KEY,
+  name VARCHAR(255),
+  latitude DOUBLE,
+  longitude DOUBLE
+);
 
 
 ALTER USER 'root'@'localhost' IDENTIFIED WITH 'mysql_native_password' BY 'Oneplus@6';
