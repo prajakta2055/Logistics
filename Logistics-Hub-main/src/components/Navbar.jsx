@@ -109,10 +109,17 @@ const Navbar = (props) => {
                     >Write Review</Link>
                     <Link className={selectedTab === "newOrder" ? 'nav-button-select' : 'nav-button-deselect'}
                         to={{
-                            pathname: "/DataAnalytics",
+                            pathname: "/readreviews",
                             state: { tab: 'orders' } 
                         }}
                     >Read Reviews</Link>
+
+                    <Link className={selectedTab === "newOrder" ? 'nav-button-select' : 'nav-button-deselect'}
+                        to={{
+                            pathname: "/knowledge-graph",
+                            state: { tab: 'orders' }
+                        }}
+                    >Knowledge Graph</Link>
                    
                     {/* <Link className={selectedTab === "products" ? 'nav-button-select' : 'nav-button-deselect'}  
                         onClick={()=>setSelectedTab("products") }
