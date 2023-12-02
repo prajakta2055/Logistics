@@ -2,25 +2,16 @@ create database Logistic;
 
 use Logistic;
 
-create table user (username varchar(255), password varchar(255), usertype varchar(255),name VARCHAR(255),phone_number VARCHAR(15),email_address VARCHAR(255),address VARCHAR(255));
-
-INSERT INTO user (username, password, usertypes) VALUES
-  ('admin', 'pass123', 'admin', 'admin123', '7818744563', 'admin@gmail.com', 'peoria,chicago'),
-  ('user1', 'pass456', 'customer','shivdeep','7846374657','shivdeep@gmail.com','400 e 33rd,chicago');
- 
- 
-
-ALTER TABLE user
-ADD COLUMN name VARCHAR(255),
-ADD COLUMN phone_number VARCHAR(15),
-ADD COLUMN email_address VARCHAR(255),
-ADD COLUMN address VARCHAR(255);
-
-describe user;
-
--- Add an 'id' column to the existing 'user' table
-ALTER TABLE user
-ADD COLUMN id INT AUTO_INCREMENT PRIMARY KEY FIRST;
+CREATE TABLE user (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  username VARCHAR(255),
+  password VARCHAR(255),
+  usertype VARCHAR(255),
+  name VARCHAR(255),
+  phone_number VARCHAR(15),
+  email_address VARCHAR(255),
+  address VARCHAR(255)
+);
   
 CREATE TABLE service_providers (
     id INT PRIMARY KEY AUTO_INCREMENT,
@@ -34,12 +25,7 @@ CREATE TABLE service_providers (
     logo VARCHAR(255),
     agreement VARCHAR(255)
 );
-ALTER TABLE service_providers
-ADD COLUMN rate DECIMAL(10, 2);
-select * from service_providers;
 
-select * from user;
-select * from orders;
 
 
 CREATE TABLE orders (
@@ -72,7 +58,13 @@ CREATE TABLE tracking (
   FOREIGN KEY (orderId) REFERENCES orders(orderId)
 );
 
-select * from orders;
+CREATE TABLE locations (
+  location_id INT PRIMARY KEY,
+  name VARCHAR(255),
+  latitude DOUBLE,
+  longitude DOUBLE
+);
+
 INSERT INTO locations (location_id, name, latitude, longitude)
 VALUES
   (1, 'Millennium Park', 41.8825, -87.6237),
@@ -100,7 +92,7 @@ VALUES
   (23, 'Union Station', 41.8787, -87.6389),
   (24, 'Montrose Beach', 41.9656, -87.6384),
   (25, 'Adams/Wabash L Station', 41.8796, -87.6265),
-  (26, 'Gino\'s East', 41.8986, -87.6256),
+  (26, 'Ginos East', 41.8986, -87.6256),
   (27, 'The Drake Hotel', 41.9006, -87.6265),
   (28, 'Maggie Daley Park', 41.8813, -87.6191),
   (29, 'Gibsons Bar & Steakhouse', 41.9110, -87.6315),
@@ -116,12 +108,6 @@ VALUES
   (39, 'The Gwen Hotel', 41.8930, -87.6314),
   (40, 'Chicago Symphony Center', 41.8782, -87.6254);
 
-CREATE TABLE locations (
-  location_id INT PRIMARY KEY,
-  name VARCHAR(255),
-  latitude DOUBLE,
-  longitude DOUBLE
-);
 
 
 CREATE TABLE service_providers (
@@ -138,6 +124,26 @@ CREATE TABLE service_providers (
     rate DECIMAL(10, 2)
 );
 
-ALTER USER 'root'@'localhost' IDENTIFIED WITH 'mysql_native_password' BY 'Oneplus@6';
+-- Inserting data for USPS
+INSERT INTO service_providers (provider_name, email, phone_number, address, shipping_service, tracking_service, express_delivery_service, logo, agreement)
+VALUES ('USPS', 'usps@example.com', '123-456-7890', '123 Main St, City, Country', true, true, false, 'usps_r.svg', 'usps_agreement.pdf');
 
+-- Inserting data for UPS
+INSERT INTO service_providers (provider_name, email, phone_number, address, shipping_service, tracking_service, express_delivery_service, logo, agreement)
+VALUES ('UPS', 'ups@example.com', '987-654-3210', '456 Market St, City, Country', true, true, true, 'ups_r.svg', 'ups_agreement.pdf');
+
+-- Inserting data for FedEx
+INSERT INTO service_providers (provider_name, email, phone_number, address, shipping_service, tracking_service, express_delivery_service, logo, agreement)
+VALUES ('FedEx', 'fedex@example.com', '111-222-3333', '789 Commerce St, City, Country', true, true, true, 'fedex.svg', 'fedex_agreement.pdf');
+
+-- Inserting data for CDL
+INSERT INTO service_providers (provider_name, email, phone_number, address, shipping_service, tracking_service, express_delivery_service, logo, agreement)
+VALUES ('CDL', 'cdl@example.com', '444-555-6666', '321 Business St, City, Country', true, false, false, 'cdl.svg', 'cdl_agreement.pdf');
+
+-- Inserting data for DFL
+INSERT INTO service_providers (provider_name, email, phone_number, address, shipping_service, tracking_service, express_delivery_service, logo, agreement)
+VALUES ('DFL', 'dfl@example.com', '777-888-9999', '555 Industry St, City, Country', true, true, true, 'dhl_r.svg', 'dfl_agreement.pdf');
+
+
+#ALTER USER 'root'@'localhost' IDENTIFIED WITH 'mysql_native_password' BY 'Oneplus@6';
 Flush privileges;
