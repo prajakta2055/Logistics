@@ -36,7 +36,8 @@ import ManagerHome from "./components/ManagerHome";
 import OrderStatusLine from "./components/OrderStatusLine";
 import CustomerOrder from "./components/CustomerOrder";
 import UserProfile from "./components/UserProfile";
-import Nearme from "./components/Nearme";import WriteReview from "./components/WriteReview";
+import Nearme from "./components/Nearme";
+import WriteReview from "./components/WriteReview";
 
 export default function App() {
   return (
@@ -80,6 +81,7 @@ export default function App() {
           <Route path="CustomerOrder" element={<CustomerOrder />} />
           <Route path="UserProfile" element={<UserProfile />} />
           <Route path="OrderStatusLine" element={<OrderStatusLine />} />
+          <Route path="WriteReview" element={<WriteReview />} />
         </Routes>
         </ChakraProvider>
         </UserProvider> 

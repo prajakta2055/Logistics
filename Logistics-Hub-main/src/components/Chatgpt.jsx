@@ -251,7 +251,7 @@ function Chatgpt() {
          justifyContent: "center",
          alignItems: "center",
          }}>
-        <MainContainer>
+        <MainContainer style={{marginRight:"-1207px",width:"400px"}}>
           <ChatContainer>
             <MessageList
               scrollBehavior='smooth'

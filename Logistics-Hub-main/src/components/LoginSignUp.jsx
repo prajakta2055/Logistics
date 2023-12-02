@@ -47,6 +47,7 @@ const LoginSignUp = () => {
         console.error('Login failed. Server returned an error:', res.data);
       } else {
         // Process the successful response data
+        localStorage.setItem('username', username);
         console.log('Login successful!');
         login(username, usertype);
         if(usertype === 'admin')

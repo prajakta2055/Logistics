@@ -26,7 +26,7 @@ const Home = () => {
     offset: 100,
   });
   return (
-    <div className='overflow-hidden' style={{background:"#fff", width:"100vw", display:"block"}}>
+    <div className='overflow-hidden' style={{background:"#fff", width:"98vw", display:"block"}}>
       <Header style={{background:"#fff", width:"100%"}}/>
       <Hero />
       <Feature1 />

@@ -67,13 +67,13 @@ function Orders() {
   useEffect(() => {
     const fetchOrderData = async () => {
       try {
-        console.log(username);
-        const response = await axios.get(`http://localhost:8081/orderdata/${username}`);
+        const userdata = localStorage.getItem('username');
+        const response = await axios.get(`http://localhost:8081/orderdata/${userdata}`);
         console.log('Response status:', response.status);
         console.log('Response data:', response.data);
         setOrders(response.data.data);
         if (response.status === 200) {
-          setSampleData(response.data.data);
+          setSampleData(response.data.result);
         } else {
           // Handle error case if needed
           console.error('Error executing query:', response.data.message);
@@ -95,7 +95,8 @@ function Orders() {
       .then((res) => {
         console.log('Response status:', res.status);
         console.log('Response data:', res.data);
-        alert('Status updated successfully!');
+        if(res.status === 200)
+          alert('Status updated successfully!');
       });
      setShowStatusDialog(false);
     }

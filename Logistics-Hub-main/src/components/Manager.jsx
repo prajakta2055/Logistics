@@ -64,6 +64,7 @@ const Navbar = (props) => {
     const handleLogout = () => {
         navigate("/");
         logout();
+        localStorage.clear();
         console.log(username);
         };
     useEffect(()=>{

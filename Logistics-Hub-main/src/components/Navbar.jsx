@@ -75,7 +75,7 @@ const Navbar = (props) => {
     const [selectedTab, setSelectedTab] = useState(props.tab)
 
     return (
-        <div className={classes.divhead}>
+        <div className={classes.divhead} style={{position:"relative",display:"block",zIndex:"9999"}}>
             <nav className={classes.navbar}>
                 <div style={{ display: 'flex', gap: '25px', justifyContent:"center", alignItems:"center"}}>
                     
